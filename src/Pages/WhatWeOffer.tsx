@@ -2,7 +2,7 @@
 import Navbar from '../components/navbar';
 import Footer from '../components/footer';
 import ServicesHero from '../Sections/services/hero';
-import Services from '../Sections/services/service';
+import Services from '../Sections/services/services';
 import CTA from '../Sections/services/CTA';
 
 export default function Home() {

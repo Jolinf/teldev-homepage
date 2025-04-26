@@ -1,53 +1,148 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 
 export default function ContactSection() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: '',
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Handle form submission here
+    console.log('Form submitted:', formData);
+  };
+
+  const inputVariants = {
+    focus: {
+      scale: 1.02,
+      transition: { duration: 0.2 },
+    },
+  };
+
+  const buttonVariants = {
+    hover: {
+      scale: 1.05,
+      backgroundColor: '#FFFFFF',
+      color: '#0F1729',
+      transition: { duration: 0.3 },
+    },
+    tap: {
+      scale: 0.95,
+      transition: { duration: 0.1 },
+    },
+  };
+
   return (
     <section className="bg-black text-[#FFFFFF] px-[10%] py-[5%] flex justify-center font-inter">
-      <div className="max-w-xl w-full text-center">
-        {/* Heading */}
-        <h2
+      <motion.div
+        className="max-w-xl w-full text-center"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
+        <motion.h2
           className="text-3xl text-[2em] md:text-4xl font-semibold text-[#1E64F0] m-[0] mb-[5%]"
           style={{ fontFamily: 'Poppins, sans-serif' }}
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
         >
           Don't leave without saying Hi!
-        </h2>
-        {/* <p
-          className="text-base text-[1.3em] md:text-lg leading-relaxed my-[40px] m-[0]"
-          style={{ fontFamily: 'Inter, sans-serif' }}
-        >
-          Ready to Take Your Business to the Next Level?
-          <br />
-          Or do you need free consultation?
-          <br />
-          Don’t leave without saying hello.
-        </p> */}
+        </motion.h2>
 
-        {/* Form */}
-        <form className="space-y-6">
-          <input
-            type="text"
-            placeholder="Name"
-            className="box-border w-full p-[20px] mb-[20px] bg-[#0a0a0a] border border-[#1E64F0]/20 text-[#FFFFFF] placeholder:text-[#FFFFFF]/60 rounded-[10px] px-4 py-3 outline-none focus:ring-2 focus:ring-[#1E64F0] "
-          />
-          <input
-            type="email"
-            placeholder="Email"
-            className="box-border w-full p-[20px] mb-[20px] bg-[#0a0a0a] border border-[#1E64F0]/20 text-[#FFFFFF] placeholder:text-[#FFFFFF]/60 rounded-[10px] px-4 py-3 outline-none focus:ring-2 focus:ring-[#1E64F0]"
-          />
-          <textarea
-            rows={6}
-            placeholder="Say Hi!"
-            className="box-border w-full p-[20px] mb-[20px]  bg-[#0a0a0a] border border-[#1E64F0]/20 text-[#FFFFFF] placeholder:text-[#FFFFFF]/60 rounded-[10px] px-4 py-3 outline-none focus:ring-2 focus:ring-[#1E64F0]"
-          ></textarea>
-          <button
-            type="submit"
-            className="px-8 sm:px-36 py-4 sm:py-20 bg-[#0F1729] border-[0] text-[#FFFFFF] font-medium rounded-[10px] transition duration-300 hover:bg-[#FFFFFF] hover:text-[#0F1729] text-sm sm:text-base"
-            style={{ fontFamily: 'inter, sans-serif' }}
+        <motion.form
+          className="space-y-6"
+          onSubmit={handleSubmit}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+        >
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3 }}
           >
-            Send
-          </button>
-        </form>
-      </div>
+            <motion.input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              placeholder="Name"
+              className="w-full p-[20px] mb-[20px] bg-[#0a0a0a] border border-[#1E64F0]/20 text-[#FFFFFF] placeholder:text-[#FFFFFF]/60 rounded-[10px] px-4 py-3 outline-none focus:ring-2 focus:ring-[#1E64F0] transition-all duration-300"
+              whileFocus="focus"
+              variants={inputVariants}
+            />
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4 }}
+          >
+            <motion.input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="Email"
+              className="w-full p-[20px] mb-[20px] bg-[#0a0a0a] border border-[#1E64F0]/20 text-[#FFFFFF] placeholder:text-[#FFFFFF]/60 rounded-[10px] px-4 py-3 outline-none focus:ring-2 focus:ring-[#1E64F0] transition-all duration-300"
+              whileFocus="focus"
+              variants={inputVariants}
+            />
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.5 }}
+          >
+            <motion.textarea
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              rows={6}
+              placeholder="Say Hi!"
+              className="w-full p-[20px] mb-[20px] bg-[#0a0a0a] border border-[#1E64F0]/20 text-[#FFFFFF] placeholder:text-[#FFFFFF]/60 rounded-[10px] px-4 py-3 outline-none focus:ring-2 focus:ring-[#1E64F0] transition-all duration-300 resize-none"
+              whileFocus="focus"
+              variants={inputVariants}
+            />
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.6 }}
+          >
+            <motion.button
+              type="submit"
+              className="px-8 sm:px-36 py-4 sm:py-20 bg-[#0F1729] border-[0] text-[#FFFFFF] font-medium rounded-[10px] text-sm sm:text-base w-full sm:w-auto"
+              style={{ fontFamily: 'inter, sans-serif' }}
+              variants={buttonVariants}
+              whileHover="hover"
+              whileTap="tap"
+            >
+              Send
+            </motion.button>
+          </motion.div>
+        </motion.form>
+      </motion.div>
     </section>
   );
 }

@@ -1,5 +1,6 @@
 // src/sections/WhyTeldev.tsx
 import React from 'react';
+import { motion } from 'framer-motion';
 
 // Sample image imports — replace these with your actual image paths
 import expertiseImg from '../../assets/Homepage-images/homepage-whyuwhyteldev-expertise image.jpg';
@@ -21,72 +22,91 @@ const cards = [
   { title: 'Adaptability', img: supportImg },
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+      delayChildren: 0.3,
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: 'easeOut',
+    },
+  },
+  hover: {
+    scale: 1.05,
+    transition: {
+      duration: 0.3,
+      ease: 'easeOut',
+    },
+  },
+};
+
 export default function WhyTeldev() {
   return (
     <section className="mb-[5%] px-[10%] justify-center bg-[#0A0A0A] text-[#FFFFFF] py-[5%] sm:px-6 md:px-8">
-      <h2
+      <motion.h2
         className="text-center text-[1.8em] sm:text-[2em] text-3xl md:text-4xl lg:text-5xl font-semibold mb-[40px]"
         style={{ fontFamily: 'Poppins, sans-serif' }}
+        initial={{ opacity: 0, y: -20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
       >
         Why <span className="text-[#1C6CFE]">us</span>? Why{' '}
         <span className="text-[#1C6CFE]">Teldev</span>?
-      </h2>
+      </motion.h2>
 
-      <div className="grid gap-6 grid-cols-1 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 md:grid-cols-2 sm:grid-cols-2 lg:grid-cols-3">
+      <motion.div
+        className="grid gap-6 grid-cols-1 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 md:grid-cols-2 sm:grid-cols-2 lg:grid-cols-3"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+      >
         {cards.map((card, index) => (
-          <div
+          <motion.div
             key={index}
-            className="rounded-[1em] overflow-hidden shadow-md relative group transition duration-300 transform hover:shadow-2xl hover:scale-105 hover:-translate-y-1 h-[90%] sm:h-[350px] md:h-[] p-4 "
+            className="rounded-[1em] overflow-hidden shadow-md relative group transition duration-300 transform hover:shadow-2xl hover:scale-105 hover:-translate-y-1 h-[90%] sm:h-[350px] md:h-[] p-4"
+            variants={cardVariants}
+            whileHover="hover"
           >
-            <div className="relative w-full h-full hover:shadow">
-              <div className="relative w-full h-full hover:text-underline">
+            <div className="relative w-full h-full">
+              <div className="relative w-full h-full">
                 <img
                   src={card.img}
                   alt={card.title}
-                  className={`w-full h-full object-cover rounded-[1em] ${
+                  className={`w-full h-full object-cover rounded-[1em] transition-transform duration-500 group-hover:scale-110 ${
                     card.title === 'Scalability' ? 'transform -scale-x-100' : ''
                   }`}
                 />
-                <div
-                  className="absolute inset-0 bg-[#000000] opacity-20 rounded-[1em]"
-                  style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    zIndex: 1,
-                  }}
-                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent rounded-[1em]" />
               </div>
             </div>
-            <div
-              className="absolute bottom-6 left-6"
-              style={{
-                position: 'absolute',
-                bottom: '24px',
-                left: '24px',
-                zIndex: 2,
-                margin: 0,
-                padding: 0,
-              }}
-            >
+            <div className="absolute bottom-6 left-6 z-10">
               <h3
                 className="text-white text-[1.3em] sm:text-[1.9em] font-bold text-left"
                 style={{
                   fontFamily: 'Poppins, sans-serif',
-                  margin: 0,
-                  padding: 0,
-                  position: 'relative',
-                  display: 'block',
+                  textShadow: '0 2px 4px rgba(0,0,0,0.5)',
                 }}
               >
                 {card.title}
               </h3>
             </div>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 }

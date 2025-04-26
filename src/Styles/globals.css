@@ -1,0 +1,104 @@
+@import './typography.css';
+@import 'tailwindcss/preflight';
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb)))
+    rgb(var(--background-start-rgb));
+}
+
+/* Base typography styles */
+h1 {
+  @apply text-heading-1 font-bold;
+}
+
+h2 {
+  @apply text-heading-2 font-bold;
+}
+
+h3 {
+  @apply text-heading-3 font-bold;
+}
+
+h4 {
+  @apply text-heading-4 font-bold;
+}
+
+h5 {
+  @apply text-heading-5 font-bold;
+}
+
+h6 {
+  @apply text-heading-6 font-bold;
+}
+
+p {
+  @apply text-body-base;
+}
+
+a {
+  @apply text-link;
+}
+
+button {
+  @apply text-button;
+}
+
+/* Component-specific typography */
+blockquote {
+  @apply text-quote;
+}
+
+.card-title {
+  @apply text-card-title;
+}
+
+.card-text {
+  @apply text-card-text;
+}
+
+.nav-link {
+  @apply text-nav;
+}
+
+.footer-text {
+  @apply text-footer;
+}
+
+.footer-heading {
+  @apply text-footer-heading;
+}
+
+/* Responsive container */
+.container {
+  @apply mx-auto px-4 sm:px-6 lg:px-8;
+  max-width: 1280px;
+}
+
+/* Utility classes */
+.text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600;
+}
+
+.hover-scale {
+  @apply transition-transform duration-300 hover:scale-105;
+}
+
+.focus-ring {
+  @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+}

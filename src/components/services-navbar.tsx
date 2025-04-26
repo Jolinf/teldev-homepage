@@ -4,8 +4,7 @@ import { Link } from 'react-router-dom';
 
 const ServicesNavbar: React.FC = () => {
   return (
-    <header className="bg-[#1C6CFE] text-[#FFFFFF] fixed top-0 left-0 w-full shadow-md mt-[90px] flex justify-center">
-      <div className="absolute w-full inset-0 bg-[#000000] opacity-100"></div>
+    <header className="bg-[#1C6CFE] text-[#FFFFFF] fixed top-0 left-0 w-full z-50 shadow-md mt-[90px] flex justify-center">
       <nav className="max-w-7xl mx-auto px-[100px] md:px-10 py-[20px] flex items-center justify-between">
         {/* Navigation Links */}
         <ul

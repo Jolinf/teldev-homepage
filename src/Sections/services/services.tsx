@@ -1,6 +1,8 @@
+import React from 'react';
 import { motion } from 'framer-motion';
-// import Image from 'next/image'; // Or use <img> if not using Next.js
-import leader1 from '../../assets/whoweare-images/leader-placeholder.png'; // Replace with actual image path
+import ITsupport from '../../assets/homepage illustrations/Homepage-whatweoffer-helpdesk illustration.svg';
+import cloud from '../../assets/homepage illustrations/Homepage-whatweoffer-cloudservices illustration.svg';
+import security from '../../assets/homepage illustrations/Homepage-whatweoffer-Network&infrastructure illustration.svg';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -25,6 +27,8 @@ const cardVariants = {
   },
   hover: {
     scale: 1.02,
+    borderColor: '#1C6CFE',
+    boxShadow: '0 0 30px rgba(28, 108, 254, 0.3)',
     transition: {
       duration: 0.3,
     },
@@ -61,7 +65,7 @@ const textVariants = {
   },
 };
 
-export default function Leaders() {
+export default function Services() {
   return (
     <motion.section
       className="box-border bg-black text-white px-[10%] py-[8%] min-h-screen flex flex-col items-center gap-16 relative overflow-hidden"
@@ -82,18 +86,18 @@ export default function Leaders() {
       </motion.div>
 
       <motion.h2
-        className="text-[#FFFFFF] text-4xl md:text-5xl font-bold text-center"
+        className="text-[#FFFFFF] text-heading-2 font-bold text-center"
         style={{ fontFamily: 'Poppins, sans-serif' }}
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
       >
-        Meet Our Leaders
+        Our Services
       </motion.h2>
 
       <motion.div className="w-full max-w-7xl mx-auto space-y-16" variants={containerVariants}>
-        {/* CEO */}
+        {/* IT Support Card */}
         <motion.div
           className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center p-8 rounded-xl bg-[#0A0A0A] border border-[#1C6CFE]/20 shadow-lg"
           variants={cardVariants}
@@ -101,31 +105,31 @@ export default function Leaders() {
         >
           <motion.div className="flex justify-center md:justify-start" variants={imageVariants}>
             <motion.img
-              src={leader1}
-              alt="CEO - Joshua Ulinfun"
-              className="w-full max-w-md rounded-xl shadow-xl"
+              src={ITsupport}
+              alt="IT Support illustration"
+              className="w-full max-w-md"
               whileHover="hover"
             />
           </motion.div>
 
           <motion.div className="text-left space-y-6" variants={textVariants}>
-            <motion.h1
-              className="text-[#FFFFFF] text-3xl md:text-5xl font-bold leading-snug"
+            <motion.h3
+              className="text-[#FFFFFF] text-heading-3 font-bold leading-snug"
               style={{ fontFamily: 'Poppins, sans-serif' }}
             >
-              Our mission is to simplify technology for everyone by delivering reliable,
-              personalized IT support and solutions.
-            </motion.h1>
+              IT Support
+            </motion.h3>
             <motion.p
-              className="text-[#FFFFFF] text-lg md:text-xl leading-relaxed"
+              className="text-[#FFFFFF] text-body-lg leading-relaxed"
               style={{ fontFamily: 'Inter, sans-serif' }}
             >
-              - Joshua Ulinfun, CEO/CO-Founder
+              Comprehensive IT support services including troubleshooting, system maintenance, and
+              technical assistance to keep your business running smoothly.
             </motion.p>
           </motion.div>
         </motion.div>
 
-        {/* CTO */}
+        {/* Cloud Services Card */}
         <motion.div
           className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center p-8 rounded-xl bg-[#0A0A0A] border border-[#1C6CFE]/20 shadow-lg"
           variants={cardVariants}
@@ -136,31 +140,31 @@ export default function Leaders() {
             variants={imageVariants}
           >
             <motion.img
-              src={leader1}
-              alt="CTO"
-              className="w-full max-w-md rounded-xl shadow-xl"
+              src={cloud}
+              alt="Cloud Services illustration"
+              className="w-full max-w-md"
               whileHover="hover"
             />
           </motion.div>
 
           <motion.div className="md:order-1 text-left space-y-6" variants={textVariants}>
-            <motion.h1
-              className="text-[#FFFFFF] text-3xl md:text-5xl font-bold leading-snug"
+            <motion.h3
+              className="text-[#FFFFFF] text-heading-3 font-bold leading-snug"
               style={{ fontFamily: 'Poppins, sans-serif' }}
             >
-              Our mission is to simplify technology for everyone by delivering reliable,
-              personalized IT support and solutions.
-            </motion.h1>
+              Cloud Services
+            </motion.h3>
             <motion.p
-              className="text-[#FFFFFF] text-lg md:text-xl leading-relaxed"
+              className="text-[#FFFFFF] text-body-lg leading-relaxed"
               style={{ fontFamily: 'Inter, sans-serif' }}
             >
-              - Tunde Ogunleye, CTO/CO-Founder
+              Scalable cloud solutions for businesses of all sizes, including cloud migration,
+              management, and optimization services.
             </motion.p>
           </motion.div>
         </motion.div>
 
-        {/* COO */}
+        {/* Security Card */}
         <motion.div
           className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center p-8 rounded-xl bg-[#0A0A0A] border border-[#1C6CFE]/20 shadow-lg"
           variants={cardVariants}
@@ -168,26 +172,26 @@ export default function Leaders() {
         >
           <motion.div className="flex justify-center md:justify-start" variants={imageVariants}>
             <motion.img
-              src={leader1}
-              alt="COO - Kayode Ojedele"
-              className="w-full max-w-md rounded-xl shadow-xl"
+              src={security}
+              alt="Security illustration"
+              className="w-full max-w-md"
               whileHover="hover"
             />
           </motion.div>
 
           <motion.div className="text-left space-y-6" variants={textVariants}>
-            <motion.h1
-              className="text-[#FFFFFF] text-3xl md:text-5xl font-bold leading-snug"
+            <motion.h3
+              className="text-[#FFFFFF] text-heading-3 font-bold leading-snug"
               style={{ fontFamily: 'Poppins, sans-serif' }}
             >
-              Our mission is to simplify technology for everyone by delivering reliable,
-              personalized IT support and solutions.
-            </motion.h1>
+              Security
+            </motion.h3>
             <motion.p
-              className="text-[#FFFFFF] text-lg md:text-xl leading-relaxed"
+              className="text-[#FFFFFF] text-body-lg leading-relaxed"
               style={{ fontFamily: 'Inter, sans-serif' }}
             >
-              - Kayode Ojedele, COO/CO-Founder
+              Advanced security solutions to protect your business from cyber threats, including
+              network security, data protection, and security audits.
             </motion.p>
           </motion.div>
         </motion.div>

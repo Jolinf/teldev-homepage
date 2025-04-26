@@ -1,0 +1,147 @@
+/* Typography Scale */
+:root {
+  /* Base font sizes */
+  --text-xs: 0.75rem; /* 12px */
+  --text-sm: 0.875rem; /* 14px */
+  --text-base: 1rem; /* 16px */
+  --text-lg: 1.125rem; /* 18px */
+  --text-xl: 1.25rem; /* 20px */
+  --text-2xl: 1.5rem; /* 24px */
+  --text-3xl: 1.875rem; /* 30px */
+  --text-4xl: 2.25rem; /* 36px */
+  --text-5xl: 3rem; /* 48px */
+  --text-6xl: 3.75rem; /* 60px */
+  --text-7xl: 4.5rem; /* 72px */
+  --text-8xl: 6rem; /* 96px */
+  --text-9xl: 8rem; /* 128px */
+
+  /* Responsive text sizes */
+  --heading-1: var(--text-4xl);
+  --heading-2: var(--text-3xl);
+  --heading-3: var(--text-2xl);
+  --heading-4: var(--text-xl);
+  --heading-5: var(--text-lg);
+  --heading-6: var(--text-base);
+
+  --body-large: var(--text-lg);
+  --body-base: var(--text-base);
+  --body-small: var(--text-sm);
+
+  --button-text: var(--text-sm);
+  --link-text: var(--text-base);
+
+  /* Additional sizes for specific components */
+  --quote-text: var(--text-xl);
+  --card-title: var(--text-xl);
+  --card-text: var(--text-base);
+  --nav-text: var(--text-sm);
+  --footer-text: var(--text-sm);
+  --footer-heading: var(--text-lg);
+}
+
+/* Responsive typography */
+@media (min-width: 640px) {
+  :root {
+    --heading-1: var(--text-5xl);
+    --heading-2: var(--text-4xl);
+    --heading-3: var(--text-3xl);
+    --heading-4: var(--text-2xl);
+    --heading-5: var(--text-xl);
+    --heading-6: var(--text-lg);
+
+    --body-large: var(--text-xl);
+    --body-base: var(--text-lg);
+    --body-small: var(--text-base);
+
+    --button-text: var(--text-base);
+    --link-text: var(--text-lg);
+
+    --quote-text: var(--text-2xl);
+    --card-title: var(--text-2xl);
+    --card-text: var(--text-lg);
+    --nav-text: var(--text-base);
+    --footer-text: var(--text-base);
+    --footer-heading: var(--text-xl);
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --heading-1: var(--text-6xl);
+    --heading-2: var(--text-5xl);
+    --heading-3: var(--text-4xl);
+    --heading-4: var(--text-3xl);
+    --heading-5: var(--text-2xl);
+    --heading-6: var(--text-xl);
+
+    --body-large: var(--text-2xl);
+    --body-base: var(--text-xl);
+    --body-small: var(--text-lg);
+
+    --button-text: var(--text-lg);
+    --link-text: var(--text-xl);
+
+    --quote-text: var(--text-3xl);
+    --card-title: var(--text-3xl);
+    --card-text: var(--text-xl);
+    --nav-text: var(--text-lg);
+    --footer-text: var(--text-lg);
+    --footer-heading: var(--text-2xl);
+  }
+}
+
+/* Typography classes */
+.text-heading-1 {
+  font-size: var(--heading-1);
+}
+.text-heading-2 {
+  font-size: var(--heading-2);
+}
+.text-heading-3 {
+  font-size: var(--heading-3);
+}
+.text-heading-4 {
+  font-size: var(--heading-4);
+}
+.text-heading-5 {
+  font-size: var(--heading-5);
+}
+.text-heading-6 {
+  font-size: var(--heading-6);
+}
+
+.text-body-large {
+  font-size: var(--body-large);
+}
+.text-body-base {
+  font-size: var(--body-base);
+}
+.text-body-small {
+  font-size: var(--body-small);
+}
+
+.text-button {
+  font-size: var(--button-text);
+}
+.text-link {
+  font-size: var(--link-text);
+}
+
+.text-quote {
+  font-size: var(--quote-text);
+}
+.text-card-title {
+  font-size: var(--card-title);
+}
+.text-card-text {
+  font-size: var(--card-text);
+}
+.text-nav {
+  font-size: var(--nav-text);
+}
+.text-footer {
+  font-size: var(--footer-text);
+}
+.text-footer-heading {
+  font-size: var(--footer-heading);
+}
