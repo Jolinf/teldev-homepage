@@ -93,13 +93,22 @@ export default function Footer() {
               ))}
             </motion.div>
             <motion.div className="space-y-0" variants={containerVariants}>
-              <motion.p className="m-[0] text-[1.2em]" variants={itemVariants}>
+              <motion.p
+                className="m-[0] text-base text-left sm:text-lg md:text-xl lg:text-2xl text-[#F5F5F5]"
+                variants={itemVariants}
+              >
                 contact@teldev.org
               </motion.p>
-              <motion.p className="m-[0] text-[1.2em]" variants={itemVariants}>
+              <motion.p
+                className="m-[0] text-base text-left sm:text-lg md:text-xl lg:text-2xl text-[#F5F5F5]"
+                variants={itemVariants}
+              >
                 +234 903 756 2951
               </motion.p>
-              <motion.p className="m-[0] text-[1.2em]" variants={itemVariants}>
+              <motion.p
+                className="m-[0] text-base text-left sm:text-lg md:text-xl lg:text-2xl text-[#F5F5F5]"
+                variants={itemVariants}
+              >
                 +234 708 403 6561
               </motion.p>
             </motion.div>
@@ -192,7 +201,7 @@ export default function Footer() {
             ))}
           </motion.div>
           <motion.p
-            className="text-[1em]"
+            className="text-[1em] text-[#F5F5F5]"
             style={{ fontFamily: 'Inter, sans-serif' }}
             variants={itemVariants}
           >

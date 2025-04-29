@@ -52,7 +52,7 @@ const buttonVariants = {
 export default function CTA() {
   return (
     <motion.section
-      className="py-[5%] px-[10%] bg-[#050505] sm:px-8 relative overflow-hidden"
+      className="py-20 px-4 sm:px-8 md:px-12 bg-[#050505] relative overflow-hidden"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: '-100px' }}
@@ -69,16 +69,18 @@ export default function CTA() {
         <div className="absolute bottom-0 right-1/4 w-64 h-64 border-2 border-[#1C6CFE] rounded-full" />
       </motion.div>
 
-      <motion.div className="max-w-7xl mx-auto relative z-10" variants={containerVariants}>
+      <motion.div className="max-w-5xl mx-auto relative z-10" variants={containerVariants}>
         <motion.h2
-          className="text-center text-heading-2 text-[#FFFFFF] leading-tight font-['Poppins']"
+          className="text-center text-3xl sm:text-4xl md:text-5xl font-bold text-[#FFFFFF] leading-tight mb-8"
+          style={{ fontFamily: 'Poppins, sans-serif' }}
           variants={textVariants}
         >
           Ready to Transform Your Business?
         </motion.h2>
 
         <motion.p
-          className="text-center text-body-lg text-[#FFFFFF] leading-relaxed font-['Inter'] mt-6 mb-8"
+          className="text-center text-base sm:text-lg md:text-xl text-[#F5F5F5] leading-relaxed font-normal mt-6 mb-8"
+          style={{ fontFamily: 'Inter, sans-serif' }}
           variants={textVariants}
         >
           Let's discuss how our services can help you achieve your goals. Contact us today for a

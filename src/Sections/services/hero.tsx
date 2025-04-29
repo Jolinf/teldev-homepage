@@ -39,7 +39,7 @@ const paragraphVariants = {
 export default function ServicesHero() {
   return (
     <motion.section
-      className="box-border py-[8%] px-[10%] bg-[#0A0A0A] sm:px-8 relative overflow-hidden"
+      className="box-border py-20 px-4 sm:px-8 md:px-12 bg-[#0A0A0A] relative overflow-hidden"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: '-100px' }}
@@ -56,29 +56,32 @@ export default function ServicesHero() {
         <div className="absolute bottom-0 right-1/4 w-64 h-64 border-2 border-[#1C6CFE] rounded-full" />
       </motion.div>
 
-      <motion.div className="max-w-7xl mx-auto relative z-10" variants={containerVariants}>
+      <motion.div className="max-w-5xl mx-auto relative z-10" variants={containerVariants}>
         <motion.h2
-          className="text-center text-heading-2 text-[#FFFFFF] leading-tight font-['Poppins']"
+          className="text-center text-3xl sm:text-4xl md:text-5xl font-bold text-[#FFFFFF] leading-tight mb-8"
           variants={textVariants}
           style={{ fontFamily: 'Poppins, sans-serif' }}
         >
           Technology that works for you
         </motion.h2>
 
-        <motion.div className="flex justify-center gap-4 sm:gap-6" variants={containerVariants}>
-          <motion.p
-            className="text-center text-body-md text-[#FFFFFF] leading-relaxed font-['Inter']"
-            variants={paragraphVariants}
-          >
-            At TELDEV Technologies, we offer more than just technical support—we deliver customized
-            solutions designed to make technology work for you. Whether you're running a small
-            business, managing a growing team, or flying solo, our services are built to meet your
-            needs, your pace, and your goals. From everyday IT support to long-term strategy and
-            systems that scale, we partner with you to simplify the complex, secure what matters,
-            and set you up for long-term success. Here's how we help you make technology your
-            advantage.
-          </motion.p>
-        </motion.div>
+        <motion.p
+          className="text-center text-base sm:text-lg md:text-xl lg:text-2xl text-[#FFFFFF] leading-relaxed font-normal mb-4"
+          style={{ fontFamily: 'Inter, sans-serif' }}
+          variants={paragraphVariants}
+        >
+          At TELDEV Technologies, we offer more than just technical support—we deliver customized
+          solutions designed to make technology work for you. Whether you're running a small
+          business, managing a growing team, or flying solo, our services are built to meet your
+          needs, your pace, and your goals. From everyday IT support to long-term strategy and
+          systems that scale, we partner with you to simplify the complex, secure what matters, and
+          set you up for long-term success. Here's how we help you make technology your advantage.
+        </motion.p>
+        <a href="../../Pages/Helpdesk.tsx">
+          <button className="bg-[#1C6CFE] text-white text-bold px-4 py-2 rounded-md hover:bg-[#0F1729] transition-colors duration-300">
+            Get Started
+          </button>
+        </a>
       </motion.div>
     </motion.section>
   );

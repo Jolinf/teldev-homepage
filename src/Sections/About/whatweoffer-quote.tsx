@@ -52,7 +52,7 @@ const buttonVariants = {
 export default function WhatWeOfferQuote2() {
   return (
     <motion.section
-      className="py-[5%] px-[10%] bg-[#050505] sm:px-8 relative overflow-hidden"
+      className="py-20 px-[10%] bg-[#050505] sm:px-8 relative overflow-hidden"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: '-100px' }}

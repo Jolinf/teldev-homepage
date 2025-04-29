@@ -34,7 +34,7 @@ const cardVariants = {
 export default function Mission() {
   return (
     <motion.section
-      className="box-border bg-black text-white px-[10%] pb-[8%] flex items-center relative overflow-hidden"
+      className="box-border bg-black text-white px-[10%] py-20 flex items-center relative overflow-hidden"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: '-100px' }}
@@ -72,7 +72,7 @@ export default function Mission() {
             Our Vision
           </motion.h2>
           <motion.p
-            className="text-[#FFFFFF] text-sm md:text-base leading-relaxed"
+            className="text-[#FFFFFF] text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed"
             style={{ fontFamily: 'Inter, sans-serif' }}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -102,7 +102,7 @@ export default function Mission() {
             Our Mission
           </motion.h2>
           <motion.p
-            className="text-[#FFFFFF] text-sm md:text-base leading-relaxed"
+            className="text-[#F5F5F5] text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed"
             style={{ fontFamily: 'Inter, sans-serif' }}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

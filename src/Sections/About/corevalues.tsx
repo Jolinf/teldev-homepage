@@ -171,7 +171,7 @@ export default function CoreValues() {
                     className="overflow-hidden"
                   >
                     <motion.p
-                      className="text-base text-[1.3em] text-left text-[#FFFFFF] pb-6 px-4"
+                      className="text-base sm:text-lg md:text-xl lg:text-2xl text-left text-[#F5F5F5] pb-6 px-4"
                       style={{ fontFamily: 'Inter, sans-serif' }}
                     >
                       {value.content}

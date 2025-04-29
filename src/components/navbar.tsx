@@ -12,14 +12,9 @@ const navLinks = [
 ];
 
 const navVariants = {
-  hidden: { opacity: 0, y: -20 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: {
-      duration: 0.5,
-      ease: 'easeOut',
-    },
   },
 };
 
@@ -86,8 +81,6 @@ export default function Navbar() {
       className={`bg-[#0A0A0A] fixed z-50 transition-all duration-300 ${
         isScrolled ? 'bg-[#0A0A0A] shadow-lg' : 'bg-[#0A0A0A]/90'
       }`}
-      initial="hidden"
-      animate="visible"
       variants={navVariants}
     >
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">

@@ -42,7 +42,7 @@ const buttonVariants = {
 export default function Homepagequote2() {
   return (
     <motion.section
-      className="py-[5%] px-[10%] bg-[#050505] sm:px-8 relative overflow-hidden"
+      className="py-20 px-[10%] bg-[#050505] sm:px-8 relative overflow-hidden"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: '-100px' }}
@@ -61,7 +61,7 @@ export default function Homepagequote2() {
 
       <motion.div className="max-w-4xl mx-auto relative z-10" variants={quoteVariants}>
         <motion.blockquote
-          className="w-full sm:w-[60%] text-[1.2em] sm:text-[1.4em] text-[#FFFFFF] italic max-w-2xl mx-auto mb-8 leading-relaxed"
+          className="w-full sm:w-[60%] text-base sm:text-lg md:text-xl lg:text-2xl text-[#FFFFFF] italic max-w-2xl mx-auto mb-8 leading-relaxed"
           style={{ fontFamily: 'Inter, sans-serif' }}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -72,10 +72,16 @@ export default function Homepagequote2() {
           thrive.
         </motion.blockquote>
 
-        <motion.div className="flex justify-center gap-4 sm:gap-6" variants={buttonVariants}>
+        <motion.div
+          className="flex justify-center gap-4 sm:gap-6"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
           <motion.button
             className="px-8 sm:px-36 py-4 sm:py-20 bg-[#0F1729] border-[0] text-[#FFFFFF] font-medium rounded-[10px] transition-all duration-300 text-sm sm:text-base"
             style={{ fontFamily: 'Inter, sans-serif' }}
+            variants={buttonVariants}
             whileHover="hover"
             whileTap="tap"
           >

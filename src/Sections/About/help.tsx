@@ -45,7 +45,7 @@ const linkVariants = {
 export default function HowWeHelp() {
   return (
     <motion.section
-      className="box-border bg-black text-[#FFFFFF] text-left px-[10%] pb-[8%] relative overflow-hidden"
+      className="box-border bg-black text-[#FFFFFF] text-left px-[10%] py-20 relative overflow-hidden"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: '-100px' }}
@@ -76,7 +76,7 @@ export default function HowWeHelp() {
 
         <motion.div className="max-w-4xl space-y-8" variants={containerVariants}>
           <motion.p
-            className="text-[1.3em] leading-relaxed"
+            className="text-base sm:text-lg md:text-xl lg:text-2xl text-[#F5F5F5] leading-relaxed"
             style={{ fontFamily: 'Inter, sans-serif' }}
             variants={textVariants}
           >
@@ -87,7 +87,7 @@ export default function HowWeHelp() {
           </motion.p>
 
           <motion.p
-            className="text-[1.3em] leading-relaxed"
+            className="text-base sm:text-lg md:text-xl lg:text-2xl text-[#F5F5F5] leading-relaxed"
             style={{ fontFamily: 'Inter, sans-serif' }}
             variants={textVariants}
           >
@@ -97,7 +97,7 @@ export default function HowWeHelp() {
           </motion.p>
 
           <motion.p
-            className="text-[1.3em] leading-relaxed"
+            className="text-base sm:text-lg md:text-xl lg:text-2xl text-[#F5F5F5] leading-relaxed"
             style={{ fontFamily: 'Inter, sans-serif' }}
             variants={textVariants}
           >
@@ -107,7 +107,7 @@ export default function HowWeHelp() {
           <motion.div className="flex justify-start" variants={textVariants}>
             <motion.a
               href="#"
-              className="text-[1.3em] no-underline hover:text-[#1C6CFE] transition-colors duration-300"
+              className="text-base sm:text-lg md:text-xl lg:text-2xl no-underline hover:text-[#1C6CFE] transition-colors duration-300"
               style={{ fontFamily: 'Inter, sans-serif' }}
               variants={linkVariants}
               whileHover="hover"

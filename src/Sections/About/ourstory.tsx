@@ -73,7 +73,7 @@ const OurStory = () => {
 
   return (
     <motion.section
-      className="box-border bg-[#0A0A0A] flex justify-left text-left text-[#FFFFFF] px-[10%] pb-[8%] relative overflow-hidden"
+      className="box-border bg-[#0A0A0A] flex justify-left text-left text-[#FFFFFF] px-[10%] py-20 relative overflow-hidden"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: '-100px' }}
@@ -107,7 +107,7 @@ const OurStory = () => {
             {displayedParagraphs.map((para, index) => (
               <motion.p
                 key={index}
-                className="text-[#FFFFFF] text-[1.3em] leading-relaxed text-lg md:text-xl"
+                className="text-[#FFFFFF] text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed"
                 style={{ fontFamily: 'Inter, sans-serif' }}
                 variants={textVariants}
                 initial="hidden"

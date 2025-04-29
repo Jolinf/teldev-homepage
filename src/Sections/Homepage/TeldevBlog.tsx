@@ -54,7 +54,7 @@ const cardVariants = {
 
 export default function TeldevBlog() {
   return (
-    <section className="px-[10%] bg-[#0E0E0E] text-[#FFFFFF] text-left sm:px-[60px] md:px-[80px] lg:px-[100px] py-[5%] sm:py-[60px] md:py-[80px]">
+    <section className="px-[10%] bg-[#0E0E0E] text-[#FFFFFF] text-left sm:px-[60px] md:px-[80px] lg:px-[100px] py-20 sm:py-[60px] md:py-[80px]">
       <motion.div
         className="max-w-screen-xl mx-auto"
         initial={{ opacity: 0, y: 20 }}
@@ -108,7 +108,7 @@ export default function TeldevBlog() {
                 transition={{ duration: 0.5 }}
               >
                 <motion.p
-                  className="text-[1em] sm:text-base text-gray-400 mb-2"
+                  className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-400 mb-2"
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
@@ -117,7 +117,7 @@ export default function TeldevBlog() {
                   {post.date}
                 </motion.p>
                 <motion.h3
-                  className="text-base sm:text-lg font-bold leading-snug mb-2 sm:mb-3"
+                  className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-snug mb-2 sm:mb-3"
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
@@ -126,7 +126,7 @@ export default function TeldevBlog() {
                   {post.title}
                 </motion.h3>
                 <motion.p
-                  className="text-[1em] sm:text-base text-gray-300 mb-3 sm:mb-4 line-clamp-2 sm:line-clamp-3"
+                  className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 mb-3 sm:mb-4 line-clamp-2 sm:line-clamp-3"
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}

@@ -40,7 +40,7 @@ const imageVariants = {
 export default function AboutHero() {
   return (
     <motion.section
-      className="box-border bg-black text-white px-[10%] py-[8%] min-h-screen flex items-center relative overflow-hidden"
+      className="box-border bg-black text-white px-[10%] py-20 min-h-screen flex items-center relative overflow-hidden"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: '-100px' }}
@@ -88,7 +88,7 @@ export default function AboutHero() {
           </motion.h1>
 
           <motion.p
-            className="text-[#FFFFFF] text-sm md:text-base leading-relaxed max-w-md"
+            className="text-[#F5F5F5] text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed max-w-md"
             style={{ fontFamily: 'Inter, sans-serif' }}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -98,22 +98,6 @@ export default function AboutHero() {
             From troubleshooting to consulting, TELDEV is dedicated to making technology work for
             you—effectively, affordably, and with a personal touch.
           </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-          >
-            <motion.button
-              className="px-8 py-4 bg-[#1C6CFE] text-white font-medium rounded-lg transition-all duration-300 hover:bg-[#0F1729] hover:scale-105 text-sm sm:text-base shadow-lg hover:shadow-xl"
-              style={{ fontFamily: 'Inter, sans-serif' }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Learn More
-            </motion.button>
-          </motion.div>
         </motion.div>
       </motion.div>
     </motion.section>

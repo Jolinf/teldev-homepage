@@ -1,16 +1,16 @@
-// src/pages/Helpdesk.tsx
+// src/pages/webdev.tsx
 import Navbar from '../components/navbar';
 import ServicesNavbar from '../components/services-navbar';
 import Footer from '../components/footer';
-import HelpdeskPage from '../Sections/helpdeskpage';
+import WebdevPage from '../Sections/webdevpage';
 
-export default function Helpdesk() {
-  console.log('Helpdesk component rendered');
+export default function WebDev() {
+  console.log('Webdev component rendered');
   return (
     <main>
       <Navbar />
       <ServicesNavbar />
-      <HelpdeskPage />
+      <WebdevPage />
       <Footer />
 
       {/* other sections will go here */}

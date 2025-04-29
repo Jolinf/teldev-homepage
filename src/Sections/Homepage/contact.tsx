@@ -43,7 +43,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section className="bg-black text-[#FFFFFF] px-[10%] py-[5%] flex justify-center font-inter">
+    <section className="bg-black text-[#FFFFFF] px-[10%] py-20 flex justify-center font-inter">
       <motion.div
         className="max-w-xl w-full text-center"
         initial={{ opacity: 0, y: 20 }}

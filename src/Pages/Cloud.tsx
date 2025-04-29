@@ -1,16 +1,16 @@
-// src/pages/Helpdesk.tsx
+// src/pages/cloud.tsx
 import Navbar from '../components/navbar';
 import ServicesNavbar from '../components/services-navbar';
 import Footer from '../components/footer';
-import HelpdeskPage from '../Sections/helpdeskpage';
+import CloudPage from '../Sections/cloudpage';
 
-export default function Helpdesk() {
-  console.log('Helpdesk component rendered');
+export default function Cloud() {
+  console.log('Cloud component rendered');
   return (
     <main>
       <Navbar />
       <ServicesNavbar />
-      <HelpdeskPage />
+      <CloudPage />
       <Footer />
 
       {/* other sections will go here */}

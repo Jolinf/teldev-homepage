@@ -1,47 +1,148 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Link, useLocation } from 'react-router-dom';
+import { Menu, X } from 'lucide-react';
 // import logo from '../assets/teldev-logo.png';
 
+const servicesLinks = [
+  { path: '/Helpdesk', label: 'Helpdesk Support' },
+  { path: '/Network', label: 'Network and infrastructure' },
+  { path: '/WebDev', label: 'Applications and Website Management' },
+  { path: '/Cloud', label: 'Cloud Services' },
+  { path: '/ItConsulting', label: 'IT Consulting' },
+];
+
+const navVariants = {
+  visible: {
+    opacity: 1,
+    y: 0,
+  },
+};
+
+const linkVariants = {
+  hidden: { opacity: 0, x: -20 },
+  visible: (i: number) => ({
+    opacity: 1,
+    x: 0,
+    transition: {
+      delay: i * 0.1,
+      duration: 0.5,
+      ease: 'easeOut',
+    },
+  }),
+  hover: {
+    scale: 1.05,
+    transition: {
+      duration: 0.2,
+    },
+  },
+};
+
+const mobileMenuVariants = {
+  hidden: { opacity: 0, x: '100%' },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.3,
+      ease: 'easeOut',
+    },
+  },
+  exit: {
+    opacity: 0,
+    x: '100%',
+    transition: {
+      duration: 0.3,
+      ease: 'easeIn',
+    },
+  },
+};
+
 const ServicesNavbar: React.FC = () => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
   return (
-    <header className="bg-[#1C6CFE] text-[#FFFFFF] fixed top-0 left-0 w-full z-50 shadow-md mt-[90px] flex justify-center">
-      <nav className="max-w-7xl mx-auto px-[100px] md:px-10 py-[20px] flex items-center justify-between">
-        {/* Navigation Links */}
-        <ul
-          className="flex items-center space-x-[30px] text-sm tracking-wide list-none"
+    <motion.header
+      className="bg-[#1C6CFE] text-[#FFFFFF] fixed top-0 left-0 w-[calc(100%-17px)] z-50 shadow-md mt-[80px]"
+      variants={navVariants}
+    >
+      <nav className="max-w-7xl mx-auto px-[10%] md:px-10 py-10 w-full">
+        {/* Desktop Navigation Links */}
+        <motion.ul
+          className="hidden md:flex items-center justify-center space-x-[30px] text-sm tracking-wide list-none"
           style={{ fontFamily: 'Inter, sans-serif' }}
+          initial="hidden"
+          animate="visible"
         >
-          <li>
-            <Link to="/" className="no-underline hover:underline transition text-[#FFFFFF]">
-              Helpdesk Support
-            </Link>
-          </li>
-          <li>
-            <Link to="/whoweare" className="no-underline hover:underline transition text-[#FFFFFF]">
-              Network and infrastructure
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/whatweoffer"
-              className="no-underline hover:underline transition text-[#FFFFFF]"
+          {servicesLinks.map((link, i) => (
+            <motion.li key={link.path} custom={i} variants={linkVariants}>
+              <Link
+                to={link.path}
+                className={`no-underline transition-colors duration-300 ${
+                  location.pathname === link.path
+                    ? 'text-[#FFFFFF] border-b border-[#FFFFFF]'
+                    : 'text-[#FFFFFF]/80 hover:text-[#FFFFFF]'
+                }`}
+              >
+                {link.label}
+              </Link>
+            </motion.li>
+          ))}
+        </motion.ul>
+
+        {/* Mobile Menu Button */}
+        <motion.button
+          className="md:hidden text-white"
+          onClick={toggleMobileMenu}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+        >
+          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        </motion.button>
+
+        {/* Mobile Menu */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              className="fixed top-0 right-0 w-full h-screen bg-[#1C6CFE] z-50 md:hidden overflow-hidden"
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              variants={mobileMenuVariants}
             >
-              Applications and Website Management
-            </Link>
-          </li>
-          <li>
-            <Link to="/blog" className="no-underline hover:underline transition text-[#FFFFFF]">
-              Cloud Services
-            </Link>
-          </li>
-          <li>
-            <Link to="/blog" className="no-underline hover:underline transition text-[#FFFFFF]">
-              IT Consulting
-            </Link>
-          </li>
-        </ul>
+              <div className="flex flex-col items-center justify-center h-full space-y-8">
+                {servicesLinks.map((link, i) => (
+                  <motion.div
+                    key={link.path}
+                    custom={i}
+                    variants={linkVariants}
+                    initial="hidden"
+                    animate="visible"
+                  >
+                    <Link
+                      to={link.path}
+                      className={`text-2xl no-underline transition-colors duration-300 ${
+                        location.pathname === link.path
+                          ? 'text-[#FFFFFF]'
+                          : 'text-[#FFFFFF]/80 hover:text-[#FFFFFF]'
+                      }`}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {link.label}
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
-    </header>
+    </motion.header>
   );
 };
 

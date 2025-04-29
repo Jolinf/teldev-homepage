@@ -31,10 +31,10 @@ aside h1 {
   unicode-bidi: inherit;
 }
 
-p {
+/* p {
   font-size: clamp(1rem, 2.5vw, 1.7em);
   line-height: 1.5;
-}
+} */
 
 button {
   padding-inline: clamp(1rem, 2vw, 26px);
@@ -50,5 +50,4 @@ ul {
   font-size: 1em;
   margin: 0;
   padding: 0;
-  list-style: none;
 }

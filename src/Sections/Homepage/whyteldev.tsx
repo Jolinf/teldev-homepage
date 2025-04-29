@@ -54,7 +54,7 @@ const cardVariants = {
 
 export default function WhyTeldev() {
   return (
-    <section className="mb-[5%] px-[10%] justify-center bg-[#0A0A0A] text-[#FFFFFF] py-[5%] sm:px-6 md:px-8">
+    <section className="mb-[5%] px-[10%] justify-center bg-[#0A0A0A] text-[#FFFFFF] py-20 sm:px-6 md:px-8">
       <motion.h2
         className="text-center text-[1.8em] sm:text-[2em] text-3xl md:text-4xl lg:text-5xl font-semibold mb-[40px]"
         style={{ fontFamily: 'Poppins, sans-serif' }}
@@ -86,16 +86,14 @@ export default function WhyTeldev() {
                 <img
                   src={card.img}
                   alt={card.title}
-                  className={`w-full h-full object-cover rounded-[1em] transition-transform duration-500 group-hover:scale-110 ${
-                    card.title === 'Scalability' ? 'transform -scale-x-100' : ''
-                  }`}
+                  className={`w-full h-full object-cover rounded-[1em] transition-transform duration-500 group-hover:scale-110 `}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent rounded-[1em]" />
+                {/* <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent rounded-[1em]" /> */}
               </div>
             </div>
             <div className="absolute bottom-6 left-6 z-10">
               <h3
-                className="text-white text-[1.3em] sm:text-[1.9em] font-bold text-left"
+                className="text-white text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-left"
                 style={{
                   fontFamily: 'Poppins, sans-serif',
                   textShadow: '0 2px 4px rgba(0,0,0,0.5)',

@@ -62,7 +62,7 @@ export default function WhatWeOffer() {
   };
 
   return (
-    <section className="box-border px-[10%] py-[5%] mb-[5%] sm:px-8 text-[#FFFFFF] bg-[#0A0A0A]">
+    <section className="box-border px-[10%] py-20 mb-[5%] sm:px-8 text-[#FFFFFF] bg-[#0A0A0A]">
       <motion.div
         className="max-w-7xl mx-auto"
         initial={{ opacity: 0, y: 20 }}
@@ -71,7 +71,7 @@ export default function WhatWeOffer() {
         transition={{ duration: 0.6 }}
       >
         <motion.h2
-          className="text-3xl font-semibold text-center mb-[40px] text-[1.8em]"
+          className="text-3xl font-semibold text-center mb-[40px] text-base sm:text-lg md:text-xl lg:text-2xl"
           style={{ fontFamily: 'Poppins, sans-serif' }}
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -147,7 +147,7 @@ export default function WhatWeOffer() {
             </motion.div>
           </AnimatePresence>
 
-          <div className="flex justify-end mt-8 gap-4">
+          <div className="flex justify-end m-8 gap-4">
             <motion.button
               onClick={prevSlide}
               className="bg-[#1C6CFE] border-0 text-white p-3 shadow-lg hover:bg-[#0F1729] transition-colors duration-300 rounded-full w-12 h-12 flex items-center justify-center"

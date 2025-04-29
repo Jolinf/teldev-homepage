@@ -1,16 +1,16 @@
-// src/pages/Helpdesk.tsx
+// src/pages/Network.tsx
 import Navbar from '../components/navbar';
 import ServicesNavbar from '../components/services-navbar';
 import Footer from '../components/footer';
-import HelpdeskPage from '../Sections/helpdeskpage';
+import NetworkPage from '../Sections/networkpage';
 
-export default function Helpdesk() {
-  console.log('Helpdesk component rendered');
+export default function Network() {
+  console.log('Network component rendered');
   return (
     <main>
       <Navbar />
       <ServicesNavbar />
-      <HelpdeskPage />
+      <NetworkPage />
       <Footer />
 
       {/* other sections will go here */}

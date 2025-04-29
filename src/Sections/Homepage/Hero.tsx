@@ -37,7 +37,7 @@ export default function Hero() {
         </motion.h1>
 
         <motion.p
-          className="text-white w-full sm:w-[70%] text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-medium max-w-3xl sm:max-w-4xl mx-auto mb-8 sm:mb-10 md:mb-12 leading-relaxed"
+          className="text-[#F5F5F5] w-full sm:w-[70%] text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-medium max-w-3xl sm:max-w-4xl mx-auto mb-8 sm:mb-10 md:mb-12 leading-relaxed"
           style={{ fontFamily: 'Poppins, sans-serif' }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

@@ -64,7 +64,7 @@ const textVariants = {
 export default function Leaders() {
   return (
     <motion.section
-      className="box-border bg-black text-white px-[10%] py-[8%] min-h-screen flex flex-col items-center gap-16 relative overflow-hidden"
+      className="box-border bg-black text-white px-[10%] py-20 min-h-screen flex flex-col items-center gap-16 relative overflow-hidden"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: '-100px' }}
@@ -113,11 +113,10 @@ export default function Leaders() {
               className="text-[#FFFFFF] text-3xl md:text-5xl font-bold leading-snug"
               style={{ fontFamily: 'Poppins, sans-serif' }}
             >
-              Our mission is to simplify technology for everyone by delivering reliable,
-              personalized IT support and solutions.
+              If it's not broken, don't fix it.
             </motion.h1>
             <motion.p
-              className="text-[#FFFFFF] text-lg md:text-xl leading-relaxed"
+              className="text-[#F5F5F5] text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed"
               style={{ fontFamily: 'Inter, sans-serif' }}
             >
               - Joshua Ulinfun, CEO/CO-Founder
@@ -148,14 +147,13 @@ export default function Leaders() {
               className="text-[#FFFFFF] text-3xl md:text-5xl font-bold leading-snug"
               style={{ fontFamily: 'Poppins, sans-serif' }}
             >
-              Our mission is to simplify technology for everyone by delivering reliable,
-              personalized IT support and solutions.
+              If it's not broken, don't fix it.
             </motion.h1>
             <motion.p
-              className="text-[#FFFFFF] text-lg md:text-xl leading-relaxed"
+              className="text-[#F5F5F5] text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed"
               style={{ fontFamily: 'Inter, sans-serif' }}
             >
-              - Tunde Ogunleye, CTO/CO-Founder
+              - Olutunde Solabi, CTO/CO-Founder
             </motion.p>
           </motion.div>
         </motion.div>
@@ -180,11 +178,10 @@ export default function Leaders() {
               className="text-[#FFFFFF] text-3xl md:text-5xl font-bold leading-snug"
               style={{ fontFamily: 'Poppins, sans-serif' }}
             >
-              Our mission is to simplify technology for everyone by delivering reliable,
-              personalized IT support and solutions.
+              If it's not broken, don't fix it.
             </motion.h1>
             <motion.p
-              className="text-[#FFFFFF] text-lg md:text-xl leading-relaxed"
+              className="text-[#F5F5F5] text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed"
               style={{ fontFamily: 'Inter, sans-serif' }}
             >
               - Kayode Ojedele, COO/CO-Founder
