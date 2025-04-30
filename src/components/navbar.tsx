@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
-// import logo from '../assets/teldev-logo.png';
+import logo from '../assets/teldev logo.svg';
 
 const navLinks = [
   { path: '/', label: 'Home' },
@@ -93,7 +93,7 @@ export default function Navbar() {
         >
           <Link to="/">
             <motion.img
-              src="/src/assets/teldev logo.svg"
+              src={logo}
               alt="Teldev Logo"
               className="h-8 w-8"
               whileHover={{ scale: 1.1 }}

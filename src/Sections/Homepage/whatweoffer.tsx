@@ -2,7 +2,9 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ITsupport from '../../assets/homepage illustrations/Homepage-whatweoffer-helpdesk illustration.svg';
 import cloud from '../../assets/homepage illustrations/Homepage-whatweoffer-cloudservices illustration.svg';
-import security from '../../assets/homepage illustrations/Homepage-whatweoffer-Network&infrastructure illustration.svg';
+import network from '../../assets/homepage illustrations/Homepage-whatweoffer-Network&infrastructure illustration.svg';
+import application from '../../assets/homepage illustrations/Homepage-whatweoffer-Application&webdev illustration.svg';
+import consulting from '../../assets/homepage illustrations/Homepage-whatweoffer-ITConsulting illustration.svg';
 
 const slideVariants = {
   enter: (direction: number) => ({
@@ -32,22 +34,39 @@ export default function WhatWeOffer() {
 
   const slides = [
     {
-      title: 'IT Support',
+      title: 'Helpdesk Support',
       image: ITsupport,
       items: ['24/7 Technical Assistance', 'Network Configuration', 'Software Installation'],
-      link: '#learn-more-it-support',
+      link: '/Helpdesk',
+    },
+    {
+      title: 'Network & Infrastructure',
+      image: network,
+      items: ['Advanced Threat Protection', 'Security Audits', 'Data Encryption'],
+      link: '/Network',
+    },
+    {
+      title: 'Application and Website Management',
+      image: application,
+      items: [
+        'Custom Application Development',
+        'Website Design & Development',
+        'Performance monitoring & optimization',
+        'CMS (Content Management System) Support',
+      ],
+      link: '/Webdev',
     },
     {
       title: 'Cloud Solutions',
       image: cloud,
       items: ['Scalable Cloud Infrastructure', 'Data Storage & Backup', 'Seamless Integration'],
-      link: '#learn-more-cloud-solutions',
+      link: '/Cloud',
     },
     {
-      title: 'Cybersecurity',
-      image: security,
-      items: ['Advanced Threat Protection', 'Security Audits', 'Data Encryption'],
-      link: '#learn-more-cybersecurity',
+      title: 'IT Consulting',
+      image: consulting,
+      items: ['Technology Strategy', 'System Integration', 'Cost Optimization'],
+      link: '/ItConsulting',
     },
   ];
 
