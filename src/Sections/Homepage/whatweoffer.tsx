@@ -61,8 +61,17 @@ export default function WhatWeOffer() {
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
   };
 
+  const handleSlideChange = (direction: number) => {
+    // Prevent any default behavior
+    if (direction > 0) {
+      nextSlide();
+    } else {
+      prevSlide();
+    }
+  };
+
   return (
-    <section className="box-border px-[10%] py-20 mb-[5%] sm:px-8 text-[#FFFFFF] bg-[#0A0A0A]">
+    <section className="what-we-offer-section box-border px-[10%] py-20 mb-[5%] sm:px-8 text-[#FFFFFF] bg-[#0A0A0A]">
       <motion.div
         className="max-w-7xl mx-auto"
         initial={{ opacity: 0, y: 20 }}
@@ -82,7 +91,7 @@ export default function WhatWeOffer() {
         </motion.h2>
 
         <div className="relative overflow-hidden">
-          <AnimatePresence initial={false} custom={direction}>
+          <AnimatePresence initial={false} custom={direction} mode="wait">
             <motion.div
               key={currentSlide}
               custom={direction}
@@ -149,7 +158,10 @@ export default function WhatWeOffer() {
 
           <div className="flex justify-end m-8 gap-4">
             <motion.button
-              onClick={prevSlide}
+              onClick={(e) => {
+                e.preventDefault();
+                handleSlideChange(-1);
+              }}
               className="bg-[#1C6CFE] border-0 text-white p-3 shadow-lg hover:bg-[#0F1729] transition-colors duration-300 rounded-full w-12 h-12 flex items-center justify-center"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
@@ -157,7 +169,10 @@ export default function WhatWeOffer() {
               ←
             </motion.button>
             <motion.button
-              onClick={nextSlide}
+              onClick={(e) => {
+                e.preventDefault();
+                handleSlideChange(1);
+              }}
               className="bg-[#1C6CFE] border-0 text-white p-3 shadow-lg hover:bg-[#0F1729] transition-colors duration-300 rounded-full w-12 h-12 flex items-center justify-center"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
