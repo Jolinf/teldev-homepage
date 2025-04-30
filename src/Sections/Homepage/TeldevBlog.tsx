@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import post1 from '../../assets/Homepage-images/homepage-teledevblogpost1-image.jpg';
 import post2 from '../../assets/Homepage-images/homepage-teldevblogpost2-image.jpg';
@@ -8,7 +7,7 @@ const blogPosts = [
     id: 1,
     date: 'March 20, 2025',
     title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    image: post1, // Replace with your actual image path
+    image: post1,
     summary:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   },
@@ -16,7 +15,7 @@ const blogPosts = [
     id: 2,
     date: 'March 20, 2025',
     title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    image: post2, // Replace with your actual image path
+    image: post2,
     summary:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   },

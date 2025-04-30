@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import Network from '../../assets/whatweoffer illustrations/whatweoffer-network-illustration.svg';
 import Helpdesk from '../../assets/whatweoffer illustrations/whatweoffer-helpdesk-illustration.svg';

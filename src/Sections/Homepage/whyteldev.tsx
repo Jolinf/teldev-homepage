@@ -1,5 +1,4 @@
 // src/sections/WhyTeldev.tsx
-import React from 'react';
 import { motion } from 'framer-motion';
 
 // Sample image imports — replace these with your actual image paths
