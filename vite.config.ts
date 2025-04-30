@@ -18,5 +18,8 @@ export default defineConfig({
     cssCodeSplit: true,
     sourcemap: true,
   },
-  base: '/teldev-homepage/',
+  base: 'https://jclinf.github.io/teldev-homepage/',
+  resolve: {
+    alias: [{ find: '@', replacement: '/src' }],
+  },
 });
