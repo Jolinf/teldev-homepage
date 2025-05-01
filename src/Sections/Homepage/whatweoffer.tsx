@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import ITsupport from '../../assets/homepage illustrations/Homepage-whatweoffer-helpdesk illustration.svg';
 import cloud from '../../assets/homepage illustrations/Homepage-whatweoffer-cloudservices illustration.svg';
 import network from '../../assets/homepage illustrations/Homepage-whatweoffer-Network&infrastructure illustration.svg';
@@ -28,6 +29,8 @@ const slideTransition = {
   opacity: { duration: 0.2 },
 };
 
+const MotionLink = motion(Link);
+
 export default function WhatWeOffer() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [direction, setDirection] = useState(0);
@@ -37,7 +40,7 @@ export default function WhatWeOffer() {
       title: 'Helpdesk Support',
       image: ITsupport,
       items: ['24/7 Technical Assistance', 'Network Configuration', 'Software Installation'],
-      link: 'teldev-homepage/Helpdesk',
+      link: '/Helpdesk',
     },
     {
       title: 'Network & Infrastructure',
@@ -161,8 +164,8 @@ export default function WhatWeOffer() {
                     </motion.li>
                   ))}
                 </motion.ul>
-                <motion.a
-                  href={slides[currentSlide].link}
+                <MotionLink
+                  to={slides[currentSlide].link}
                   className="inline-block mt-8 text-[#FFFFFF] hover:text-[#1C6CFE] text-left no-underline transition-colors duration-300"
                   style={{ fontFamily: 'Inter, sans-serif' }}
                   initial={{ opacity: 0, y: 20 }}
@@ -170,7 +173,7 @@ export default function WhatWeOffer() {
                   transition={{ delay: 0.6 }}
                 >
                   Learn More →
-                </motion.a>
+                </MotionLink>
               </motion.div>
             </motion.div>
           </AnimatePresence>
