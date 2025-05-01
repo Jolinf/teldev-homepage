@@ -37,7 +37,7 @@ export default function WhatWeOffer() {
       title: 'Helpdesk Support',
       image: ITsupport,
       items: ['24/7 Technical Assistance', 'Network Configuration', 'Software Installation'],
-      link: '/Helpdesk',
+      link: 'teldev-homepage/Helpdesk',
     },
     {
       title: 'Network & Infrastructure',
