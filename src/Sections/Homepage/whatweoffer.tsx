@@ -37,13 +37,13 @@ export default function WhatWeOffer() {
       title: 'Helpdesk Support',
       image: ITsupport,
       items: ['24/7 Technical Assistance', 'Network Configuration', 'Software Installation'],
-      link: '/teldev-homepage/Helpdesk',
+      link: '/Helpdesk',
     },
     {
       title: 'Network & Infrastructure',
       image: network,
       items: ['Advanced Threat Protection', 'Security Audits', 'Data Encryption'],
-      link: '/teldev-homepage/Network',
+      link: '/Network',
     },
     {
       title: 'Application and Website Management',
@@ -54,19 +54,19 @@ export default function WhatWeOffer() {
         'Performance monitoring & optimization',
         'CMS (Content Management System) Support',
       ],
-      link: '/teldev-homepage/Webdev',
+      link: '/Webdev',
     },
     {
       title: 'Cloud Solutions',
       image: cloud,
       items: ['Scalable Cloud Infrastructure', 'Data Storage & Backup', 'Seamless Integration'],
-      link: '/teldev-homepage/Cloud',
+      link: '/Cloud',
     },
     {
       title: 'IT Consulting',
       image: consulting,
       items: ['Technology Strategy', 'System Integration', 'Cost Optimization'],
-      link: '/teldev-homepage/ItConsulting',
+      link: '/ItConsulting',
     },
   ];
 
