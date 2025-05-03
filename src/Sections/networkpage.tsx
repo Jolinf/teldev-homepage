@@ -1,7 +1,7 @@
 export default function NetworkPage() {
   return (
     <section
-      className="box-border text-left bg-black text-[#FFFFFF] px-4 sm:px-8 md:px-12 py-20"
+      className="box-border text-left bg-black text-[#FFFFFF] px-4 sm:px-8 md:px-12 py-8"
       style={{ fontFamily: 'Inter, sans-serif' }}
     >
       <div className="max-w-5xl mx-auto mt-40">

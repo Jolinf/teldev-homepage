@@ -77,8 +77,7 @@ export default function Navbar() {
 
   return (
     <motion.header
-      style={{ width: 'calc(100% - 17px)' }}
-      className={`bg-[#0A0A0A] fixed z-50 transition-all duration-300 ${
+      className={`bg-[#0A0A0A] w-full fixed z-50 transition-all duration-300 ${
         isScrolled ? 'bg-[#0A0A0A] shadow-lg' : 'bg-[#0A0A0A]/90'
       }`}
       variants={navVariants}

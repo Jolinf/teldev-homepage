@@ -68,11 +68,18 @@ const ServicesNavbar: React.FC = () => {
 
   return (
     <motion.header
-      className="bg-[#1C6CFE] text-[#FFFFFF] fixed top-0 left-0 w-[calc(100%-17px)] z-50 shadow-md mt-[80px]"
+      className="bg-[#1C6CFE] text-[#FFFFFF] fixed top-0 left-0 right-0 z-20 shadow-md box-border"
       variants={navVariants}
     >
-      <nav className="max-w-7xl mx-auto px-[10%] md:px-10 py-10 w-full">
+      <nav className="w-full sm:px-6 lg:px-8 h-24 flex items-center justify-between">
         {/* Desktop Navigation Links */}
+        <Link
+          to="/WhatWeOffer"
+          className="text-lg pl-8 inline-block text-[#FFFFFF] text-left no-underline"
+          style={{ fontFamily: 'Inter, sans-serif' }}
+        >
+          →
+        </Link>
         <motion.ul
           className="hidden md:flex items-center justify-center space-x-[30px] text-sm tracking-wide list-none"
           style={{ fontFamily: 'Inter, sans-serif' }}
