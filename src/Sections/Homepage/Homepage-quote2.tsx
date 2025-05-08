@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 const quoteVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -40,6 +41,7 @@ const buttonVariants = {
 };
 
 export default function Homepagequote2() {
+  const navigate = useNavigate();
   return (
     <motion.section
       className="py-20 px-[10%] bg-[#050505] sm:px-8 relative overflow-hidden"
@@ -84,6 +86,7 @@ export default function Homepagequote2() {
             variants={buttonVariants}
             whileHover="hover"
             whileTap="tap"
+            onClick={() => navigate('/Whatweoffer')}
           >
             Discover more
           </motion.button>

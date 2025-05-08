@@ -10,6 +10,7 @@ import Webdev from './Pages/Webdev';
 import Cloud from './Pages/Cloud';
 import ItConsulting from './Pages/ItConsulting';
 import ScrollToTop from './components/ScrollToTop';
+import ContactUsPage from './Pages/ContactUsPage';
 // import About from './Pages/About';
 // import Services from './Pages/services';
 
@@ -26,6 +27,8 @@ function App() {
         <Route path="/Webdev" element={<Webdev />} />
         <Route path="/Cloud" element={<Cloud />} />
         <Route path="/ItConsulting" element={<ItConsulting />} />
+        <Route path="/ContactUsPage" element={<ContactUsPage />} />
+
         {/* <Route path="/about" element={<About />} />
         <Route path="/services" element={<Services />} /> */}
       </Routes>

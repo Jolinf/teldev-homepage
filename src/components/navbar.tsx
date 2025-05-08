@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import logo from '../assets/teldev logo.svg';
+import { useNavigate } from 'react-router-dom';
 
 const navLinks = [
   { path: '/', label: 'Home' },
@@ -61,6 +62,7 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -136,6 +138,9 @@ export default function Navbar() {
             style={{ fontFamily: 'Inter, sans-serif' }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            onClick={() => {
+              navigate('/ContactUsPage');
+            }}
           >
             Contact Us
           </motion.button>
@@ -183,15 +188,21 @@ export default function Navbar() {
                     </Link>
                   </motion.div>
                 ))}
-                <motion.button
-                  className="px-8 py-4 bg-[#0F1729] border-[0] text-[#FFFFFF] font-medium rounded-[10px] transition-all duration-300 hover:bg-[#FFFFFF] hover:text-[#0F1729] text-base"
-                  style={{ fontFamily: 'Inter, sans-serif' }}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Contact Us
-                </motion.button>
+                <Link to="/Whatweoffer">
+                  <motion.button
+                    className="px-8 py-4 bg-[#0F1729] border-[0] text-[#FFFFFF] font-medium rounded-[10px] transition-all duration-300 hover:bg-[#FFFFFF] hover:text-[#0F1729] text-base"
+                    style={{ fontFamily: 'Inter, sans-serif' }}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => {
+                      navigate('/Whatweoffer');
+
+                      setIsMobileMenuOpen(false);
+                    }}
+                  >
+                    Contact Us
+                  </motion.button>
+                </Link>
               </div>
             </motion.div>
           )}
