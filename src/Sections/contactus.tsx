@@ -1,4 +1,3 @@
-import React from 'react';
 import contactpicture from '../assets/contacus-image.png';
 
 const ContactUsPage = () => {

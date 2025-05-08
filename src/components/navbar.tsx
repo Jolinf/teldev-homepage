@@ -79,8 +79,10 @@ export default function Navbar() {
 
   return (
     <motion.header
-      className={`bg-[#0A0A0A] w-full fixed z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-[#0A0A0A] shadow-lg' : 'bg-[#0A0A0A]/90'
+      className={`fixed top-4 left-0 right-0 z-50 mx-auto max-w-6xl px-4 py-0 rounded-[20px] transition-all duration-300 ${
+        isScrolled
+          ? 'bg-[#0A0A0A]/90 shadow-xl backdrop-blur-md'
+          : 'bg-[#0A0A0A]/70 shadow-md backdrop-blur-sm'
       }`}
       variants={navVariants}
     >
