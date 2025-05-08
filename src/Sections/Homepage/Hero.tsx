@@ -1,8 +1,10 @@
 // src/sections/Hero.tsx
 import heroImage from '../../assets/Homepage-images/Homepage-herosection image.jpg';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 export default function Hero() {
+  const navigate = useNavigate();
   return (
     <section className="box-border relative min-h-screen w-full flex items-center justify-center text-center overflow-hidden">
       {/* Background Image with Parallax Effect */}
@@ -21,7 +23,7 @@ export default function Hero() {
 
       {/* Content */}
       <motion.div
-        className="relative z-20 w-full max-w-[90rem] px-4 sm:px-6 md:px-8 lg:px-12"
+        className="relative z-20 w-full max-w-[90rem] px-4 mt-20 sm:px-6 md:px-8 lg:px-12"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}
@@ -54,19 +56,25 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.8 }}
         >
           <motion.button
-            className="px-8 sm:px-12 py-4 sm:py-5 bg-[#1C6CFE] text-white font-semibold rounded-lg transition-all duration-300 hover:bg-[#0F1729] hover:scale-105 text-sm sm:text-base shadow-lg hover:shadow-xl"
+            className="px-8 bg-[#1C6CFE] text-white font-semibold rounded-lg transition-all duration-300 hover:bg-[#0F1729] hover:scale-105 text-sm sm:text-base shadow-lg hover:shadow-xl"
             style={{ fontFamily: 'Inter, sans-serif' }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            onClick={() => {
+              navigate('/ContactUsPage');
+            }}
           >
             Get started
           </motion.button>
 
           <motion.button
-            className="px-8 sm:px-12 py-4 sm:py-5 border-2 border-white text-white font-semibold rounded-lg transition-all duration-300 hover:bg-white hover:text-[#0F1729] text-sm sm:text-base"
+            className="px-8 py-4 border-2 border-white text-white font-semibold rounded-lg transition-all duration-300 hover:bg-white hover:text-[#0F1729] text-sm sm:text-base"
             style={{ fontFamily: 'Inter, sans-serif' }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            onClick={() => {
+              navigate('/Whoweare');
+            }}
           >
             Learn more
           </motion.button>

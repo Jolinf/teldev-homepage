@@ -39,7 +39,7 @@ const paragraphVariants = {
 export default function ServicesHero() {
   return (
     <motion.section
-      className="box-border py-20 px-4 sm:px-8 md:px-12 bg-[#0A0A0A] relative overflow-hidden"
+      className="box-border py-30 px-4 sm:px-8 md:px-12 bg-[#0A0A0A] relative overflow-hidden"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: '-100px' }}
@@ -77,11 +77,6 @@ export default function ServicesHero() {
           systems that scale, we partner with you to simplify the complex, secure what matters, and
           set you up for long-term success. Here's how we help you make technology your advantage.
         </motion.p>
-        <a href="../../Pages/Helpdesk.tsx">
-          <button className="bg-[#1C6CFE] text-white text-bold px-4 py-2 rounded-md hover:bg-[#0F1729] transition-colors duration-300">
-            Get Started
-          </button>
-        </a>
       </motion.div>
     </motion.section>
   );

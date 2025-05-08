@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -50,6 +51,7 @@ const buttonVariants = {
 };
 
 export default function CTA() {
+  const navigate = useNavigate();
   return (
     <motion.section
       className="py-20 px-4 sm:px-8 md:px-12 bg-[#050505] relative overflow-hidden"
@@ -89,11 +91,14 @@ export default function CTA() {
 
         <motion.div className="flex justify-center gap-4 sm:gap-6" variants={containerVariants}>
           <motion.button
-            className="px-8 sm:px-36 py-4 sm:py-20 bg-[#0F1729] border-[0] text-[#FFFFFF] font-medium rounded-[10px] text-sm sm:text-base"
+            className="px-6 sm:px-6 py-4 sm:py-4 bg-[#0F1729] border-[0] text-[#FFFFFF] font-medium rounded-[10px] text-sm sm:text-base"
             style={{ fontFamily: 'Inter, sans-serif' }}
             variants={buttonVariants}
             whileHover="hover"
             whileTap="tap"
+            onClick={() => {
+              navigate('/ContactUsPage');
+            }}
           >
             Get started
           </motion.button>

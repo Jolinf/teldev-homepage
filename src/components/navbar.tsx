@@ -136,7 +136,7 @@ export default function Navbar() {
           transition={{ duration: 0.5 }}
         >
           <motion.button
-            className="px-8 sm:px-36 py-4 sm:py-20 bg-[#0F1729] border-[0] text-[#FFFFFF] font-medium rounded-[10px] transition-all duration-300 hover:bg-[#FFFFFF] hover:text-[#0F1729] text-sm sm:text-base"
+            className="px-6 py-4 bg-[#0F1729] border-[0] text-[#FFFFFF] font-medium rounded-[10px] transition-all duration-300 hover:bg-[#FFFFFF] hover:text-[#0F1729] text-sm sm:text-base"
             style={{ fontFamily: 'Inter, sans-serif' }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}

@@ -81,12 +81,12 @@ export default function Homepagequote2() {
           viewport={{ once: true }}
         >
           <motion.button
-            className="px-8 sm:px-36 py-4 sm:py-20 bg-[#0F1729] border-[0] text-[#FFFFFF] font-medium rounded-[10px] transition-all duration-300 text-sm sm:text-base"
+            className="px-6 py-5 bg-[#0F1729] border-[0] text-[#FFFFFF] font-medium rounded-[10px] transition-all duration-300 text-sm sm:text-base"
             style={{ fontFamily: 'Inter, sans-serif' }}
             variants={buttonVariants}
             whileHover="hover"
             whileTap="tap"
-            onClick={() => navigate('/Whatweoffer')}
+            onClick={() => navigate('/Whoweare')}
           >
             Discover more
           </motion.button>

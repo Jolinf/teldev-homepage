@@ -132,7 +132,7 @@ export default function ContactSection() {
           >
             <motion.button
               type="submit"
-              className="px-8 sm:px-36 py-4 sm:py-20 bg-[#0F1729] border-[0] text-[#FFFFFF] font-medium rounded-[10px] text-sm sm:text-base w-full sm:w-auto"
+              className="px-6 py-3 bg-[#0F1729] border-[0] text-[#FFFFFF] font-medium rounded-[10px] text-sm sm:text-base w-full sm:w-auto"
               style={{ fontFamily: 'inter, sans-serif' }}
               variants={buttonVariants}
               whileHover="hover"
