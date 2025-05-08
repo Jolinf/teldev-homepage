@@ -1,21 +1,27 @@
 import { motion } from 'framer-motion';
 import { FaFacebookF, FaInstagram, FaXTwitter, FaLinkedinIn } from 'react-icons/fa6';
+import { Link } from 'react-router-dom';
 
 const socialLinks = [
   { icon: <FaFacebookF />, href: '#' },
-  { icon: <FaInstagram />, href: '#' },
+  { icon: <FaInstagram />, href: 'https://www.instagram.com/teldev_ltd/' },
   { icon: <FaXTwitter />, href: '#' },
-  { icon: <FaLinkedinIn />, href: '#' },
+  { icon: <FaLinkedinIn />, href: 'https://www.linkedin.com/company/teldev-ng/' },
 ];
 
 const footerLinks = {
-  company: ['Home', 'Who we are', 'What we do', 'Blog'],
+  company: [
+    { name: 'Home', path: '/' },
+    { name: 'Who we are', path: '/Whoweare' },
+    { name: 'What we do', path: '/Whatweoffer' },
+    { name: 'Blog', path: '/blog' },
+  ],
   services: [
-    'Helpdesk Support',
-    'Network & Infrastructure',
-    'Application & website management',
-    'Cloud Services',
-    'IT Consulting',
+    { name: 'Helpdesk Support', path: '/Helpdesk' },
+    { name: 'Network & Infrastructure', path: '/Network' },
+    { name: 'Application & website management', path: '/Webdev' },
+    { name: 'Cloud Services', path: '/Cloud' },
+    { name: 'IT Consulting', path: '/Itconsulting' },
   ],
 };
 
@@ -52,7 +58,7 @@ export default function Footer() {
   return (
     <footer className="bg-[#1E64F0] text-[#FFFFFF]">
       <motion.div
-        className="px-[10%] py-[8%]"
+        className="px-[10%] py-16"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
@@ -72,7 +78,7 @@ export default function Footer() {
             variants={itemVariants}
           >
             <motion.h3
-              className="text-[1.5em] font-semibold mb-4"
+              className="text-xl font-semibold mb-4"
               style={{ fontFamily: 'Poppins, sans-serif' }}
               variants={itemVariants}
             >
@@ -83,9 +89,11 @@ export default function Footer() {
                 <motion.a
                   key={index}
                   href={link.href}
-                  className="text-[1.3em] text-[#000000] hover:text-gray-300 no-underline pr-[20px] transition-colors duration-300"
+                  className="text-xl text-[#000000] hover:text-gray-300 no-underline pr-1 transition-colors duration-300"
                   variants={itemVariants}
                   whileHover="hover"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   {link.icon}
                 </motion.a>
@@ -93,19 +101,19 @@ export default function Footer() {
             </motion.div>
             <motion.div className="space-y-0" variants={containerVariants}>
               <motion.p
-                className="m-[0] text-base text-left sm:text-lg md:text-xl lg:text-2xl text-[#F5F5F5]"
+                className="m-[0] text-base text-left sm:text-lg md:text-xl lg:text-lg text-[#F5F5F5]"
                 variants={itemVariants}
               >
                 contact@teldev.org
               </motion.p>
               <motion.p
-                className="m-[0] text-base text-left sm:text-lg md:text-xl lg:text-2xl text-[#F5F5F5]"
+                className="m-[0] text-base text-left sm:text-lg md:text-xl lg:text-lg text-[#F5F5F5]"
                 variants={itemVariants}
               >
                 +234 903 756 2951
               </motion.p>
               <motion.p
-                className="m-[0] text-base text-left sm:text-lg md:text-xl lg:text-2xl text-[#F5F5F5]"
+                className="m-[0] text-base text-left sm:text-lg md:text-lg lg:text-lg text-[#F5F5F5]"
                 variants={itemVariants}
               >
                 +234 708 403 6561
@@ -116,7 +124,7 @@ export default function Footer() {
           {/* Company */}
           <motion.div className="text-left" variants={itemVariants}>
             <motion.h3
-              className="text-[1.5em] font-semibold mb-4"
+              className="text-xl font-semibold mb-4"
               style={{ fontFamily: 'Poppins, sans-serif' }}
               variants={itemVariants}
             >
@@ -128,14 +136,13 @@ export default function Footer() {
               variants={containerVariants}
             >
               {footerLinks.company.map((link, index) => (
-                <motion.li key={index} className="pb-[10px]" variants={itemVariants}>
-                  <motion.a
-                    href="#"
-                    className="text-[1.2em] text-[#FFFFFF] no-underline hover:underline transition-colors duration-300"
-                    whileHover="hover"
+                <motion.li key={index} className="" variants={itemVariants}>
+                  <Link
+                    to={link.path}
+                    className="text-md text-[#FFFFFF] no-underline hover:underline transition-colors duration-300"
                   >
-                    {link}
-                  </motion.a>
+                    {link.name}
+                  </Link>
                 </motion.li>
               ))}
             </motion.ul>
@@ -144,7 +151,7 @@ export default function Footer() {
           {/* Services */}
           <motion.div className="text-left" variants={itemVariants}>
             <motion.h3
-              className="text-[1.5em] text-xl font-semibold mb-4"
+              className="text-xl text-xl font-semibold mb-4"
               style={{ fontFamily: 'Poppins, sans-serif' }}
               variants={itemVariants}
             >
@@ -156,14 +163,13 @@ export default function Footer() {
               variants={containerVariants}
             >
               {footerLinks.services.map((service, index) => (
-                <motion.li key={index} className="pb-[10px]" variants={itemVariants}>
-                  <motion.a
-                    href="#"
-                    className="text-[1.2em] text-[#FFFFFF] no-underline hover:underline transition-colors duration-300"
-                    whileHover="hover"
+                <motion.li key={index} className="" variants={itemVariants}>
+                  <Link
+                    to={service.path}
+                    className="text-md text-[#FFFFFF] no-underline hover:underline transition-colors duration-300"
                   >
-                    {service}
-                  </motion.a>
+                    {service.name}
+                  </Link>
                 </motion.li>
               ))}
             </motion.ul>

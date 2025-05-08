@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
@@ -61,6 +61,16 @@ const mobileMenuVariants = {
 const ServicesNavbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -68,24 +78,31 @@ const ServicesNavbar: React.FC = () => {
 
   return (
     <motion.header
-      className="bg-[#1C6CFE] text-[#FFFFFF] fixed top-0 left-0 right-0 z-20 shadow-md box-border"
+      className={`fixed top-4 left-0 right-0 z-50 mx-auto max-w-6xl px-4 py-0 rounded-[20px] transition-all duration-300 ${
+        isScrolled
+          ? 'bg-[#1C6CFE]/90 shadow-xl backdrop-blur-md'
+          : 'bg-[#1C6CFE]/70 shadow-md backdrop-blur-sm'
+      }`}
       variants={navVariants}
     >
-      <nav className="w-full sm:px-6 lg:px-8 h-24 flex items-center justify-between">
+      <nav className="w-full sm:px-6 lg:px-8 py-5 flex items-center justify-between m-auto">
         {/* Desktop Navigation Links */}
-        <Link
-          to="/WhatWeOffer"
-          className="text-lg pl-8 inline-block text-[#FFFFFF] text-left no-underline"
-          style={{ fontFamily: 'Inter, sans-serif' }}
-        >
-          →
-        </Link>
+
         <motion.ul
           className="hidden md:flex items-center justify-center space-x-[30px] text-sm tracking-wide list-none"
           style={{ fontFamily: 'Inter, sans-serif' }}
           initial="hidden"
           animate="visible"
         >
+          <motion.li>
+            <Link
+              to="/WhatWeOffer"
+              className="text-lg inline-block text-[#FFFFFF] text-left no-underline transition-colors duration-300"
+              style={{ fontFamily: 'Inter, sans-serif' }}
+            >
+              ←
+            </Link>
+          </motion.li>
           {servicesLinks.map((link, i) => (
             <motion.li key={link.path} custom={i} variants={linkVariants}>
               <Link

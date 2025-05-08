@@ -123,7 +123,12 @@ const ContactUsPage = () => {
               <input type="checkbox" className="mt-1 border border-gray-600 accent-blue-600" />
               <label className="text-sm text-gray-300">
                 By checking this box you agree to our{' '}
-                <a href="#" className="underline text-white">
+                <a
+                  href="https://drive.google.com/file/d/1Sx9lCBdV9nlBZIlAaeohwnK9ZBwywuNU/view?usp=drive_link"
+                  className="underline text-white"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   Terms & conditions
                 </a>{' '}
                 and{' '}

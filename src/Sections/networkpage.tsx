@@ -1,10 +1,10 @@
 export default function NetworkPage() {
   return (
     <section
-      className="box-border text-left bg-black text-[#FFFFFF] px-4 sm:px-8 md:px-12 py-8"
+      className="box-border text-left bg-black text-[#FFFFFF] px-4 sm:px-8 md:px-12 pb-20"
       style={{ fontFamily: 'Inter, sans-serif' }}
     >
-      <div className="max-w-5xl mx-auto mt-40">
+      <div className="max-w-5xl mx-auto mt-35">
         <h1
           className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 text-left"
           style={{ fontFamily: 'Poppins, sans-serif' }}
