@@ -1,7 +1,4 @@
-// src/sections/WhyTeldev.tsx
 import { motion } from 'framer-motion';
-
-// Sample image imports — replace these with your actual image paths
 import expertiseImg from '../../assets/Homepage-images/homepage-whyuwhyteldev-expertise image.jpg';
 import innovationImg from '../../assets/Homepage-images/Homepage-whyuwhyteldev-innovation image.jpg';
 import securityImg from '../../assets/Homepage-images/homepage-whyuwhyteldev-security image.jpg';
@@ -9,53 +6,72 @@ import scalabilityImg from '../../assets/Homepage-images/Homepage-whyuwhyteldev-
 import supportImg from '../../assets/Homepage-images/homepage-whyuwhyteldev-ongoing support image.jpg';
 import performanceImg from '../../assets/Homepage-images/homepage-whyuwhyteldev-performance image.jpg';
 import customerImg from '../../assets/Homepage-images/Homepage-whyuwhyteldev-custome centric image.jpg';
+import adaptabilityimg from '../../assets/Homepage-images/Homepage-whyuwhyteldev-Adaptability image.png';
 
 const cards = [
-  { title: 'Expertise', img: expertiseImg },
-  { title: 'Innovation', img: innovationImg },
-  { title: 'Security', img: securityImg },
-  { title: 'Scalability', img: scalabilityImg },
-  { title: 'Ongoing Support', img: supportImg },
-  { title: 'Performance', img: performanceImg },
-  { title: 'Customer-Centric Approach', img: customerImg },
-  { title: 'Adaptability', img: supportImg },
+  {
+    title: 'Expertise',
+    imgFront: expertiseImg,
+    description:
+      'At TELDEV Technologies, we blend hands-on IT support with smart, scalable solutions. From troubleshooting to automation, we’re here to help you stay ahead and make technology work for you.',
+    bgColor: '#044154',
+  },
+  {
+    title: 'Innovation',
+    imgFront: innovationImg,
+    description:
+      'We push boundaries by blending AI, automation, and creativity—delivering forward-thinking solutions designed for the future of tech.',
+    bgColor: '#0A1529',
+  },
+  {
+    title: 'Security',
+    imgFront: securityImg,
+    description:
+      'Your safety is our priority. We implement advanced encryption, secure frameworks, and proactive monitoring to keep your data protected around the clock.',
+    bgColor: '#434C5E',
+  },
+  {
+    title: 'Scalability',
+    imgFront: scalabilityImg,
+    description:
+      'As your business grows, so should your tech. Our flexible solutions are built to scale with you—efficiently and seamlessly.',
+    bgColor: '#8596AB',
+  },
+  {
+    title: 'Ongoing Support',
+    imgFront: supportImg,
+    description:
+      'Our job doesn’t end after deployment. We offer continuous, hands-on support to ensure your tech stays efficient, updated, and reliable.',
+    bgColor: '#617281',
+  },
+  {
+    title: 'Performance',
+    imgFront: performanceImg,
+    description:
+      'Speed and reliability are at our core. We engineer high-performance systems that keep your operations running without interruption.',
+    bgColor: '#51453B',
+  },
+  {
+    title: 'Customer-Centric Approach',
+    imgFront: customerImg,
+    description:
+      'Your goals guide our solutions. We take time to understand your needs, ensuring every service is tailored to deliver real value.',
+    bgColor: '#202E3B',
+  },
+  {
+    title: 'Adaptability',
+    imgFront: adaptabilityimg,
+    description:
+      'Adaptability is our strength—we evolve with technology and client needs, ensuring our solutions stay relevant, responsive, and resilient in a rapidly changing digital world.',
+    bgColor: '#8A5320',
+  },
 ];
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-      delayChildren: 0.3,
-    },
-  },
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-      ease: 'easeOut',
-    },
-  },
-  hover: {
-    scale: 1.05,
-    transition: {
-      duration: 0.3,
-      ease: 'easeOut',
-    },
-  },
-};
 
 export default function WhyTeldev() {
   return (
-    <section className="mb-[5%] px-[10%] justify-center bg-[#0A0A0A] text-[#FFFFFF] py-20 sm:px-6 md:px-8">
+    <section className="mb-[5%] px-[10%] justify-center bg-[#0A0A0A] text-white py-20 sm:px-6 md:px-8">
       <motion.h2
-        className="text-center text-[1.8em] sm:text-[2em] text-3xl md:text-4xl lg:text-5xl font-semibold mb-[40px]"
+        className="text-center text-[1.8em] sm:text-[2em] md:text-4xl lg:text-5xl font-semibold mb-[40px]"
         style={{ fontFamily: 'Poppins, sans-serif' }}
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -68,40 +84,35 @@ export default function WhyTeldev() {
 
       <motion.div
         className="grid gap-6 grid-cols-1 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 md:grid-cols-2 sm:grid-cols-2 lg:grid-cols-3"
-        variants={containerVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
       >
         {cards.map((card, index) => (
-          <motion.div
-            key={index}
-            className="rounded-[1em] overflow-hidden shadow-md relative group transition duration-300 transform hover:shadow-2xl hover:scale-105 hover:-translate-y-1 h-[90%] sm:h-[350px] md:h-[] p-4"
-            variants={cardVariants}
-            whileHover="hover"
-          >
-            <div className="relative w-full h-full">
-              <div className="relative w-full h-full">
+          <div key={index} className="relative h-[350px] perspective">
+            <div className="relative w-full h-full transition-transform duration-700 transform-style-preserve-3d group hover:rotate-y-180 rounded-[1em]">
+              {/* Front */}
+              <div className="absolute w-full h-full backface-hidden rounded-[1em] overflow-hidden">
                 <img
-                  src={card.img}
-                  alt={card.title}
-                  className={`w-full h-full object-cover rounded-[1em] transition-transform duration-500 group-hover:scale-110 `}
+                  src={card.imgFront}
+                  alt={`${card.title} Front`}
+                  className="w-full h-full object-cover rounded-[1em]"
                 />
-                {/* <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent rounded-[1em]" /> */}
+                <div className="absolute bottom-6 left-6 z-10">
+                  <h3 className="text-white text-xl font-bold drop-shadow-md">{card.title}</h3>
+                </div>
+              </div>
+
+              {/* Back */}
+              <div
+                className="absolute w-full h-full backface-hidden rotate-y-180 text-white text-left rounded-[1em] p-6 flex flex-col justify-start items-start shadow-lg"
+                style={{ backgroundColor: card.bgColor }}
+              >
+                <h3 className="text-2xl font-bold mb-3">{card.title}</h3>
+                <p className="text-base leading-relaxed">{card.description}</p>
               </div>
             </div>
-            <div className="absolute bottom-6 left-6 z-10">
-              <h3
-                className="text-white text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-left"
-                style={{
-                  fontFamily: 'Poppins, sans-serif',
-                  textShadow: '0 2px 4px rgba(0,0,0,0.5)',
-                }}
-              >
-                {card.title}
-              </h3>
-            </div>
-          </motion.div>
+          </div>
         ))}
       </motion.div>
     </section>

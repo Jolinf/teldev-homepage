@@ -160,7 +160,7 @@ const ContactUsPage = () => {
             <label className="text-sm text-gray-300">
               By checking this box you agree to our{' '}
               <a
-                href="https://drive.google.com/file/d/1Sx9lCBdV9nlBZIlAaeohwnK9ZBwywuNU/view?usp=drive_link"
+                href="https://drive.google.com/file/d/1WgnbAN0rfbcewvMtAXZelDz0y4F9Ahh-/view?usp=sharing"
                 className="underline text-white"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -168,7 +168,10 @@ const ContactUsPage = () => {
                 Terms & conditions
               </a>{' '}
               and{' '}
-              <a href="#" className="underline text-white">
+              <a
+                href="https://drive.google.com/file/d/1trONfW-oyeROXwOrZ4rvTmXCc5nw4kq-/view?usp=sharing"
+                className="underline text-white"
+              >
                 Privacy policy
               </a>
             </label>

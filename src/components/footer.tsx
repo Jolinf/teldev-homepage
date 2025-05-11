@@ -23,6 +23,17 @@ const footerLinks = {
     { name: 'Cloud Services', path: '/Cloud' },
     { name: 'IT Consulting', path: '/Itconsulting' },
   ],
+  info: [
+    {
+      name: 'Terms & Conditions',
+      path: 'https://drive.google.com/file/d/1WgnbAN0rfbcewvMtAXZelDz0y4F9Ahh-/view?usp=sharing',
+    },
+    {
+      name: 'Cookie Policy',
+      path: 'https://drive.google.com/file/d/1BaZBusTblq8GmC361zt3TJhq0IPf3aEu/view?usp=sharing',
+    },
+    { name: 'Site Map', path: '' },
+  ],
 };
 
 const containerVariants = {
@@ -193,15 +204,17 @@ export default function Footer() {
           viewport={{ once: true }}
         >
           <motion.div className="flex gap-6 text-sm" variants={containerVariants}>
-            {['Terms & Conditions', 'Cookie Policy', 'Sitemap'].map((item, index) => (
+            {footerLinks.info.map((link, index) => (
               <motion.a
                 key={index}
-                href="#"
+                href={link.path}
                 className="text-[#FFFFFF] mr-[10px] hover:text-gray-200 transition-colors duration-300"
                 variants={itemVariants}
                 whileHover="hover"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                {item}
+                {link.name}
               </motion.a>
             ))}
           </motion.div>
