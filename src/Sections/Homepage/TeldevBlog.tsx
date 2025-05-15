@@ -6,18 +6,22 @@ const blogPosts = [
   {
     id: 1,
     date: 'March 20, 2025',
+    dateTime: '2025-03-20',
     title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     image: post1,
     summary:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    link: '#', // replace with actual URL
   },
   {
     id: 2,
     date: 'March 20, 2025',
+    dateTime: '2025-03-20',
     title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     image: post2,
     summary:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    link: '#', // replace with actual URL
   },
 ];
 
@@ -81,11 +85,13 @@ export default function TeldevBlog() {
           viewport={{ once: true }}
         >
           {blogPosts.map((post) => (
-            <motion.div
+            <motion.article
               key={post.id}
               className="bg-[#1A1A1A] w-full h-full rounded-[10px] overflow-hidden shadow-md hover:shadow-blue-500/30 transition-all duration-300 border-[2px] sm:border-[3px] border-[#0F1729]"
               variants={cardVariants}
               whileHover="hover"
+              role="article"
+              aria-labelledby={`post-title-${post.id}`}
             >
               <motion.div
                 className="relative overflow-hidden"
@@ -95,6 +101,7 @@ export default function TeldevBlog() {
                 <img
                   src={post.image}
                   alt={post.title}
+                  loading="lazy"
                   className="w-full h-[300px] sm:h-[250px] md:h-[300px] object-cover transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent" />
@@ -106,16 +113,18 @@ export default function TeldevBlog() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
               >
-                <motion.p
-                  className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-400 mb-2"
+                <motion.time
+                  dateTime={post.dateTime}
+                  className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-400 mb-2 block"
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.2 }}
                 >
                   {post.date}
-                </motion.p>
+                </motion.time>
                 <motion.h3
+                  id={`post-title-${post.id}`}
                   className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-snug mb-2 sm:mb-3"
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
@@ -134,7 +143,7 @@ export default function TeldevBlog() {
                   {post.summary}
                 </motion.p>
                 <motion.a
-                  href="#"
+                  href={post.link}
                   className="inline-flex items-center text-[#2F80ED] no-underline text-sm sm:text-base font-medium hover:text-[#1C6CFE] transition-colors duration-300"
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
@@ -145,7 +154,7 @@ export default function TeldevBlog() {
                   Read more →
                 </motion.a>
               </motion.div>
-            </motion.div>
+            </motion.article>
           ))}
         </motion.div>
       </motion.div>

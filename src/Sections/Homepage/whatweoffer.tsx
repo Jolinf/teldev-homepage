@@ -83,17 +83,16 @@ export default function WhatWeOffer() {
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
   };
 
-  const handleSlideChange = (direction: number) => {
-    // Prevent any default behavior
-    if (direction > 0) {
-      nextSlide();
-    } else {
-      prevSlide();
-    }
+  const handleSlideChange = (dir: number) => {
+    if (dir > 0) nextSlide();
+    else prevSlide();
   };
 
   return (
-    <section className="what-we-offer-section box-border px-[10%] py-20 mb-[5%] sm:px-8 text-[#FFFFFF] bg-[#0A0A0A]">
+    <section
+      aria-label="What We Offer"
+      className="what-we-offer-section box-border px-[10%] py-20 mb-[5%] sm:px-6 md:px-12 text-white bg-[#0A0A0A]"
+    >
       <motion.div
         className="max-w-7xl mx-auto"
         initial={{ opacity: 0, y: 20 }}
@@ -102,19 +101,20 @@ export default function WhatWeOffer() {
         transition={{ duration: 0.6 }}
       >
         <motion.h2
-          className="text-3xl font-semibold text-center mb-[40px] text-base sm:text-lg md:text-xl lg:text-2xl"
+          className="text-center mb-10 font-semibold text-3xl sm:text-4xl md:text-5xl leading-tight"
           style={{ fontFamily: 'Poppins, sans-serif' }}
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
+          tabIndex={-1} // for screen readers to jump here if needed
         >
           What We Offer
         </motion.h2>
 
         <div className="relative overflow-hidden">
           <AnimatePresence initial={false} custom={direction} mode="wait">
-            <motion.div
+            <motion.article
               key={currentSlide}
               custom={direction}
               variants={slideVariants}
@@ -122,7 +122,9 @@ export default function WhatWeOffer() {
               animate="center"
               exit="exit"
               transition={slideTransition}
-              className="flex-shrink-0 w-full h-auto rounded-lg shadow-lg flex flex-col md:flex-row items-center gap-8 p-6 bg-[#0F1729]"
+              className="flex flex-col md:flex-row items-center gap-8 p-6 rounded-lg shadow-lg bg-[#0F1729]"
+              aria-roledescription="slide"
+              aria-label={`${slides[currentSlide].title} service`}
             >
               <motion.div
                 className="w-full md:w-1/2 p-4"
@@ -132,61 +134,63 @@ export default function WhatWeOffer() {
               >
                 <img
                   src={slides[currentSlide].image}
-                  alt={slides[currentSlide].title}
-                  className="w-full h-auto rounded-lg object-contain transform hover:scale-105 transition-transform duration-300"
+                  alt={`${slides[currentSlide].title} illustration`}
+                  className="w-full h-auto rounded-lg object-contain transform transition-transform duration-300 hover:scale-105"
+                  loading="lazy"
                 />
               </motion.div>
               <motion.div
-                className="w-full md:w-1/2 text-left mt-[3%]"
+                className="w-full md:w-1/2 text-left mt-6 md:mt-0"
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3 }}
               >
-                <motion.h2
-                  className="text-xl font-medium text-[#1C6CFE] text-[1.5em] text-left mb-6"
+                <h3
+                  className="mb-6 text-2xl font-semibold text-[#1C6CFE] sm:text-3xl"
                   style={{ fontFamily: 'Poppins, sans-serif' }}
                 >
                   {slides[currentSlide].title}
-                </motion.h2>
-                <motion.ul
-                  className="list-none list-inside text-[1.5em] font-regular text-left p-[0] space-y-4"
+                </h3>
+                <ul
+                  className="list-disc list-inside space-y-4 text-lg font-medium"
                   style={{ fontFamily: 'Inter, sans-serif' }}
                 >
                   {slides[currentSlide].items.map((item, i) => (
-                    <motion.li
-                      key={i}
-                      className="text-left flex items-center gap-2"
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.4 + i * 0.1 }}
-                    >
-                      <span className="text-[#1C6CFE]">•</span> {item}
-                    </motion.li>
+                    <li key={i} className="flex items-center gap-3" aria-label={item}>
+                      <span className="text-[#1C6CFE] text-xl leading-none">•</span>
+                      <span>{item}</span>
+                    </li>
                   ))}
-                </motion.ul>
+                </ul>
                 <MotionLink
                   to={slides[currentSlide].link}
-                  className="inline-block mt-8 text-[#FFFFFF] hover:text-[#1C6CFE] text-left no-underline transition-colors duration-300"
+                  className="inline-block mt-8 text-[#FFFFFF] hover:text-[#1C6CFE] text-lg font-semibold transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#1C6CFE] rounded"
                   style={{ fontFamily: 'Inter, sans-serif' }}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6 }}
+                  aria-label={`Learn more about ${slides[currentSlide].title}`}
                 >
                   Learn More →
                 </MotionLink>
               </motion.div>
-            </motion.div>
+            </motion.article>
           </AnimatePresence>
 
-          <div className="flex justify-end m-8 gap-4">
+          <nav
+            aria-label="What We Offer carousel navigation"
+            className="flex justify-end gap-4 mt-10"
+          >
             <motion.button
               onClick={(e) => {
                 e.preventDefault();
                 handleSlideChange(-1);
               }}
-              className="bg-[#1C6CFE] border-0 text-white p-3 shadow-lg hover:bg-[#0F1729] transition-colors duration-300 rounded-full w-12 h-12 flex items-center justify-center"
+              className="bg-[#1C6CFE] text-white p-3 rounded-full shadow-lg w-12 h-12 flex items-center justify-center transition-colors duration-300 hover:bg-[#0F1729] focus:outline-none focus:ring-4 focus:ring-[#1C6CFE]"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
+              aria-label="Previous Slide"
+              type="button"
             >
               ←
             </motion.button>
@@ -195,13 +199,15 @@ export default function WhatWeOffer() {
                 e.preventDefault();
                 handleSlideChange(1);
               }}
-              className="bg-[#1C6CFE] border-0 text-white p-3 shadow-lg hover:bg-[#0F1729] transition-colors duration-300 rounded-full w-12 h-12 flex items-center justify-center"
+              className="bg-[#1C6CFE] text-white p-3 rounded-full shadow-lg w-12 h-12 flex items-center justify-center transition-colors duration-300 hover:bg-[#0F1729] focus:outline-none focus:ring-4 focus:ring-[#1C6CFE]"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
+              aria-label="Next Slide"
+              type="button"
             >
               →
             </motion.button>
-          </div>
+          </nav>
         </div>
       </motion.div>
     </section>

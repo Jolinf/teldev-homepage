@@ -39,36 +39,52 @@ const paragraphVariants = {
 export default function ServicesHero() {
   return (
     <motion.section
+      role="region"
+      aria-label="Introduction to TELDEV Technologies services"
+      tabIndex={-1}
+      aria-live="polite"
       className="box-border py-30 px-4 sm:px-8 md:px-12 bg-[#0A0A0A] relative overflow-hidden"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: '-100px' }}
     >
-      {/* Background Decorative Elements */}
+      {/* Background Decorative Elements - aria-hidden since decorative */}
       <motion.div
-        className="absolute inset-0 opacity-10"
+        className="absolute inset-0 opacity-10 pointer-events-none"
         initial={{ scale: 1.2 }}
         whileInView={{ scale: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 1.5 }}
+        aria-hidden="true"
+        style={{ willChange: 'transform, opacity' }}
       >
-        <div className="absolute top-0 left-1/4 w-64 h-64 border-2 border-[#1C6CFE] rounded-full" />
-        <div className="absolute bottom-0 right-1/4 w-64 h-64 border-2 border-[#1C6CFE] rounded-full" />
+        <div
+          className="absolute top-0 left-1/4 w-64 h-64 border-2 border-[#1C6CFE] rounded-full"
+          aria-hidden="true"
+        />
+        <div
+          className="absolute bottom-0 right-1/4 w-64 h-64 border-2 border-[#1C6CFE] rounded-full"
+          aria-hidden="true"
+        />
       </motion.div>
 
-      <motion.div className="max-w-5xl mx-auto relative z-10" variants={containerVariants}>
+      <motion.div
+        className="max-w-5xl mx-auto relative z-10"
+        variants={containerVariants}
+        style={{ willChange: 'transform, opacity' }}
+      >
         <motion.h2
-          className="text-center text-3xl sm:text-4xl md:text-5xl font-bold text-[#FFFFFF] leading-tight mb-8"
+          className="text-center text-4xl sm:text-5xl md:text-6xl font-extrabold text-[#E0E7FF] leading-tight mb-10 transition-transform duration-300 ease-in-out hover:scale-[1.02] focus:scale-[1.02] focus:outline-none"
           variants={textVariants}
-          style={{ fontFamily: 'Poppins, sans-serif' }}
+          tabIndex={0} // focusable for keyboard users
         >
           Technology that works for you
         </motion.h2>
 
         <motion.p
-          className="text-center text-base sm:text-lg md:text-xl lg:text-2xl text-[#FFFFFF] leading-relaxed font-normal mb-4"
-          style={{ fontFamily: 'Inter, sans-serif' }}
+          className="text-center text-base sm:text-lg md:text-xl lg:text-2xl text-[#D1D5DB] leading-relaxed font-normal mb-8 max-w-4xl mx-auto"
           variants={paragraphVariants}
+          tabIndex={0} // focusable to read via keyboard navigation
         >
           At TELDEV Technologies, we offer more than just technical support—we deliver customized
           solutions designed to make technology work for you. Whether you're running a small

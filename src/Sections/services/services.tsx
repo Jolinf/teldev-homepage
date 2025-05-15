@@ -99,7 +99,7 @@ export default function Services() {
       </motion.h2>
 
       <motion.div className="w-full max-w-5xl mx-auto space-y-16" variants={containerVariants}>
-        {/*Helpdesk support */}
+        {/* Helpdesk Support */}
         <motion.div
           className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center p-6 sm:p-8 rounded-xl bg-[#0A0A0A] border border-[#1C6CFE]/20 shadow-lg"
           variants={cardVariants}
@@ -108,7 +108,7 @@ export default function Services() {
           <motion.div className="flex justify-center md:justify-start" variants={imageVariants}>
             <motion.img
               src={Helpdesk}
-              alt="Helpdesk illustration"
+              alt="Helpdesk Support Illustration"
               className="w-full max-w-md"
               whileHover="hover"
             />
@@ -125,7 +125,7 @@ export default function Services() {
               className="text-base sm:text-lg md:text-xl lg:text-2xl text-[#FFFFFF] leading-relaxed"
               style={{ fontFamily: 'Inter, sans-serif' }}
             >
-              Your first stop for swift and reliable IT help.From device issues to email setup, we
+              Your first stop for swift and reliable IT help. From device issues to email setup, we
               offer step-by-step guidance to keep your business running smoothly. We're here to
               troubleshoot, resolve, and support—every step of the way.
             </motion.p>
@@ -159,7 +159,7 @@ export default function Services() {
               style={{ fontFamily: 'Inter, sans-serif' }}
             >
               Strong infrastructure is the backbone of a modern business. We design, monitor, and
-              secure your network for maximum uptime and performance.From setup to maintenance, we
+              secure your network for maximum uptime and performance. From setup to maintenance, we
               make sure your systems work flawlessly.
             </motion.p>
             <div className="mt-4 z-10 relative">
@@ -176,7 +176,7 @@ export default function Services() {
           <motion.div className="flex justify-center md:justify-start" variants={imageVariants}>
             <motion.img
               src={Network}
-              alt="Network & Infrastructure illustration"
+              alt="Network & Infrastructure Illustration"
               className="w-full max-w-md"
               whileHover="hover"
             />
@@ -192,7 +192,7 @@ export default function Services() {
           <motion.div className="flex justify-center md:justify-start" variants={imageVariants}>
             <motion.img
               src={webdev}
-              alt="Web Development illustration"
+              alt="Application and Website Development Illustration"
               className="w-full max-w-md"
               whileHover="hover"
             />
@@ -237,7 +237,7 @@ export default function Services() {
           >
             <motion.img
               src={cloud}
-              alt="Cloud Services illustration"
+              alt="Cloud Services Illustration"
               className="w-full max-w-md"
               whileHover="hover"
             />
@@ -269,7 +269,7 @@ export default function Services() {
           </motion.div>
         </motion.div>
 
-        {/* IT Support Card */}
+        {/* IT Consulting Card */}
         <motion.div
           className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center p-6 sm:p-8 rounded-xl bg-[#0A0A0A] border border-[#1C6CFE]/20 shadow-lg"
           variants={cardVariants}
@@ -278,7 +278,7 @@ export default function Services() {
           <motion.div className="flex justify-center md:justify-start" variants={imageVariants}>
             <motion.img
               src={ITconsulting}
-              alt="IT Consulting illustration"
+              alt="IT Consulting Illustration"
               className="w-full max-w-md"
               whileHover="hover"
             />
@@ -295,7 +295,7 @@ export default function Services() {
               className="text-base sm:text-lg md:text-xl lg:text-2xl text-[#FFFFFF] leading-relaxed"
               style={{ fontFamily: 'Inter, sans-serif' }}
             >
-              Make smarter tech decisions with expert advice.We help align your business goals with
+              Make smarter tech decisions with expert advice. We help align your business goals with
               the right technology. Whether it's integration, strategy, or cost-saving, we guide you
               toward better results.
             </motion.p>

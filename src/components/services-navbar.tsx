@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
-// import logo from '../assets/teldev-logo.png';
 
 const servicesLinks = [
   { path: '/Helpdesk', label: 'Helpdesk Support' },
@@ -13,10 +12,7 @@ const servicesLinks = [
 ];
 
 const navVariants = {
-  visible: {
-    opacity: 1,
-    y: 0,
-  },
+  visible: { opacity: 1, y: 0 },
 };
 
 const linkVariants = {
@@ -32,9 +28,7 @@ const linkVariants = {
   }),
   hover: {
     scale: 1.05,
-    transition: {
-      duration: 0.2,
-    },
+    transition: { duration: 0.2 },
   },
 };
 
@@ -43,18 +37,12 @@ const mobileMenuVariants = {
   visible: {
     opacity: 1,
     x: 0,
-    transition: {
-      duration: 0.3,
-      ease: 'easeOut',
-    },
+    transition: { duration: 0.3, ease: 'easeOut' },
   },
   exit: {
     opacity: 0,
     x: '100%',
-    transition: {
-      duration: 0.3,
-      ease: 'easeIn',
-    },
+    transition: { duration: 0.3, ease: 'easeIn' },
   },
 };
 
@@ -62,111 +50,142 @@ const ServicesNavbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
+  const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 0);
-    };
-
+    const handleScroll = () => setIsScrolled(window.scrollY > 0);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
+  const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
+  const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
   return (
-    <motion.header
-      className={`fixed top-4 left-0 right-0 z-50 mx-auto max-w-6xl px-4 py-0 rounded-[20px] transition-all duration-300 ${
-        isScrolled
-          ? 'bg-[#1C6CFE]/90 shadow-xl backdrop-blur-md'
-          : 'bg-[#1C6CFE]/70 shadow-md backdrop-blur-sm'
-      }`}
-      variants={navVariants}
-    >
-      <nav className="w-full sm:px-6 lg:px-8 py-5 flex items-center justify-between m-auto">
-        {/* Desktop Navigation Links */}
+    <>
+      {/* Skip to main content for accessibility */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only absolute top-2 left-2 bg-[#1C6CFE] text-white px-3 py-1 rounded z-50"
+      >
+        Skip to main content
+      </a>
 
-        <motion.ul
-          className="hidden md:flex items-center justify-center space-x-[30px] text-sm tracking-wide list-none"
-          style={{ fontFamily: 'Inter, sans-serif' }}
-          initial="hidden"
-          animate="visible"
+      <motion.header
+        className={`fixed top-4 left-0 right-0 z-50 mx-auto max-w-6xl px-4 py-0 rounded-[20px] transition-all duration-300 ${
+          isScrolled
+            ? 'bg-[#1C6CFE]/90 shadow-xl backdrop-blur-md'
+            : 'bg-[#1C6CFE]/70 shadow-md backdrop-blur-sm'
+        }`}
+        variants={shouldReduceMotion ? undefined : navVariants}
+        initial="visible"
+        animate="visible"
+      >
+        <nav
+          className="w-full sm:px-6 lg:px-8 py-5 flex items-center justify-between m-auto"
+          aria-label="Services navigation"
+          role="navigation"
         >
-          <motion.li>
-            <Link
-              to="/WhatWeOffer"
-              className="text-lg inline-block text-[#FFFFFF] text-left no-underline transition-colors duration-300"
-              style={{ fontFamily: 'Inter, sans-serif' }}
-            >
-              ←
-            </Link>
-          </motion.li>
-          {servicesLinks.map((link, i) => (
-            <motion.li key={link.path} custom={i} variants={linkVariants}>
+          {/* Desktop Navigation Links */}
+          <motion.ul
+            className="hidden md:flex items-center justify-center space-x-[30px] text-sm tracking-wide list-none"
+            style={{ fontFamily: 'Inter, sans-serif' }}
+            initial="hidden"
+            animate="visible"
+            variants={shouldReduceMotion ? undefined : undefined}
+          >
+            <motion.li>
               <Link
-                to={link.path}
-                className={`no-underline transition-colors duration-300 ${
-                  location.pathname === link.path
-                    ? 'text-[#FFFFFF] border-b border-[#FFFFFF]'
-                    : 'text-[#FFFFFF]/80 hover:text-[#FFFFFF]'
-                }`}
+                to="/WhatWeOffer"
+                className="text-lg inline-block text-white no-underline transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-white rounded"
+                style={{ fontFamily: 'Inter, sans-serif' }}
+                aria-label="Go back to What We Offer"
               >
-                {link.label}
+                ←
               </Link>
             </motion.li>
-          ))}
-        </motion.ul>
-
-        {/* Mobile Menu Button */}
-        <motion.button
-          className="md:hidden text-white"
-          onClick={toggleMobileMenu}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-        >
-          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </motion.button>
-
-        {/* Mobile Menu */}
-        <AnimatePresence>
-          {isMobileMenuOpen && (
-            <motion.div
-              className="fixed top-0 right-0 w-full h-screen bg-[#1C6CFE] z-50 md:hidden overflow-hidden"
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-              variants={mobileMenuVariants}
-            >
-              <div className="flex flex-col items-center justify-center h-full space-y-8">
-                {servicesLinks.map((link, i) => (
-                  <motion.div
-                    key={link.path}
-                    custom={i}
-                    variants={linkVariants}
-                    initial="hidden"
-                    animate="visible"
+            {servicesLinks.map((link, i) => {
+              const isActive = location.pathname === link.path;
+              return (
+                <motion.li
+                  key={link.path}
+                  custom={i}
+                  variants={shouldReduceMotion ? {} : linkVariants}
+                  whileHover={shouldReduceMotion ? {} : 'hover'}
+                >
+                  <Link
+                    to={link.path}
+                    className={`no-underline transition-colors duration-300 px-2 py-1 rounded focus:outline-none focus:ring-2 focus:ring-white ${
+                      isActive
+                        ? 'text-white border-b-2 border-white font-semibold'
+                        : 'text-white/80 hover:text-white'
+                    }`}
+                    aria-current={isActive ? 'page' : undefined}
                   >
-                    <Link
-                      to={link.path}
-                      className={`text-2xl no-underline transition-colors duration-300 ${
-                        location.pathname === link.path
-                          ? 'text-[#FFFFFF]'
-                          : 'text-[#FFFFFF]/80 hover:text-[#FFFFFF]'
-                      }`}
-                      onClick={() => setIsMobileMenuOpen(false)}
+                    {link.label}
+                  </Link>
+                </motion.li>
+              );
+            })}
+          </motion.ul>
+
+          {/* Mobile Menu Button */}
+          <motion.button
+            className="md:hidden text-white focus:outline-none focus:ring-2 focus:ring-white rounded p-1"
+            onClick={toggleMobileMenu}
+            aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-menu"
+            whileHover={shouldReduceMotion ? {} : { scale: 1.1 }}
+            whileTap={shouldReduceMotion ? {} : { scale: 0.9 }}
+          >
+            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </motion.button>
+
+          {/* Mobile Menu */}
+          <AnimatePresence>
+            {isMobileMenuOpen && (
+              <motion.div
+                id="mobile-menu"
+                className="fixed top-0 right-0 w-full h-screen bg-[#1C6CFE] z-50 md:hidden overflow-auto flex flex-col items-center justify-center space-y-8 px-4"
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                variants={shouldReduceMotion ? {} : mobileMenuVariants}
+                role="menu"
+                aria-label="Mobile services menu"
+              >
+                {servicesLinks.map((link, i) => {
+                  const isActive = location.pathname === link.path;
+                  return (
+                    <motion.div
+                      key={link.path}
+                      custom={i}
+                      variants={shouldReduceMotion ? {} : linkVariants}
+                      initial="hidden"
+                      animate="visible"
+                      whileHover={shouldReduceMotion ? {} : { scale: 1.05 }}
                     >
-                      {link.label}
-                    </Link>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </nav>
-    </motion.header>
+                      <Link
+                        to={link.path}
+                        className={`block text-2xl no-underline transition-colors duration-300 px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-white ${
+                          isActive ? 'text-white font-semibold' : 'text-white/80 hover:text-white'
+                        }`}
+                        onClick={closeMobileMenu}
+                        aria-current={isActive ? 'page' : undefined}
+                        role="menuitem"
+                      >
+                        {link.label}
+                      </Link>
+                    </motion.div>
+                  );
+                })}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </nav>
+      </motion.header>
+    </>
   );
 };
 

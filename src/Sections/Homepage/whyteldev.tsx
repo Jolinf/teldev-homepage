@@ -89,17 +89,29 @@ export default function WhyTeldev() {
         viewport={{ once: true }}
       >
         {cards.map((card, index) => (
-          <div key={index} className="relative h-[350px] perspective">
-            <div className="relative w-full h-full transition-transform duration-700 transform-style-preserve-3d group hover:rotate-y-180 rounded-[1em]">
+          <div
+            key={index}
+            className="relative h-[350px] perspective focus:outline-none focus-visible:ring-4 focus-visible:ring-[#1C6CFE] focus-visible:ring-opacity-75 rounded-[1em]"
+            tabIndex={0}
+            aria-label={`${card.title} card. Press enter to flip.`}
+          >
+            <div
+              className="relative w-full h-full transition-transform duration-700 transform-style-preserve-3d group hover:rotate-y-180 focus-within:rotate-y-180 rounded-[1em] shadow-lg hover:shadow-xl hover:scale-105"
+              style={{ transformStyle: 'preserve-3d' }}
+            >
               {/* Front */}
-              <div className="absolute w-full h-full backface-hidden rounded-[1em] overflow-hidden">
+              <div
+                className="absolute w-full h-full backface-hidden rounded-[1em] overflow-hidden"
+                aria-hidden="true"
+              >
                 <img
                   src={card.imgFront}
-                  alt={`${card.title} Front`}
+                  alt={`${card.title} image`}
                   className="w-full h-full object-cover rounded-[1em]"
+                  loading="lazy"
                 />
                 <div className="absolute bottom-6 left-6 z-10">
-                  <h3 className="text-white text-xl font-bold drop-shadow-md">{card.title}</h3>
+                  <h3 className="text-white text-2xl font-bold drop-shadow-md">{card.title}</h3>
                 </div>
               </div>
 
@@ -107,8 +119,9 @@ export default function WhyTeldev() {
               <div
                 className="absolute w-full h-full backface-hidden rotate-y-180 text-white text-left rounded-[1em] p-6 flex flex-col justify-start items-start shadow-lg"
                 style={{ backgroundColor: card.bgColor }}
+                aria-hidden="true"
               >
-                <h3 className="text-2xl font-bold mb-3">{card.title}</h3>
+                <h3 className="text-2xl font-bold mb-4">{card.title}</h3>
                 <p className="text-base leading-relaxed">{card.description}</p>
               </div>
             </div>

@@ -45,14 +45,17 @@ const linkVariants = {
 export default function HowWeHelp() {
   return (
     <motion.section
-      className="box-border bg-black text-[#FFFFFF] text-left px-[10%] py-20 relative overflow-hidden"
+      aria-labelledby="how-we-help-title"
+      className="box-border bg-black text-white text-left px-[10%] py-20 relative overflow-hidden"
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: '-100px' }}
+      viewport={{ once: true }}
+      role="region"
     >
       {/* Background Decorative Elements */}
       <motion.div
-        className="absolute inset-0 opacity-10"
+        aria-hidden="true"
+        className="absolute inset-0 opacity-10 pointer-events-none"
         initial={{ scale: 1.2 }}
         whileInView={{ scale: 1 }}
         viewport={{ once: true }}
@@ -64,8 +67,8 @@ export default function HowWeHelp() {
 
       <motion.div className="max-w-7xl mx-auto relative z-10" variants={containerVariants}>
         <motion.h2
-          className="text-4xl md:text-5xl font-bold mb-8"
-          style={{ fontFamily: 'Poppins, sans-serif' }}
+          id="how-we-help-title"
+          className="text-4xl md:text-5xl font-extrabold mb-8 font-poppins"
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -75,42 +78,35 @@ export default function HowWeHelp() {
         </motion.h2>
 
         <motion.div className="max-w-4xl space-y-8" variants={containerVariants}>
-          <motion.p
-            className="text-base sm:text-lg md:text-xl lg:text-2xl text-[#F5F5F5] leading-relaxed"
-            style={{ fontFamily: 'Inter, sans-serif' }}
-            variants={textVariants}
-          >
-            At TELDEV Technologies, our goal is simple: to make technology work for you. Whether
-            you're running a small business, managing a growing team, or just need help navigating
-            the digital world, we provide customized IT support and solutions designed to meet you
-            where you are.
-          </motion.p>
-
-          <motion.p
-            className="text-base sm:text-lg md:text-xl lg:text-2xl text-[#F5F5F5] leading-relaxed"
-            style={{ fontFamily: 'Inter, sans-serif' }}
-            variants={textVariants}
-          >
-            From day-to-day troubleshooting and secure system setups to IT consulting, email
-            support, and digital transformation strategies, we equip you with the tools and
-            expertise you need to stay productive, protected, and ahead of the curve.
-          </motion.p>
-
-          <motion.p
-            className="text-base sm:text-lg md:text-xl lg:text-2xl text-[#F5F5F5] leading-relaxed"
-            style={{ fontFamily: 'Inter, sans-serif' }}
-            variants={textVariants}
-          >
-            We're not just here to fix problems—we're here to guide, empower, and grow with you.
-          </motion.p>
+          {[
+            `At TELDEV Technologies, our goal is simple: to make technology work for you. Whether
+             you're running a small business, managing a growing team, or just need help navigating
+             the digital world, we provide customized IT support and solutions designed to meet you
+             where you are.`,
+            `From day-to-day troubleshooting and secure system setups to IT consulting, email
+             support, and digital transformation strategies, we equip you with the tools and
+             expertise you need to stay productive, protected, and ahead of the curve.`,
+            `We're not just here to fix problems—we're here to guide, empower, and grow with you.`,
+          ].map((text, i) => (
+            <motion.p
+              key={i}
+              className="text-base sm:text-lg md:text-xl lg:text-2xl text-[#F5F5F5] leading-relaxed font-inter"
+              variants={textVariants}
+            >
+              {text}
+            </motion.p>
+          ))}
 
           <motion.div className="flex justify-start" variants={textVariants}>
             <motion.a
-              href="#"
-              className="text-base sm:text-lg md:text-xl lg:text-2xl no-underline hover:text-[#1C6CFE] transition-colors duration-300"
-              style={{ fontFamily: 'Inter, sans-serif' }}
+              href="#services"
+              role="button"
+              tabIndex={0}
+              aria-label="See what TELDEV Technologies offers"
+              className="text-base sm:text-lg md:text-xl lg:text-2xl font-inter no-underline text-[#F5F5F5] hover:text-[#1C6CFE] focus:text-[#1C6CFE] focus:outline-none focus:ring-2 focus:ring-[#1C6CFE] rounded transition-colors duration-300"
               variants={linkVariants}
               whileHover="hover"
+              whileFocus="hover"
             >
               See what we offer →
             </motion.a>

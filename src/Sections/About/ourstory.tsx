@@ -102,7 +102,11 @@ const OurStory = () => {
           Our Story
         </motion.h2>
 
-        <motion.div className="max-w-4xl mx-auto space-y-6" variants={containerVariants}>
+        <motion.div
+          id="our-story-paragraphs"
+          className="max-w-4xl mx-auto space-y-6"
+          variants={containerVariants}
+        >
           <AnimatePresence mode="wait">
             {displayedParagraphs.map((para, index) => (
               <motion.p
@@ -121,7 +125,9 @@ const OurStory = () => {
           {paragraphs.length > maxParagraphs && (
             <motion.button
               onClick={toggleExpanded}
-              className="m-[0] p-[0] border-0 bg-transparent text-[#1673FF] font-medium hover:underline"
+              aria-expanded={expanded}
+              aria-controls="our-story-paragraphs"
+              className="m-0 p-0 border-0 bg-transparent text-[#1673FF] font-medium hover:underline"
               variants={buttonVariants}
               whileHover="hover"
               whileTap="tap"

@@ -52,16 +52,20 @@ const buttonVariants = {
 
 export default function WhatWeOfferQuote2() {
   const navigate = useNavigate();
+
   return (
     <motion.section
+      aria-labelledby="offer-quote-heading"
       className="py-20 px-[10%] bg-[#050505] sm:px-8 relative overflow-hidden"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: '-100px' }}
+      tabIndex={-1} // Make section focusable for keyboard users if needed
     >
       {/* Background Decorative Elements */}
       <motion.div
-        className="absolute inset-0 opacity-10"
+        aria-hidden="true"
+        className="absolute inset-0 opacity-10 pointer-events-none"
         initial={{ scale: 1.2 }}
         whileInView={{ scale: 1 }}
         viewport={{ once: true }}
@@ -73,7 +77,8 @@ export default function WhatWeOfferQuote2() {
 
       <motion.div className="max-w-7xl mx-auto relative z-10" variants={containerVariants}>
         <motion.h2
-          className="w-full sm:w-[60%] sm:text-[1.4em] text-[#FFFFFF] max-w-2xl mx-auto mb-8"
+          id="offer-quote-heading"
+          className="w-full sm:w-[60%] sm:text-[1.6rem] text-[#FFFFFF] max-w-2xl mx-auto mb-10 leading-relaxed"
           style={{ fontFamily: 'Inter, sans-serif' }}
           variants={textVariants}
         >
@@ -83,7 +88,9 @@ export default function WhatWeOfferQuote2() {
 
         <motion.div className="flex justify-center gap-4 sm:gap-6" variants={containerVariants}>
           <motion.button
-            className="px-6 sm:px-6 py-4 sm:py-4 bg-[#0F1729] border-[0] text-[#FFFFFF] font-medium rounded-[10px] text-sm sm:text-base"
+            type="button"
+            aria-label="Navigate to contact us page to get started"
+            className="px-8 py-4 bg-[#0F1729] border-0 text-[#FFFFFF] font-semibold rounded-[10px] text-base sm:text-lg transition-shadow focus:outline-none focus:ring-4 focus:ring-[#1C6CFE] focus:ring-offset-2"
             style={{ fontFamily: 'Inter, sans-serif' }}
             variants={buttonVariants}
             whileHover="hover"
@@ -92,7 +99,7 @@ export default function WhatWeOfferQuote2() {
               navigate('/ContactUsPage');
             }}
           >
-            Get started
+            Get Started
           </motion.button>
         </motion.div>
       </motion.div>
