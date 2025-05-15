@@ -20,7 +20,7 @@ export default function WebdevPage() {
         <nav aria-label="Breadcrumb" className="mb-6 text-sm sm:text-base text-[#B0B0B0]">
           <ol className="list-reset flex space-x-2">
             <li>
-              <Link to="/Whatweoffer" className="hover:underline focus:underline">
+              <Link to="/whatweoffer" className="hover:underline focus:underline">
                 What we offer
               </Link>
               <span aria-hidden="true">/</span>

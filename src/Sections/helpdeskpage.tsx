@@ -13,7 +13,7 @@ export default function HelpdeskPage() {
           <ol className="list-reset flex text-[#a0a0a0]">
             <li>
               <Link
-                to="/Whatweoffer"
+                to="/whatweoffer"
                 className="hover:text-[#1C6CFE] focus:outline-none focus:ring-2 focus:ring-[#1C6CFE] rounded"
               >
                 What we offer
