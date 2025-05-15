@@ -18,5 +18,5 @@ export default defineConfig({
     cssCodeSplit: true,
     sourcemap: true,
   },
-  base: '/teldev-homepage/',
+  base: '/',
 });
