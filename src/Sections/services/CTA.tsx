@@ -102,7 +102,7 @@ export default function CTA() {
             whileHover="hover"
             whileTap="tap"
             onClick={() => {
-              navigate('/ContactUsPage');
+              navigate('/contactUsPage');
             }}
             aria-label="Get started with TELDEV Technologies - contact us"
           >
