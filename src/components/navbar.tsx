@@ -9,7 +9,7 @@ const navLinks = [
   { path: '/', label: 'Home' },
   { path: '/whoweare', label: 'Who we are' },
   { path: '/whatweoffer', label: 'What we do' },
-  { path: '/blog', label: 'Blog' },
+  { path: '/blogpage', label: 'Blog' },
 ];
 
 const navVariants = {

@@ -11,6 +11,8 @@ import Cloud from './Pages/Cloud';
 import ItConsulting from './Pages/ItConsulting';
 import ScrollToTop from './components/ScrollToTop';
 import ContactUsPage from './Pages/ContactUsPage';
+import BlogPage from './Pages/BlogPage';
+import BlogOpen from './Sections/Blog/blogopen';
 // import About from './Pages/About';
 // import Services from './Pages/services';
 
@@ -28,6 +30,8 @@ function App() {
         <Route path="/Cloud" element={<Cloud />} />
         <Route path="/ItConsulting" element={<ItConsulting />} />
         <Route path="/ContactUsPage" element={<ContactUsPage />} />
+        <Route path="/blog" element={<BlogPage />} />
+        <Route path="/blog/:slug" element={<BlogOpen />} />
 
         {/* <Route path="/about" element={<About />} />
         <Route path="/services" element={<Services />} /> */}
