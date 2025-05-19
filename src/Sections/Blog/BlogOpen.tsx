@@ -69,7 +69,7 @@ export default function BlogOpen() {
             <ol className="list-reset flex text-[#a0a0a0]">
               <li>
                 <Link
-                  to="/blog"
+                  to="/blogpage"
                   className="hover:text-[#1C6CFE] focus:outline-none focus:ring-2 focus:ring-[#1C6CFE] rounded"
                 >
                   Blog
