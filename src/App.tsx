@@ -12,7 +12,7 @@ import ItConsulting from './Pages/ItConsulting';
 import ScrollToTop from './components/ScrollToTop';
 import ContactUsPage from './Pages/ContactUsPage';
 import BlogPage from './Pages/BlogPage';
-import BlogOpen from './Sections/Blog/blogopen';
+import BlogOpen from './Sections/Blog/open';
 // import About from './Pages/About';
 // import Services from './Pages/services';
 
