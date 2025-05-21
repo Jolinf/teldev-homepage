@@ -36,7 +36,9 @@ export default function Blog() {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await axios.get('http://localhost:1337/api/posts?populate=coverImage');
+        const response = await axios.get(
+          'https://teldev-homepage.onrender.com/api/posts?populate=coverImage'
+        );
         console.log('Strapi response:', JSON.stringify(response.data, null, 2)); // Inspect structure
         setPosts(response.data.data);
         setLoading(false);
@@ -93,10 +95,14 @@ export default function Blog() {
             )
             .map((post) => {
               const imageUrl = post.coverImage?.formats?.medium?.url
-                ? `http://localhost:1337${post.coverImage.formats.medium.url}`
+                ? new URL(
+                    post.coverImage.formats.medium.url,
+                    'https://teldev-homepage.onrender.com'
+                  ).href
                 : post.coverImage?.url
-                  ? `http://localhost:1337${post.coverImage.url}`
+                  ? new URL(post.coverImage.url, 'https://teldev-homepage.onrender.com').href
                   : null;
+
               return (
                 <motion.div
                   key={post.id}

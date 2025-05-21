@@ -32,7 +32,9 @@ export default function BlogOpen() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:1337/api/posts?filters[slug][$eq]=${slug}&populate=coverImage`)
+      .get(
+        `https://teldev-homepage.onrender.com/api/posts?filters[slug][$eq]=${slug}&populate=coverImage`
+      )
       .then((res) => {
         if (res.data.data && res.data.data.length > 0) {
           setPost(res.data.data[0]);
@@ -54,11 +56,11 @@ export default function BlogOpen() {
   // Strapi v4 returns the post object with a .attributes property, but your API returns fields at the top level
   // If you get the post as { id, attributes: { ... } }, use: const { title, ... } = post.attributes;
   // Otherwise, use as below:
-  const { title, date, publishedAt, content, coverImage, author } = post;
-  const imageUrl = coverImage?.formats?.large?.url
-    ? `http://localhost:1337${coverImage.formats.large.url}`
-    : coverImage?.url
-      ? `http://localhost:1337${coverImage.url}`
+  const { title, date, publishedAt, content, author } = post;
+  const imageUrl = post.coverImage?.formats?.medium?.url
+    ? new URL(post.coverImage.formats.medium.url, 'https://teldev-homepage.onrender.com').href
+    : post.coverImage?.url
+      ? new URL(post.coverImage.url, 'https://teldev-homepage.onrender.com').href
       : null;
 
   return (
