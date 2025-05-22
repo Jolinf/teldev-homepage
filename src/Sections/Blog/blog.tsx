@@ -26,21 +26,35 @@ type BlogPost = {
   };
 };
 
+interface Meta {
+  pagination: {
+    page: number;
+    pageSize: number;
+    pageCount: number;
+    total: number;
+  };
+}
+
 export default function Blog() {
   const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [meta, setMeta] = useState<Meta | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [search, setSearch] = useState('');
+  const [page, setPage] = useState(1);
+  const pageSize = 6;
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchPosts = async () => {
+      setLoading(true);
       try {
         const response = await axios.get(
-          'https://teldev-homepage.onrender.com/api/posts?populate=coverImage'
+          `https://teldev-homepage.onrender.com/api/posts?populate=coverImage&pagination[page]=${page}&pagination[pageSize]=${pageSize}`
         );
-        console.log('Strapi response:', JSON.stringify(response.data, null, 2)); // Inspect structure
+        console.log('Strapi response:', JSON.stringify(response.data, null, 2));
         setPosts(response.data.data);
+        setMeta(response.data.meta);
         setLoading(false);
       } catch (err) {
         console.error('Failed to fetch posts:', err);
@@ -50,7 +64,15 @@ export default function Blog() {
     };
 
     fetchPosts();
-  }, []);
+  }, [page]);
+
+  const handlePrevious = () => {
+    if (page > 1) setPage(page - 1);
+  };
+
+  const handleNext = () => {
+    if (meta && page < meta.pagination.pageCount) setPage(page + 1);
+  };
 
   if (error) {
     return (
@@ -65,7 +87,7 @@ export default function Blog() {
   return (
     <section className="min-h-screen bg-black text-white px-4 py-12 md:px-12">
       {/* Search Bar */}
-      <div className="mb-12 flex justify-center ">
+      <div className="mb-12 flex justify-center">
         <input
           type="text"
           value={search}
@@ -95,12 +117,9 @@ export default function Blog() {
             )
             .map((post) => {
               const imageUrl = post.coverImage?.formats?.medium?.url
-                ? new URL(
-                    post.coverImage.formats.medium.url,
-                    'https://teldev-homepage.onrender.com'
-                  ).href
+                ? `https://teldev-homepage.onrender.com${post.coverImage.formats.medium.url}`
                 : post.coverImage?.url
-                  ? new URL(post.coverImage.url, 'https://teldev-homepage.onrender.com').href
+                  ? `https://teldev-homepage.onrender.com${post.coverImage.url}`
                   : null;
 
               return (
@@ -128,9 +147,25 @@ export default function Blog() {
         </div>
       )}
 
-      {/* Pagination placeholder */}
-      <div className="text-center mt-12">
-        <p className="text-sm text-gray-400">Page 1 of 5</p>
+      {/* Pagination Controls */}
+      <div className="flex justify-center mt-10 items-center space-x-4">
+        <button
+          onClick={handlePrevious}
+          disabled={page === 1}
+          className="px-4 py-2 bg-zinc-800 text-white rounded disabled:opacity-50"
+        >
+          Previous
+        </button>
+        <span className="text-gray-400">
+          Page {page} of {meta?.pagination.pageCount}
+        </span>
+        <button
+          onClick={handleNext}
+          disabled={page === meta?.pagination.pageCount}
+          className="px-4 py-2 bg-zinc-800 text-white rounded disabled:opacity-50"
+        >
+          Next
+        </button>
       </div>
     </section>
   );
