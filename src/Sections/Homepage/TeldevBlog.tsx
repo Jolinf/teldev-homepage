@@ -2,8 +2,6 @@ import { motion } from 'framer-motion';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import post1 from '../../assets/Homepage-images/homepage-teledevblogpost1-image.jpg';
-import post2 from '../../assets/Homepage-images/homepage-teldevblogpost2-image.jpg';
 
 type BlogPost = {
   id: number;
