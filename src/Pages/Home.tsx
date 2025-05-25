@@ -7,7 +7,7 @@ import TeldevBlog from '../Sections/Homepage/TeldevBlog';
 import WhatWeOffer from '../Sections/Homepage/whatweoffer';
 import WhyTeldev from '../Sections/Homepage/whyteldev';
 import Footer from '../components/footer';
-import ContactSection from '../Sections/Homepage/contact';
+// import ContactSection from '../Sections/Homepage/contact';
 
 export default function Home() {
   console.log('Home component rendered');
