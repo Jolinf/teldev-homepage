@@ -70,7 +70,7 @@ export default function ContactSection() {
 
   return (
     <section
-      className="bg-black text-white px-[10%] py-20 flex justify-center font-inter"
+      className="bg-black text-white px-[10%] py-12 flex justify-center font-inter"
       aria-label="Contact form section"
     >
       <motion.div

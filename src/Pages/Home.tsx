@@ -14,13 +14,15 @@ export default function Home() {
   return (
     <main>
       <Navbar />
-      <Hero />
-      <Homepagequote1 />
-      <WhyTeldev />
-      <Homepagequote2 />
-      <WhatWeOffer />
-      <TeldevBlog />
-      <ContactSection />
+      <div>
+        <Hero />
+        <Homepagequote1 />
+        <WhyTeldev />
+        <Homepagequote2 />
+        <WhatWeOffer />
+        <TeldevBlog />
+        {/* <ContactSection /> */}
+      </div>
       <Footer />
 
       {/* other sections will go here */}

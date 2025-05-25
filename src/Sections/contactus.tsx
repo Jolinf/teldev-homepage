@@ -1,4 +1,6 @@
+import React, { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
+import emailjs from '@emailjs/browser';
 import contactpicture from '../assets/contacus-image.png';
 
 const timeZones = [
@@ -56,6 +58,28 @@ const buttonVariants = {
 };
 
 const ContactUsPage = () => {
+  const formRef = useRef<HTMLFormElement>(null);
+  const [sending, setSending] = useState(false);
+
+  const sendEmail = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formRef.current) return;
+
+    setSending(true);
+    emailjs
+      .sendForm('service_i49mbu6', 'template_z0ptc85', formRef.current, 'ABjR7dcIG-jyKBjex')
+      .then(() => {
+        alert('✅ Message sent successfully!');
+        formRef.current?.reset();
+        setSending(false);
+      })
+      .catch((error) => {
+        console.error('❌ EmailJS error:', error);
+        alert('Something went wrong. Please try again.');
+        setSending(false);
+      });
+  };
+
   return (
     <section
       className="px-[10%] py-20 box-border mt-10 bg-[#0A0A0A] text-white font-inter text-center"
@@ -73,7 +97,6 @@ const ContactUsPage = () => {
       </motion.h1>
 
       <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-10 items-center min-h-screen">
-        {/* Image */}
         <img
           src={contactpicture}
           alt="Person consulting with AI technology illustration"
@@ -81,63 +104,68 @@ const ContactUsPage = () => {
           loading="lazy"
         />
 
-        {/* Form */}
         <motion.form
-          className="space-y-6"
+          ref={formRef}
+          onSubmit={sendEmail}
+          className="space-y-6 text-left"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           transition={{ staggerChildren: 0.15 }}
-          aria-labelledby="contact-form-title"
           noValidate
         >
           <fieldset className="space-y-5 border-0 p-0 m-0">
-            {[
-              { id: 'name', type: 'text', label: 'Name', placeholder: 'Your Name', required: true },
-              {
-                id: 'email',
-                type: 'email',
-                label: 'Email',
-                placeholder: 'you@example.com',
-                required: true,
-              },
-              {
-                id: 'topic',
-                type: 'text',
-                label: 'Session Topic',
-                placeholder: 'Topic to discuss',
-                required: false,
-              },
-            ].map(({ id, type, label, placeholder, required }) => (
-              <motion.div key={id} variants={inputVariants}>
-                <label htmlFor={id} className="block mb-1 font-semibold text-white/90 text-left">
-                  {label}
-                  {required && <span className="text-red-500 ml-1">*</span>}
-                </label>
-                <input
-                  id={id}
-                  type={type}
-                  placeholder={placeholder}
-                  aria-required={required}
-                  className="w-full px-4 py-3 bg-transparent border border-white/20 text-white placeholder:text-white/60 rounded-[10px] outline-none focus:ring-2 focus:ring-[#1E64F0] transition-all"
-                  required={required}
-                />
-                <span className="text-red-500 text-sm mt-1 hidden" aria-live="polite"></span>
-              </motion.div>
-            ))}
+            <motion.div variants={inputVariants}>
+              <label htmlFor="user_name" className="block mb-1 font-semibold text-white/90">
+                Name <span className="text-red-500">*</span>
+              </label>
+              <input
+                id="user_name"
+                name="user_name"
+                type="text"
+                placeholder="Your Name"
+                required
+                className="w-full px-4 py-3 bg-transparent border border-white/20 text-white placeholder:text-white/60 rounded-[10px] outline-none focus:ring-2 focus:ring-[#1E64F0]"
+              />
+            </motion.div>
 
             <motion.div variants={inputVariants}>
-              <label
-                htmlFor="timezone"
-                className="block mb-1 font-semibold text-white/90 text-left"
-              >
-                Select your time zone<span className="text-red-500 ml-1">*</span>
+              <label htmlFor="user_email" className="block mb-1 font-semibold text-white/90">
+                Email <span className="text-red-500">*</span>
+              </label>
+              <input
+                id="user_email"
+                name="user_email"
+                type="email"
+                placeholder="you@example.com"
+                required
+                className="w-full px-4 py-3 bg-transparent border border-white/20 text-white placeholder:text-white/60 rounded-[10px] outline-none focus:ring-2 focus:ring-[#1E64F0]"
+              />
+            </motion.div>
+
+            <motion.div variants={inputVariants}>
+              <label htmlFor="topic" className="block mb-1 font-semibold text-white/90">
+                Session Topic
+              </label>
+              <input
+                id="topic"
+                name="topic"
+                type="text"
+                placeholder="Topic to discuss"
+                className="w-full px-4 py-3 bg-transparent border border-white/20 text-white placeholder:text-white/60 rounded-[10px] outline-none focus:ring-2 focus:ring-[#1E64F0]"
+              />
+            </motion.div>
+
+            <motion.div variants={inputVariants}>
+              <label htmlFor="timezone" className="block mb-1 font-semibold text-white/90">
+                Select your time zone <span className="text-red-500">*</span>
               </label>
               <select
                 id="timezone"
+                name="timezone"
+                required
                 defaultValue=""
-                aria-required="true"
-                className="w-full px-4 py-3 bg-transparent border border-white/20 text-white/80 rounded-[10px] outline-none focus:ring-2 focus:ring-[#1E64F0] transition-all"
+                className="w-full px-4 py-3 bg-transparent border border-white/20 text-white/80 rounded-[10px] outline-none focus:ring-2 focus:ring-[#1E64F0]"
               >
                 <option value="" disabled>
                   Select your time zone
@@ -151,17 +179,15 @@ const ContactUsPage = () => {
             </motion.div>
 
             <motion.div variants={inputVariants}>
-              <label
-                htmlFor="preferredTime"
-                className="block mb-1 font-semibold text-white/90 text-left"
-              >
-                Select preferred time<span className="text-red-500 ml-1">*</span>
+              <label htmlFor="preferred_time" className="block mb-1 font-semibold text-white/90">
+                Select preferred time <span className="text-red-500">*</span>
               </label>
               <select
-                id="preferredTime"
+                id="preferred_time"
+                name="preferred_time"
+                required
                 defaultValue=""
-                aria-required="true"
-                className="w-full px-4 py-3 bg-transparent border border-white/20 text-white/80 rounded-[10px] outline-none focus:ring-2 focus:ring-[#1E64F0] transition-all"
+                className="w-full px-4 py-3 bg-transparent border border-white/20 text-white/80 rounded-[10px] outline-none focus:ring-2 focus:ring-[#1E64F0]"
               >
                 <option value="" disabled>
                   Select preferred time
@@ -175,20 +201,18 @@ const ContactUsPage = () => {
             </motion.div>
 
             <motion.div variants={inputVariants}>
-              <label
-                htmlFor="referralSource"
-                className="block mb-1 font-semibold text-white/90 text-left"
-              >
-                How did you hear about us?<span className="text-red-500 ml-1">*</span>
+              <label htmlFor="referral_source" className="block mb-1 font-semibold text-white/90">
+                How did you hear about us? <span className="text-red-500">*</span>
               </label>
               <select
-                id="referralSource"
+                id="referral_source"
+                name="referral_source"
+                required
                 defaultValue=""
-                aria-required="true"
-                className="w-full px-4 py-3 bg-transparent border border-white/20 text-white/80 rounded-[10px] outline-none focus:ring-2 focus:ring-[#1E64F0] transition-all"
+                className="w-full px-4 py-3 bg-transparent border border-white/20 text-white/80 rounded-[10px] outline-none focus:ring-2 focus:ring-[#1E64F0]"
               >
                 <option value="" disabled>
-                  How did you hear about us?
+                  Select an option
                 </option>
                 {sources.map((source) => (
                   <option key={source} value={source} className="text-black">
@@ -199,26 +223,27 @@ const ContactUsPage = () => {
             </motion.div>
 
             <motion.div variants={inputVariants}>
-              <label htmlFor="notes" className="block mb-1 font-semibold text-white/90 text-left">
+              <label htmlFor="notes" className="block mb-1 font-semibold text-white/90">
                 Additional notes
               </label>
               <textarea
                 id="notes"
+                name="notes"
                 rows={4}
                 placeholder="Additional notes"
-                className="w-full px-4 py-3 bg-transparent border border-white/20 text-white placeholder:text-white/60 rounded-[10px] outline-none focus:ring-2 focus:ring-[#1E64F0] transition-all resize-none"
+                className="w-full px-4 py-3 bg-transparent border border-white/20 text-white placeholder:text-white/60 rounded-[10px] outline-none focus:ring-2 focus:ring-[#1E64F0] resize-none"
               />
             </motion.div>
 
             <motion.div className="flex items-start gap-2" variants={inputVariants}>
               <input
-                id="terms"
+                id="terms_agreed"
+                name="terms_agreed"
                 type="checkbox"
                 className="mt-1 border border-gray-600 accent-blue-600 focus:ring-blue-500 focus:ring-2"
-                aria-required="true"
                 required
               />
-              <label htmlFor="terms" className="text-sm text-gray-300 select-none text-left">
+              <label htmlFor="terms_agreed" className="text-sm text-gray-300 select-none">
                 By checking this box you agree to our{' '}
                 <a
                   href="https://drive.google.com/file/d/1WgnbAN0rfbcewvMtAXZelDz0y4F9Ahh-/view?usp=sharing"
@@ -243,13 +268,14 @@ const ContactUsPage = () => {
 
           <motion.button
             type="submit"
-            className="px-6 py-3 bg-[#1E64F0] border-0 text-white font-semibold rounded-[10px] text-base w-full sm:w-auto transition-shadow focus:outline-none focus:ring-4 focus:ring-blue-400"
+            disabled={sending}
+            className="px-6 py-3 my-5 bg-[#1E64F0] border-0 text-white font-semibold rounded-[10px] text-base w-full sm:w-auto transition-shadow focus:outline-none focus:ring-4 focus:ring-blue-400"
             variants={buttonVariants}
             whileHover="hover"
             whileTap="tap"
             aria-label="Submit consultation request"
           >
-            Submit
+            {sending ? 'Sending...' : 'Submit'}
           </motion.button>
         </motion.form>
       </div>
