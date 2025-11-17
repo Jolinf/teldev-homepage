@@ -147,7 +147,7 @@ export default function Leaders() {
               className="text-[#FFFFFF] text-3xl md:text-5xl font-bold leading-snug"
               style={{ fontFamily: 'Poppins, sans-serif' }}
             >
-              If it's not broken, don't fix it.
+              You don't worry about it, you'll be fine.
             </motion.h1>
             <motion.p
               className="text-[#F5F5F5] text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed"
@@ -178,7 +178,7 @@ export default function Leaders() {
               className="text-[#FFFFFF] text-3xl md:text-5xl font-bold leading-snug"
               style={{ fontFamily: 'Poppins, sans-serif' }}
             >
-              If it's not broken, don't fix it.
+              'Everything will turn out good'.
             </motion.h1>
             <motion.p
               className="text-[#F5F5F5] text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed"

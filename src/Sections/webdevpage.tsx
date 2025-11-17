@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
+import useScrollToTopOnMount from '../Hooks/useScrollToTopOnMount';
 
 export default function WebdevPage() {
+  useScrollToTopOnMount();
   return (
     <section
       className="box-border text-left bg-black text-white px-4 sm:px-8 md:px-12 pb-20"
@@ -10,12 +12,7 @@ export default function WebdevPage() {
       <div className="max-w-5xl mx-auto mt-35">
         {' '}
         {/* changed mt-35 to mt-9 (mt-35 is invalid, assuming 9) */}
-        <h1
-          className="text-4xl sm:text-5xl font-bold mb-4 text-left"
-          style={{ fontFamily: 'Poppins, sans-serif' }}
-        >
-          Application and Web Development
-        </h1>
+
         {/* Breadcrumb Navigation */}
         <nav aria-label="Breadcrumb" className="mb-6 text-sm sm:text-base text-[#B0B0B0]">
           <ol className="list-reset flex space-x-2">
@@ -30,6 +27,12 @@ export default function WebdevPage() {
             </li>
           </ol>
         </nav>
+        <h1
+          className="text-4xl sm:text-5xl font-bold mb-4 text-left"
+          style={{ fontFamily: 'Poppins, sans-serif' }}
+        >
+          Application and Web Development
+        </h1>
         <div className="mb-12">
           <h2
             className="text-2xl sm:text-3xl font-semibold mb-5 mt-10"

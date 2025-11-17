@@ -4,8 +4,10 @@ import Footer from '../components/footer';
 import ServicesHero from '../Sections/services/hero';
 import Services from '../Sections/services/services';
 import CTA from '../Sections/services/CTA';
+import useScrollToTopOnMount from '../Hooks/useScrollToTopOnMount';
 
 export default function WhatWeOffer() {
+  useScrollToTopOnMount();
   console.log('WhatWeOffer component rendered');
   return (
     <main>

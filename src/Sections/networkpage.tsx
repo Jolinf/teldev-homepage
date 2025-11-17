@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
+import useScrollToTopOnMount from '../Hooks/useScrollToTopOnMount';
 
 export default function NetworkPage() {
+  useScrollToTopOnMount();
   return (
     <section
       aria-label="Network and Infrastructure Services"

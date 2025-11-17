@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
+import useScrollToTopOnMount from '../Hooks/useScrollToTopOnMount';
 
 export default function HelpdeskPage() {
+  useScrollToTopOnMount();
   return (
     <section
       className="box-border text-left text-white px-4 sm:px-8 md:px-12 pb-20"

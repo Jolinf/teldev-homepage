@@ -9,7 +9,7 @@ import Network from './Pages/Network';
 import Webdev from './Pages/Webdev';
 import Cloud from './Pages/Cloud';
 import ItConsulting from './Pages/ItConsulting';
-import ScrollToTop from './components/ScrollToTop';
+
 import ContactUsPage from './Pages/ContactUsPage';
 import BlogPage from './Pages/BlogPage';
 import BlogOpen from './Sections/Blog/open';
@@ -19,7 +19,7 @@ import BlogOpen from './Sections/Blog/open';
 function App() {
   return (
     <>
-      <ScrollToTop />
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/whoweare" element={<WhoWeAre />} />
