@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 // import Image from 'next/image'; // Or use <img> if not using Next.js
-import leader1 from '../../assets/whoweare-images/leader-placeholder.png'; // Replace with actual image path
+import leader1 from '../../assets/whoweare-images/kindpng_2524695_xvptvz.png'; // Replace with actual image path
 
 const containerVariants = {
   hidden: { opacity: 0 },
