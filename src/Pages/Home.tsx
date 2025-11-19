@@ -1,5 +1,6 @@
 // src/pages/Home.tsx
 import Navbar from '../components/navbar';
+import { useScrollContainer } from '../contexts/ScrollContext';
 import Hero from '../Sections/Homepage/Hero';
 import Homepagequote1 from '../Sections/Homepage/Homepage-quote1';
 import Homepagequote2 from '../Sections/Homepage/Homepage-quote2';
@@ -10,9 +11,10 @@ import Footer from '../components/footer';
 // import ContactSection from '../Sections/Homepage/contact';
 
 export default function Home() {
+  const { mainRef } = useScrollContainer();
   console.log('Home component rendered');
   return (
-    <main>
+    <main ref={mainRef}>
       <Navbar />
       <div>
         <Hero />

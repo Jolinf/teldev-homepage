@@ -8,11 +8,13 @@ import Leaders from '../Sections/About/leaders';
 import OurStory from '../Sections/About/ourstory';
 import HowWeHelp from '../Sections/About/help';
 import WhatWeOfferQuote2 from '../Sections/About/whatweoffer-quote';
+import { useScrollContainer } from '../contexts/ScrollContext';
 
 export default function WhoWeAre() {
+  const { mainRef } = useScrollContainer();
   console.log('Home component rendered');
   return (
-    <main>
+    <main ref={mainRef}>
       <Navbar />
       <AboutHero />
       <Mission />
