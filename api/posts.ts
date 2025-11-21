@@ -1,17 +1,25 @@
-import { VercelRequest, VercelResponse } from '@vercel/node';
-import { MongoClient } from 'mongodb';
+import { VercelRequest, VercelResponse } from "@vercel/node";
+import { MongoClient, Db } from "mongodb";
 
-const client = new MongoClient(process.env.MONGODB_URI!);
+const client = new MongoClient(process.env.teldevdb_MONGODB_URI!);
+let cachedDb: Db | null = null;
+
+async function connectDB() {
+  if (cachedDb) return cachedDb;
+
+  await client.connect();
+  cachedDb = client.db("teldev");
+  return cachedDb;
+}
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
+  if (req.method !== "POST") {
+    return res.status(405).json({ error: "Method not allowed" });
   }
 
   try {
-    await client.connect();
-    const db = client.db('teldev');
-    const posts = db.collection('posts');
+    const db = await connectDB();
+    const posts = db.collection("posts");
 
     const { title, slug, content, image, published } = req.body;
 
@@ -25,10 +33,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     });
 
     res.status(201).json({ success: true, id: result.insertedId });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ success: false, error: err });
-  } finally {
-    await client.close();
+  } catch (err: unknown) {
+    console.error("API ERROR:", err);
+    res.status(500).json({ success: false, error: err instanceof Error ? err.message : "Unknown error" });
   }
 }
