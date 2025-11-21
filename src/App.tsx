@@ -13,6 +13,7 @@ import ItConsulting from './Pages/ItConsulting';
 import ContactUsPage from './Pages/ContactUsPage';
 import BlogPage from './Pages/BlogPage';
 import BlogOpen from './Sections/Blog/open';
+import NewPost from './Pages/NewPost';
 // import About from './Pages/About';
 // import Services from './Pages/services';
 
@@ -32,6 +33,8 @@ function App() {
         <Route path="/ContactUsPage" element={<ContactUsPage />} />
         <Route path="/BlogPage" element={<BlogPage />} />
         <Route path="/blog/:slug" element={<BlogOpen />} />
+        <Route path="/admin/blog/new" element={<NewPost />} />
+
 
         {/* <Route path="/about" element={<About />} />
         <Route path="/services" element={<Services />} /> */}

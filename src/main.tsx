@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { ScrollProvider } from './contexts/ScrollContext';
 import { SpeedInsights } from '@vercel/speed-insights/react';
+import { Analytics } from '@vercel/analytics/react';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -12,6 +13,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       <ScrollProvider>
         <App />
         <SpeedInsights />
+        <Analytics />
       </ScrollProvider>
     </BrowserRouter>
   </React.StrictMode>,
