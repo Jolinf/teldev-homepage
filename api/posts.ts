@@ -10,12 +10,19 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   try {
     await client.connect();
-    const db = client.db('teldev'); // your DB name
+    const db = client.db('teldev');
     const posts = db.collection('posts');
 
     const { title, slug, content, image, published } = req.body;
 
-    const result = await posts.insertOne({ title, slug, content, image, published, createdAt: new Date() });
+    const result = await posts.insertOne({
+      title,
+      slug,
+      content,
+      image,
+      published,
+      createdAt: new Date(),
+    });
 
     res.status(201).json({ success: true, id: result.insertedId });
   } catch (err) {
