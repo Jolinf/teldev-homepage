@@ -13,6 +13,15 @@ async function connectDB() {
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
+  // CORS HEADERS
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
+  if (req.method === "OPTIONS") {
+    return res.status(200).end();
+  }
+
   const db = await connectDB();
   const posts = db.collection("posts");
 
@@ -44,9 +53,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       return res.status(201).json({ success: true, id: result.insertedId });
     } catch (err: unknown) {
       console.error("API ERROR:", err);
-      return res
-        .status(500)
-        .json({ success: false, error: err instanceof Error ? err.message : "Unknown error" });
+      return res.status(500).json({
+        success: false,
+        error: err instanceof Error ? err.message : "Unknown error",
+      });
     }
   }
 
