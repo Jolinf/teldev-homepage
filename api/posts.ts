@@ -1,11 +1,8 @@
 import { VercelRequest, VercelResponse } from "@vercel/node";
 import { MongoClient, Db } from "mongodb";
 
-// Try multiple possible environment variable names
-const mongoUri = 
-  process.env.teldevdb_mongodb_uri || 
-  process.env.TELDEVDB_MONGODB_URI || 
-  process.env.MONGODB_URI;
+// Use the correct environment variable name (case-sensitive)
+const mongoUri = process.env.teldevdb_MONGODB_URI;
 
 if (!mongoUri) {
   console.error("MongoDB URI not found in environment variables");
@@ -18,7 +15,7 @@ async function connectDB() {
   if (cachedDb) return cachedDb;
 
   if (!mongoUri) {
-    throw new Error("MongoDB connection string is not configured. Please set teldevdb_mongodb_uri, TELDEVDB_MONGODB_URI, or MONGODB_URI environment variable.");
+    throw new Error("MongoDB connection string is not configured. Please set teldevdb_MONGODB_URI environment variable.");
   }
 
   try {

@@ -10,7 +10,7 @@ app.use(cors());
 app.use(express.json());
 
 // MongoDB connection
-const client = new MongoClient(process.env.TELDEVDB_MONGODB_URI);
+const client = new MongoClient(process.env.teldevdb_MONGODB_URI);
 await client.connect();
 const db = client.db(); // default DB
 
