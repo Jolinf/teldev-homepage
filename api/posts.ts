@@ -1,7 +1,7 @@
 import { VercelRequest, VercelResponse } from "@vercel/node";
 import { MongoClient, Db } from "mongodb";
 
-const client = new MongoClient(process.env.teldevdb_MONGODB_URI!);
+const client = new MongoClient(process.env.teldevdb_mongodb_uri!);
 let cachedDb: Db | null = null;
 
 async function connectDB() {
@@ -13,28 +13,42 @@ async function connectDB() {
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-  if (req.method !== "POST") {
-    return res.status(405).json({ error: "Method not allowed" });
+  const db = await connectDB();
+  const posts = db.collection("posts");
+
+  if (req.method === "GET") {
+    const { slug } = req.query;
+
+    if (slug) {
+      const post = await posts.findOne({ slug: slug.toString() });
+      return res.json(post);
+    }
+
+    const allPosts = await posts.find().sort({ createdAt: -1 }).toArray();
+    return res.json(allPosts);
   }
 
-  try {
-    const db = await connectDB();
-    const posts = db.collection("posts");
+  if (req.method === "POST") {
+    try {
+      const { title, slug, content, image, published } = req.body;
 
-    const { title, slug, content, image, published } = req.body;
+      const result = await posts.insertOne({
+        title,
+        slug,
+        content,
+        image,
+        published,
+        createdAt: new Date(),
+      });
 
-    const result = await posts.insertOne({
-      title,
-      slug,
-      content,
-      image,
-      published,
-      createdAt: new Date(),
-    });
-
-    res.status(201).json({ success: true, id: result.insertedId });
-  } catch (err: unknown) {
-    console.error("API ERROR:", err);
-    res.status(500).json({ success: false, error: err instanceof Error ? err.message : "Unknown error" });
+      return res.status(201).json({ success: true, id: result.insertedId });
+    } catch (err: unknown) {
+      console.error("API ERROR:", err);
+      return res
+        .status(500)
+        .json({ success: false, error: err instanceof Error ? err.message : "Unknown error" });
+    }
   }
+
+  res.status(405).json({ error: "Method not allowed" });
 }

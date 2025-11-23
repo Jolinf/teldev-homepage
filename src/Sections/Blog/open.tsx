@@ -1,27 +1,16 @@
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 import Footer from '../../components/footer';
 import ReactMarkdown from 'react-markdown';
 
-// Define the BlogPost type to match the Strapi response
 interface BlogPost {
-  id: number;
+  _id?: string;
   title: string;
-  date?: string;
-  publishedAt?: string;
+  slug: string;
   content: string;
-  author: string;
-  coverImage?: {
-    url?: string;
-    formats?: {
-      large?: { url: string };
-      medium?: { url: string };
-      small?: { url: string };
-      thumbnail?: { url: string };
-    };
-  };
+  image?: string;
+  createdAt?: string;
 }
 
 export default function BlogOpen() {
@@ -32,14 +21,12 @@ export default function BlogOpen() {
 
   useEffect(() => {
     axios
-      .get(
-        `https://teldev-homepage.onrender.com/api/posts?filters[slug][$eq]=${slug}&populate=coverImage`
-      )
+      .get(`https://www.teldev.org/api/posts?slug=${slug}`)
       .then((res) => {
-        if (res.data.data && res.data.data.length > 0) {
-          setPost(res.data.data[0]);
-        } else {
+        if (!res.data) {
           setError('Post not found');
+        } else {
+          setPost(res.data);
         }
         setLoading(false);
       })
@@ -49,24 +36,23 @@ export default function BlogOpen() {
       });
   }, [slug]);
 
-  if (loading) return <div className="text-center text-white py-20">Loading...</div>;
-  if (error) return <div className="text-center text-red-500 py-20">{error}</div>;
+  if (loading) {
+    return <div className="text-center text-white py-20">Loading...</div>;
+  }
+
+  if (error) {
+    return <div className="text-center text-red-500 py-20">{error}</div>;
+  }
+
   if (!post) return null;
 
-  // Strapi v4 returns the post object with a .attributes property, but your API returns fields at the top level
-  // If you get the post as { id, attributes: { ... } }, use: const { title, ... } = post.attributes;
-  // Otherwise, use as below:
-  const { title, date, publishedAt, content, author } = post;
-  const imageUrl = post.coverImage?.formats?.medium?.url
-    ? new URL(post.coverImage.formats.medium.url, 'https://teldev-homepage.onrender.com').href
-    : post.coverImage?.url
-      ? new URL(post.coverImage.url, 'https://teldev-homepage.onrender.com').href
-      : null;
+  const { title, content, image, createdAt } = post;
 
   return (
     <>
       <section className="min-h-screen bg-black text-left text-white px-4 pb-12 md:px-12 mt-10">
         <div className="max-w-3xl mx-auto">
+          {/* Breadcrumb */}
           <nav className="mb-6 text-sm sm:text-base" aria-label="Breadcrumb">
             <ol className="list-reset flex text-[#a0a0a0]">
               <li>
@@ -85,17 +71,36 @@ export default function BlogOpen() {
               </li>
             </ol>
           </nav>
-          {imageUrl && <img src={imageUrl} alt={title} className="w-full rounded-xl mb-8" />}
-          <h1 className="text-3xl md:text-5xl font-bold ">{title}</h1>
-          <div className="text-xl text-gray-400 mt-4">{author}</div>
-          <p className="text-xs text-gray-400 mt-2 mb-10">
-            {new Date(date || publishedAt || '').toLocaleDateString()}
-          </p>
-          <div className="prose prose-invert max-w-none text-lg" style={{ whiteSpace: 'pre-line' }}>
+
+          {/* Cover Image */}
+          {image && (
+            <img
+              src={image}
+              alt={title}
+              className="w-full rounded-xl mb-8"
+            />
+          )}
+
+          {/* Title */}
+          <h1 className="text-3xl md:text-5xl font-bold">{title}</h1>
+
+          {/* Date */}
+          {createdAt && (
+            <p className="text-xs text-gray-400 mt-4 mb-10">
+              {new Date(createdAt).toLocaleDateString()}
+            </p>
+          )}
+
+          {/* Content */}
+          <div
+            className="prose prose-invert max-w-none text-lg"
+            style={{ whiteSpace: 'pre-line' }}
+          >
             <ReactMarkdown>{content}</ReactMarkdown>
           </div>
         </div>
       </section>
+
       <Footer />
     </>
   );
