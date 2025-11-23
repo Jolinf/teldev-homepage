@@ -1,15 +1,45 @@
 import { VercelRequest, VercelResponse } from "@vercel/node";
 import { MongoClient, Db } from "mongodb";
 
-const client = new MongoClient(process.env.teldevdb_mongodb_uri!);
+// Try multiple possible environment variable names
+const mongoUri = 
+  process.env.teldevdb_mongodb_uri || 
+  process.env.TELDEVDB_MONGODB_URI || 
+  process.env.MONGODB_URI;
+
+if (!mongoUri) {
+  console.error("MongoDB URI not found in environment variables");
+}
+
+let client: MongoClient | null = null;
 let cachedDb: Db | null = null;
 
 async function connectDB() {
   if (cachedDb) return cachedDb;
 
-  await client.connect();
-  cachedDb = client.db("teldev");
-  return cachedDb;
+  if (!mongoUri) {
+    throw new Error("MongoDB connection string is not configured. Please set teldevdb_mongodb_uri, TELDEVDB_MONGODB_URI, or MONGODB_URI environment variable.");
+  }
+
+  try {
+    // Create new client if needed
+    if (!client) {
+      client = new MongoClient(mongoUri);
+    }
+
+    // Connect to MongoDB
+    await client.connect();
+    
+    // Get database
+    cachedDb = client.db("teldev");
+    return cachedDb;
+  } catch (error) {
+    console.error("Failed to connect to MongoDB:", error);
+    // Reset client on error so next request can retry
+    client = null;
+    cachedDb = null;
+    throw error;
+  }
 }
 
 // CORS middleware helper
@@ -68,10 +98,18 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(405).json({ error: "Method not allowed" });
   } catch (err: unknown) {
     console.error("API ERROR:", err);
+    const errorMessage = err instanceof Error ? err.message : "Unknown error";
+    const errorDetails = err instanceof Error ? err.stack : String(err);
+    
+    // Log full error details for debugging
+    console.error("Full error details:", errorDetails);
+    
     setCorsHeaders(res);
     return res.status(500).json({
       success: false,
-      error: err instanceof Error ? err.message : "Unknown error",
+      error: errorMessage,
+      // Include more details in development (you can remove this in production)
+      ...(process.env.NODE_ENV === 'development' && { details: errorDetails }),
     });
   }
 }
