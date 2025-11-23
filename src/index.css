@@ -1,5 +1,16 @@
 @import 'tailwindcss';
 
+/* Font optimization */
+@font-face {
+  font-family: 'Poppins';
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-display: swap;
+}
+
 /* Reset spacing on body and html */
 html,
 body,

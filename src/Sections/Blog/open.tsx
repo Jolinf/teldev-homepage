@@ -47,7 +47,7 @@ export default function BlogOpen() {
           <nav className="mb-6 text-sm">
             <ol className="flex text-[#a0a0a0]">
               <li>
-                <Link to="/blog" className="hover:text-blue-500">
+                <Link to="/BlogPage" className="hover:text-blue-500">
                   Blog
                 </Link>
               </li>
@@ -61,6 +61,9 @@ export default function BlogOpen() {
               src={post.image}
               alt={post.title}
               className="w-full rounded-xl mb-8"
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
             />
           )}
 
@@ -72,7 +75,7 @@ export default function BlogOpen() {
               : ""}
           </p>
 
-          <div className="prose prose-invert max-w-none text-lg">
+          <div className="prose prose-invert max-w-none text-lg text-left [&_p]:mb-6 [&_p]:text-left [&_*]:text-left">
             <ReactMarkdown>{post.content}</ReactMarkdown>
           </div>
         </div>

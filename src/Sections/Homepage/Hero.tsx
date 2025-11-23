@@ -2,16 +2,27 @@
 import heroImage from '../../assets/Homepage-images/Homepage-herosection image.jpg';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 export default function Hero() {
   const navigate = useNavigate();
+  const [imageLoaded, setImageLoaded] = useState(false);
+
+  useEffect(() => {
+    // Preload hero image
+    const img = new Image();
+    img.src = heroImage;
+    img.onload = () => setImageLoaded(true);
+  }, []);
+
   return (
     <section className="relative min-h-screen w-full flex items-center justify-center text-center overflow-hidden">
       {/* Background Image with Parallax Effect */}
       <motion.div
         className="absolute inset-0 h-full w-full bg-cover bg-center z-0"
         style={{
-          backgroundImage: `url(${heroImage})`,
+          backgroundImage: imageLoaded ? `url(${heroImage})` : 'none',
+          backgroundColor: '#0a0a0a',
         }}
         initial={{ scale: 1.1 }}
         animate={{ scale: 1 }}

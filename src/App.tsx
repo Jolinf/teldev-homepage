@@ -1,26 +1,35 @@
 // src/App.tsx
+import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
-import Home from './Pages/Home';
-import WhoWeAre from './Pages/WhoWeAre';
-import WhatWeOffer from './Pages/WhatWeOffer';
-import Helpdesk from './Pages/Helpdesk';
-import Network from './Pages/Network';
-import Webdev from './Pages/Webdev';
-import Cloud from './Pages/Cloud';
-import ItConsulting from './Pages/ItConsulting';
 
-import ContactUsPage from './Pages/ContactUsPage';
-import BlogPage from './Pages/BlogPage';
-import BlogOpen from './Sections/Blog/open';
-import NewPost from './Pages/NewPost';
-// import About from './Pages/About';
-// import Services from './Pages/services';
+// Lazy load routes to reduce initial bundle size
+const Home = lazy(() => import('./Pages/Home'));
+const WhoWeAre = lazy(() => import('./Pages/WhoWeAre'));
+const WhatWeOffer = lazy(() => import('./Pages/WhatWeOffer'));
+const Helpdesk = lazy(() => import('./Pages/Helpdesk'));
+const Network = lazy(() => import('./Pages/Network'));
+const Webdev = lazy(() => import('./Pages/Webdev'));
+const Cloud = lazy(() => import('./Pages/Cloud'));
+const ItConsulting = lazy(() => import('./Pages/ItConsulting'));
+const ContactUsPage = lazy(() => import('./Pages/ContactUsPage'));
+const BlogPage = lazy(() => import('./Pages/BlogPage'));
+const BlogOpen = lazy(() => import('./Sections/Blog/open'));
+const NewPost = lazy(() => import('./Pages/NewPost'));
+
+// Loading component
+const LoadingFallback = () => (
+  <div className="min-h-screen bg-black text-white flex items-center justify-center">
+    <div className="text-center">
+      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
+      <p>Loading...</p>
+    </div>
+  </div>
+);
 
 function App() {
   return (
-    <>
-
+    <Suspense fallback={<LoadingFallback />}>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/whoweare" element={<WhoWeAre />} />
@@ -34,12 +43,8 @@ function App() {
         <Route path="/BlogPage" element={<BlogPage />} />
         <Route path="/blog/:slug" element={<BlogOpen />} />
         <Route path="/admin/blog/new" element={<NewPost />} />
-
-
-        {/* <Route path="/about" element={<About />} />
-        <Route path="/services" element={<Services />} /> */}
       </Routes>
-    </>
+    </Suspense>
   );
 }
 
