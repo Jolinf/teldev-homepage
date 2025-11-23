@@ -16,7 +16,8 @@ async function connectDB() {
 function setCorsHeaders(res: VercelResponse) {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.setHeader("Access-Control-Max-Age", "86400");
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
@@ -37,10 +38,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
       if (slug) {
         const post = await posts.findOne({ slug: slug.toString() });
+        setCorsHeaders(res);
         return res.status(200).json(post);
       }
 
       const allPosts = await posts.find().sort({ createdAt: -1 }).toArray();
+      setCorsHeaders(res);
       return res.status(200).json(allPosts);
     }
 
@@ -56,13 +59,16 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         createdAt: new Date(),
       });
 
+      setCorsHeaders(res);
       return res.status(201).json({ success: true, id: result.insertedId });
     }
 
     // Method not allowed
+    setCorsHeaders(res);
     return res.status(405).json({ error: "Method not allowed" });
   } catch (err: unknown) {
     console.error("API ERROR:", err);
+    setCorsHeaders(res);
     return res.status(500).json({
       success: false,
       error: err instanceof Error ? err.message : "Unknown error",

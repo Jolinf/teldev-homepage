@@ -12,7 +12,7 @@ export default defineConfig({
         target: 'https://teldev-website.vercel.app',
         changeOrigin: true,
         secure: true,
-        rewrite: (path) => path.replace(/^\/api/, '/api'),
+        ws: false,
       },
     },
   },

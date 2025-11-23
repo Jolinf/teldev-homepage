@@ -25,7 +25,7 @@ export default function Blog() {
     const fetchPosts = async () => {
       setLoading(true);
       try {
-        const res = await axios.get("https://teldev-website.vercel.app/api/posts");
+        const res = await axios.get("/api/posts");
         setPosts(res.data);
       } catch (err) {
         console.error(err);
