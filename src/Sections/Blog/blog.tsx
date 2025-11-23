@@ -10,8 +10,8 @@ type BlogPost = {
   slug: string;
   content: string;
   image?: string;
-  published: boolean;
-  createdAt: string;
+  published?: boolean;
+  createdAt?: string;
 };
 
 export default function Blog() {
@@ -25,34 +25,31 @@ export default function Blog() {
     const fetchPosts = async () => {
       setLoading(true);
       try {
-        const response = await axios.get("/api/get-posts"); 
-        setPosts(response.data.posts || []);
-        setLoading(false);
+        const res = await axios.get("https://teldev-website.vercel.app/api/posts");
+        setPosts(res.data);
       } catch (err) {
-        console.error("Failed to fetch posts:", err);
-        setError("Failed to load blog posts. Please try again later.");
-        setLoading(false);
+        console.error(err);
+        setError("Failed to load blog posts.");
       }
+      setLoading(false);
     };
 
     fetchPosts();
   }, []);
 
-  const filteredPosts = posts.filter(
+  if (error) {
+    return (
+      <section className="min-h-screen bg-black text-white px-4 py-12 md:px-12 mt-20">
+        <p className="text-center text-red-500">{error}</p>
+      </section>
+    );
+  }
+
+  const filtered = posts.filter(
     (post) =>
       post.title.toLowerCase().includes(search.toLowerCase()) ||
       post.content.toLowerCase().includes(search.toLowerCase())
   );
-
-  if (error) {
-    return (
-      <section className="min-h-screen bg-black text-white px-4 py-12 md:px-12 mt-20">
-        <div className="text-center">
-          <p className="text-red-500">{error}</p>
-        </div>
-      </section>
-    );
-  }
 
   return (
     <section className="min-h-screen bg-black text-white px-4 py-12 md:px-12">
@@ -63,30 +60,25 @@ export default function Blog() {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search"
-          className="w-full max-w-[40%] px-4 py-2 rounded-xl border border-zinc-700 bg-zinc-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full max-w-[40%] px-4 py-2 rounded-xl border border-zinc-700 bg-zinc-800 text-white"
         />
       </div>
 
       {loading ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {[...Array(6)].map((_, i) => (
-            <div
-              key={i}
-              className="bg-gray-800 rounded-xl p-4 animate-pulse h-64"
-            />
+            <div key={i} className="bg-gray-800 rounded-xl p-4 animate-pulse h-64" />
           ))}
         </div>
-      ) : filteredPosts.length === 0 ? (
-        <div className="text-center">
-          <p className="text-gray-400">No blog posts found.</p>
-        </div>
+      ) : filtered.length === 0 ? (
+        <p className="text-center text-gray-400">No posts found.</p>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredPosts.map((post) => (
+          {filtered.map((post) => (
             <motion.div
               key={post._id}
               whileHover={{ scale: 1.02 }}
-              className="bg-zinc-900 border border-zinc-700 rounded-xl overflow-hidden shadow-md text-left cursor-pointer"
+              className="bg-zinc-900 border border-zinc-700 rounded-xl overflow-hidden shadow-md cursor-pointer"
               onClick={() => navigate(`/blog/${post.slug}`)}
             >
               {post.image && (
@@ -99,11 +91,15 @@ export default function Blog() {
 
               <div className="p-4">
                 <p className="text-xs text-gray-400 mb-1">
-                  {new Date(post.createdAt).toLocaleDateString()}
+                  {post.createdAt
+                    ? new Date(post.createdAt).toLocaleDateString()
+                    : ""}
                 </p>
+
                 <h3 className="text-lg font-semibold">{post.title}</h3>
+
                 <p className="text-sm text-gray-400 mt-2 line-clamp-3">
-                  {post.content.slice(0, 120)}...
+                  {post.content.slice(0, 120)}…
                 </p>
               </div>
             </motion.div>
