@@ -5,13 +5,16 @@ import { useScrollContainer } from '../contexts/ScrollContext';
 export default function NewPost() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [error, setError] = useState<string>('');
   const [imageFileName, setImageFileName] = useState<string>('');
+  const [adminSecret, setAdminSecret] = useState<string>('');
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { mainRef } = useScrollContainer();
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setLoading(true);
+    setError('');
 
     const formData = new FormData(e.currentTarget);
 
@@ -23,15 +26,26 @@ export default function NewPost() {
       published: formData.get('published') === 'on',
     };
 
-    // Step 3: Call your Vercel serverless function
+    // Call the Vercel serverless function. The admin secret is entered by
+    // hand each session below (never baked into the client bundle) and
+    // sent as a header so /api/posts can reject unauthorized writes.
     const res = await fetch('/api/posts', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Admin-Secret': adminSecret,
+      },
       body: JSON.stringify(data),
     });
 
     setLoading(false);
-    if (res.ok) setSuccess(true);
+    if (res.ok) {
+      setSuccess(true);
+    } else if (res.status === 401) {
+      setError('Incorrect admin secret.');
+    } else {
+      setError('Failed to create post (' + res.status + ').');
+    }
   }
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -56,6 +70,28 @@ export default function NewPost() {
               Post created successfully.
             </div>
           )}
+
+          {error && (
+            <div className="mb-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded">
+              {error}
+            </div>
+          )}
+
+          <div className="mb-4 p-4 bg-yellow-50 border border-yellow-300 rounded">
+            <label htmlFor="admin-secret" className="block text-sm font-medium mb-2">
+              Admin secret (not saved, required to publish)
+            </label>
+            <input
+              id="admin-secret"
+              type="password"
+              value={adminSecret}
+              onChange={(e) => setAdminSecret(e.target.value)}
+              placeholder="Enter admin secret"
+              className="border border-gray-300 rounded p-3 w-full focus:outline-none focus:ring-2 focus:ring-black"
+              autoComplete="off"
+              required
+            />
+          </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <input

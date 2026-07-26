@@ -75,6 +75,23 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     if (req.method === "POST") {
+      const adminSecret = process.env.ADMIN_POST_SECRET;
+      const providedSecret = req.headers["x-admin-secret"];
+
+      if (!adminSecret) {
+        console.error("ADMIN_POST_SECRET is not configured — refusing all writes.");
+        setCorsHeaders(res);
+        return res.status(503).json({
+          success: false,
+          error: "Post creation is not configured on this deployment.",
+        });
+      }
+
+      if (providedSecret !== adminSecret) {
+        setCorsHeaders(res);
+        return res.status(401).json({ success: false, error: "Unauthorized" });
+      }
+
       const { title, slug, content, image, published } = req.body;
 
       const result = await posts.insertOne({

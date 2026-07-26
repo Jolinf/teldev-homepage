@@ -29,7 +29,7 @@ export default function Blog() {
         setPosts(res.data);
       } catch (err) {
         console.error(err);
-        setError("Failed to load blog posts.");
+        setError("We're unable to load blog posts right now. Please check back shortly.");
       }
       setLoading(false);
     };

@@ -18,10 +18,35 @@ body,
   margin: 0;
   padding: 0;
   width: 100%;
-  height: 100%;
   overflow-x: hidden;
   box-sizing: border-box;
   background-color: #0a0a0a;
+}
+
+/*
+ * Deliberately NOT setting height: 100% here.
+ *
+ * html/body/#root previously all had height: 100%, which combined with
+ * overflow-x: hidden forces the browser to compute overflow-y as `auto`
+ * (per the CSS Overflow spec: if one axis is non-visible, the other
+ * computes away from `visible` too). Because #root's content is taller
+ * than one viewport, #root became its own internally-scrolling box
+ * instead of the page using native window/document scroll.
+ *
+ * That's the root cause of a site-wide bug: every Framer Motion
+ * `whileInView` animation watches the browser viewport for
+ * intersection by default. Since the real scrolling was happening
+ * inside #root (not the window), those animations never fired for
+ * many visitors, leaving whole sections stuck at opacity: 0
+ * (confirmed live on Home, WhoWeAre, WhatWeOffer, and the Contact page
+ * footer). Removing the fixed height restores native window scrolling
+ * and fixes all affected whileInView usages at once, without touching
+ * the 30+ components that use them.
+ */
+html,
+body,
+#root {
+  min-height: 100%;
 }
 
 *,
