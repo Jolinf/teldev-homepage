@@ -71,7 +71,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.8 }}
         >
           <motion.button
-            className="px-8 py-4 bg-[#1C6CFE] text-white font-semibold rounded-xl shadow-md hover:shadow-xl hover:bg-[#1752c4] transition-all duration-300 text-base sm:text-lg"
+            className="px-8 py-4 bg-[#1752c4] text-white font-semibold rounded-xl shadow-md hover:shadow-xl hover:bg-[#123f8f] transition-all duration-300 text-base sm:text-lg"
             style={{ fontFamily: 'Inter, sans-serif' }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}

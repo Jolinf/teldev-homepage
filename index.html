@@ -4,17 +4,60 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/src/assets/logo vector.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Teldev Technologies</title>
-    
+
+    <!--
+      Default/fallback title+description. Every route overwrites these on
+      mount via src/components/SEO.tsx (see that file for why this has to
+      happen client-side: this is a client-rendered SPA, vercel.json
+      rewrites every path to this one file, and there's no per-route SSR).
+      These defaults exist only for the brief pre-hydration window and for
+      any consumer that doesn't execute JS at all.
+    -->
+    <title>TelDev Technologies | IT Support, Helpdesk & Cloud Services</title>
+    <meta name="description" content="TelDev Technologies delivers helpdesk support, network infrastructure, cloud services, custom software and IT consulting for small and growing businesses." />
+
+    <!--
+      Organization schema, site-wide and static (identical on every route,
+      so it lives here rather than being re-injected per page). This is
+      also the fix for a real brand-name collision: teldev.io is a separate,
+      unrelated New Zealand telecom-software company that also brands
+      itself "TelDev." This block gives Google (and any AI system reading
+      Google's results) an explicit, structured signal for which entity
+      "TelDev Technologies" at teldev.org actually is, distinct from that
+      other company. Country matches the company's own public GitHub org
+      listing (github.com/TelDev-LTD) — no address is fabricated here.
+    -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "TelDev Technologies",
+        "alternateName": "TelDev",
+        "url": "https://www.teldev.org/",
+        "logo": "https://www.teldev.org/src/assets/teldev logo.svg",
+        "description": "TelDev Technologies delivers helpdesk support, network infrastructure, cloud services, custom software and IT consulting for small and growing businesses.",
+        "email": "contact@teldev.org",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "NG"
+        },
+        "sameAs": [
+          "https://www.linkedin.com/company/teldev-ng/",
+          "https://www.instagram.com/teldev_ltd/",
+          "https://github.com/TelDev-LTD"
+        ]
+      }
+    </script>
+
     <!-- Resource Hints for Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="dns-prefetch" href="https://teldev-website.vercel.app" />
-    
+
     <!-- Preload Critical Resources -->
     <link rel="preload" href="/src/index.css" as="style" />
     <link rel="stylesheet" href="/src/index.css" />
-    
+
     <!-- Preload Critical Fonts -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" /></noscript>

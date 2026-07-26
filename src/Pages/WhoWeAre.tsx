@@ -1,6 +1,7 @@
 // src/pages/Home.tsx
 import Navbar from '../components/navbar';
 import Footer from '../components/footer';
+import SEO from '../components/SEO';
 import AboutHero from '../Sections/About/Hero';
 import Mission from '../Sections/About/mission';
 import CoreValues from '../Sections/About/corevalues';
@@ -13,18 +14,25 @@ import { useScrollContainer } from '../contexts/ScrollContext';
 export default function WhoWeAre() {
   const { mainRef } = useScrollContainer();
   return (
-    <main ref={mainRef}>
+    <>
+      <SEO
+        title="About TelDev Technologies"
+        description="Founded in 2021, TelDev Technologies builds custom IT support and software solutions for individuals, small businesses, and growing enterprises."
+        path="/whoweare"
+      />
       <Navbar />
-      <AboutHero />
-      <Mission />
-      <CoreValues />
-      <Leaders />
-      <OurStory />
-      <HowWeHelp />
-      <WhatWeOfferQuote2 />
-      <Footer />
+      <main ref={mainRef}>
+        <AboutHero />
+        <Mission />
+        <CoreValues />
+        <Leaders />
+        <OurStory />
+        <HowWeHelp />
+        <WhatWeOfferQuote2 />
 
-      {/* other sections will go here */}
-    </main>
+        {/* other sections will go here */}
+      </main>
+      <Footer />
+    </>
   );
 }

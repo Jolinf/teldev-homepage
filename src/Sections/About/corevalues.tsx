@@ -7,42 +7,42 @@ export default function CoreValues() {
     () => [
       {
         title: 'Expertise',
-        content: `At TELDEV Technologies, expertise is at the heart of everything we do. It reflects our dedication to mastering the tools, technologies, and trends that shape today's digital landscape. Our team brings years of hands-on experience, technical certifications, and a problem-solving mindset to every challenge. We don't just offer support. We offer smart, strategic solutions that are informed, reliable, and forward-thinking. By consistently honing our skills and sharing our knowledge, we empower our clients with the confidence to navigate technology with ease.`,
+        content: `Our team has spent years in the parts of IT that are easy to underestimate until something breaks: network configuration, helpdesk escalations, cloud migrations, application support. That's where the certifications and the instincts come from. When a client's setup doesn't match a textbook case, we've usually seen something close to it before.`,
       },
       {
         title: 'Innovation',
         content:
-          'At TELDEV Technologies, innovation drives our approach to solving complex challenges. We continuously explore emerging technologies and creative solutions to deliver cutting-edge services that keep our clients ahead of the curve. Our commitment to innovation ensures that we not only meet current needs but also anticipate future opportunities, helping businesses thrive in an ever-evolving digital landscape.',
+          "We use AI and automation where they genuinely save a client time or money, not because it's trendy. Before we recommend a new tool or workflow, we ask whether it fixes a specific problem you already have. If it doesn't, we say so.",
       },
       {
         title: 'Security',
         content:
-          "Security is our top priority at TELDEV Technologies. We implement robust security measures and best practices to protect our clients' data and systems. From secure infrastructure setup to ongoing monitoring and threat prevention, we ensure that your digital assets remain safe and protected against evolving cyber threats.",
+          "Network security audits, data encryption, and ongoing monitoring aren't a checklist we run once and forget. We set them up as standing practice, so an issue gets caught during a routine check instead of during an incident.",
       },
       {
         title: 'Scalability',
         content:
-          "We design solutions that grow with your business. Our scalable IT services and infrastructure ensure that your technology needs are met today while preparing for tomorrow's growth. Whether you're expanding operations or adapting to new challenges, our solutions scale seamlessly to support your evolving requirements.",
+          "When your team doubles or your traffic spikes, we'd rather your infrastructure flex than have you rip it out and start over. That's the difference between a cloud setup planned for growth and one that just happens to work today.",
       },
       {
         title: 'Ongoing Support',
         content:
-          "Our commitment to your success doesn't end with implementation. We provide continuous support, maintenance, and guidance to ensure your systems run smoothly. Our dedicated support team is always available to address your questions, troubleshoot issues, and help you make the most of your technology investments.",
+          "Support doesn't stop at go-live. When something breaks, you reach an actual person who already knows your setup, not a ticket queue that starts from zero every time.",
       },
       {
         title: 'Performance',
         content:
-          'We optimize your technology for peak performance. Through careful monitoring, regular maintenance, and performance tuning, we ensure that your systems operate at their best. Our focus on performance helps you achieve maximum efficiency and productivity in your daily operations.',
+          "We monitor systems proactively so a slowdown gets caught before it becomes downtime. Most performance problems we fix never reach the point where a client notices them.",
       },
       {
         title: 'Customer-centric Approach',
         content:
-          'Your success is our success. We take the time to understand your unique needs, challenges, and goals. Our customer-centric approach means we tailor our solutions to your specific requirements, providing personalized service and support that puts your business first.',
+          'A five-person startup and a fifty-person company don\'t need the same IT setup, so we don\'t sell them the same package. We scope solutions around your actual budget, team size, and constraints, not a template.',
       },
       {
         title: 'Adaptability',
         content:
-          'In a rapidly changing technological landscape, adaptability is key. We stay agile and responsive to new developments, ensuring that our services and solutions remain relevant and effective. Our ability to adapt allows us to meet your changing needs and help you navigate technological shifts with confidence.',
+          "Most clients don't arrive with a clean slate — they have existing tools, old habits, and systems already in place. We work with what's already there instead of forcing a migration nobody asked for.",
       },
     ],
     []

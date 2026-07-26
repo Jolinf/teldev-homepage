@@ -93,6 +93,7 @@ export default function WhyTeldev() {
             key={index}
             className="relative h-[350px] perspective focus:outline-none focus-visible:ring-4 focus-visible:ring-[#1C6CFE] focus-visible:ring-opacity-75 rounded-[1em]"
             tabIndex={0}
+            role="button"
             aria-label={`${card.title} card. Press enter to flip.`}
           >
             <div

@@ -105,28 +105,27 @@ export default function Footer() {
             >
               Stay Connected
             </motion.h3>
-            <motion.div
-              className="flex gap-6 text-2xl mb-6"
+            <motion.ul
+              className="flex gap-6 text-2xl mb-6 list-none pl-0"
               variants={containerVariants}
-              role="list"
               aria-label="Social media links"
             >
               {socialLinks.map((link, index) => (
-                <motion.a
-                  key={index}
-                  href={link.href}
-                  className="text-black hover:text-gray-300 no-underline pr-1 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-white rounded"
-                  variants={itemVariants}
-                  whileHover="hover"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={link.label}
-                  tabIndex={0}
-                >
-                  {link.icon}
-                </motion.a>
+                <motion.li key={index} variants={itemVariants}>
+                  <motion.a
+                    href={link.href}
+                    className="text-black hover:text-gray-300 no-underline pr-1 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-white rounded"
+                    whileHover="hover"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={link.label}
+                    tabIndex={0}
+                  >
+                    {link.icon}
+                  </motion.a>
+                </motion.li>
               ))}
-            </motion.div>
+            </motion.ul>
             <motion.address
               className="not-italic space-y-2 text-base sm:text-lg md:text-xl lg:text-lg text-[#F5F5F5]"
               variants={itemVariants}

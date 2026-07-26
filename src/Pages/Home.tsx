@@ -1,5 +1,6 @@
 // src/pages/Home.tsx
 import Navbar from '../components/navbar';
+import SEO from '../components/SEO';
 import { useScrollContainer } from '../contexts/ScrollContext';
 import Hero from '../Sections/Homepage/Hero';
 import Homepagequote1 from '../Sections/Homepage/Homepage-quote1';
@@ -13,20 +14,27 @@ import Footer from '../components/footer';
 export default function Home() {
   const { mainRef } = useScrollContainer();
   return (
-    <main ref={mainRef}>
+    <>
+      <SEO
+        title="IT Support, Helpdesk & Cloud Services"
+        description="TelDev Technologies delivers helpdesk support, network infrastructure, cloud services, custom software and IT consulting for small and growing businesses."
+        path="/"
+      />
       <Navbar />
-      <div>
-        <Hero />
-        <Homepagequote1 />
-        <WhyTeldev />
-        <Homepagequote2 />
-        <WhatWeOffer />
-        <TeldevBlog />
-        {/* <ContactSection /> */}
-      </div>
-      <Footer />
+      <main ref={mainRef}>
+        <div>
+          <Hero />
+          <Homepagequote1 />
+          <WhyTeldev />
+          <Homepagequote2 />
+          <WhatWeOffer />
+          <TeldevBlog />
+          {/* <ContactSection /> */}
+        </div>
 
-      {/* other sections will go here */}
-    </main>
+        {/* other sections will go here */}
+      </main>
+      <Footer />
+    </>
   );
 }

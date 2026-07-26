@@ -70,7 +70,7 @@ export default function Homepagequote2() {
         >
           <motion.button
             type="button"
-            className="px-8 py-4 bg-[#1C6CFE] text-white font-semibold rounded-lg shadow-md focus:outline-none focus:ring-4 focus:ring-[#1C6CFE]/60 transition-all duration-300 text-base sm:text-lg"
+            className="px-8 py-4 bg-[#1752c4] text-white font-semibold rounded-lg shadow-md focus:outline-none focus:ring-4 focus:ring-[#1C6CFE]/60 transition-all duration-300 text-base sm:text-lg"
             style={{ fontFamily: 'Inter, sans-serif' }}
             variants={buttonVariants}
             whileHover="hover"

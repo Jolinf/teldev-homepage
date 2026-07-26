@@ -1,6 +1,7 @@
 import { FormEvent, useRef, useState } from 'react';
 
 import { useScrollContainer } from '../contexts/ScrollContext';
+import SEO from '../components/SEO';
 
 export default function NewPost() {
   const [loading, setLoading] = useState(false);
@@ -61,6 +62,12 @@ export default function NewPost() {
 
   return (
     <main ref={mainRef} className="bg-white">
+      <SEO
+        title="Admin"
+        description="Internal admin tool."
+        path="/admin/blog/new"
+        noindex
+      />
       <div className="min-h-screen px-4 py-10">
         <div className="max-w-xl mx-auto">
           <h1 className="text-2xl font-bold mb-4">Create New Blog Post</h1>

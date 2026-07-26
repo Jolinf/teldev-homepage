@@ -213,7 +213,7 @@ export default function ServicePageLayout({
             </p>
           ))}
           <motion.button
-            className="inline-flex items-center gap-2 px-8 py-4 bg-[#1C6CFE] text-white font-semibold rounded-xl shadow-md hover:shadow-xl hover:bg-[#1752c4] transition-all duration-300 text-base sm:text-lg"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-[#1752c4] text-white font-semibold rounded-xl shadow-md hover:shadow-xl hover:bg-[#123f8f] transition-all duration-300 text-base sm:text-lg"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => navigate('/ContactUsPage')}

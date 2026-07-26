@@ -1,6 +1,7 @@
 // src/pages/WhatWeOffer.tsx
 import Navbar from '../components/navbar';
 import Footer from '../components/footer';
+import SEO from '../components/SEO';
 import ServicesHero from '../Sections/services/hero';
 import Services from '../Sections/services/services';
 import CTA from '../Sections/services/CTA';
@@ -11,14 +12,21 @@ export default function WhatWeOffer() {
   useScrollToTopOnMount();
   const { mainRef } = useScrollContainer();
   return (
-    <main ref={mainRef}>
+    <>
+      <SEO
+        title="Our Services"
+        description="Helpdesk support, network and infrastructure, application and website management, cloud services, and IT consulting from TelDev Technologies."
+        path="/whatweoffer"
+      />
       <Navbar />
-      <ServicesHero />
-      <Services />
-      <CTA />
-      <Footer />
+      <main ref={mainRef}>
+        <ServicesHero />
+        <Services />
+        <CTA />
 
-      {/* other sections will go here */}
-    </main>
+        {/* other sections will go here */}
+      </main>
+      <Footer />
+    </>
   );
 }

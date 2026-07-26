@@ -62,7 +62,7 @@ const ServicesNavbar: React.FC = () => {
       {/* Skip to main content for accessibility */}
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only absolute top-2 left-2 bg-[#1C6CFE] text-white px-3 py-1 rounded z-50"
+        className="sr-only focus:not-sr-only absolute top-2 left-2 bg-[#1752c4] text-white px-3 py-1 rounded z-50"
       >
         Skip to main content
       </a>
