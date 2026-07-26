@@ -35,7 +35,7 @@ export default function Homepagequote2() {
   return (
     <motion.section
       aria-labelledby="quote2-heading"
-      className="py-20 px-6 sm:px-8 md:px-16 bg-[#0A0A0A] relative overflow-hidden"
+      className="py-20 px-4 sm:px-8 md:px-12 bg-[#0A0A0A] relative overflow-hidden"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: '-100px' }}
@@ -58,7 +58,7 @@ export default function Homepagequote2() {
           className="text-center text-white italic leading-relaxed text-xl sm:text-2xl md:text-3xl max-w-2xl mx-auto mb-10"
           style={{ fontFamily: 'Inter, sans-serif' }}
         >
-          At Teldev, we don’t just offer solutions — <strong>we build partnerships</strong> to help
+          At Teldev, we don’t just offer solutions. <strong>We build partnerships</strong> to help
           your business thrive.
         </blockquote>
 

@@ -21,7 +21,7 @@ const authorVariants = {
 export default function Homepagequote1() {
   return (
     <motion.section
-      className="py-24 px-[10%] bg-[#0A0A0A] sm:px-[60px] md:px-[80px] lg:px-[100px] relative overflow-hidden"
+      className="py-24 px-4 sm:px-8 md:px-12 bg-[#0A0A0A] relative overflow-hidden"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: '-100px' }}

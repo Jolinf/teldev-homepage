@@ -56,7 +56,7 @@ export default function WhatWeOfferQuote2() {
   return (
     <motion.section
       aria-labelledby="offer-quote-heading"
-      className="py-20 px-[10%] bg-[#0A0A0A] sm:px-8 relative overflow-hidden"
+      className="py-20 px-4 sm:px-8 md:px-12 bg-[#0A0A0A] relative overflow-hidden"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: '-100px' }}
@@ -82,7 +82,7 @@ export default function WhatWeOfferQuote2() {
           style={{ fontFamily: 'Inter, sans-serif' }}
           variants={textVariants}
         >
-          Let's build the right solution together—tailored to you, and ready to grow with your
+          Let's build the right solution together: tailored to you, and ready to grow with your
           vision.
         </motion.h2>
 

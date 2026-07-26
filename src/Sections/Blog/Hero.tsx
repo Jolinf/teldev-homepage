@@ -1,5 +1,5 @@
 // src/sections/Hero.tsx
-import heroImage from '../../assets/boliviainteligente-dCvqMHRUIhY-unsplash.jpg';
+import heroImage from '../../assets/boliviainteligente-dCvqMHRUIhY-unsplash.webp';
 import { motion } from 'framer-motion';
 
 export default function Hero() {

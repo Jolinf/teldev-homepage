@@ -12,7 +12,6 @@ import { useScrollContainer } from '../contexts/ScrollContext';
 
 export default function WhoWeAre() {
   const { mainRef } = useScrollContainer();
-  console.log('Home component rendered');
   return (
     <main ref={mainRef}>
       <Navbar />

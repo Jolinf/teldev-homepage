@@ -82,7 +82,7 @@ export default function TeldevBlog() {
 
   if (error) {
     return (
-      <section className="px-[10%] bg-[#0E0E0E] text-[#FFFFFF] text-left sm:px-[60px] md:px-[80px] lg:px-[100px] py-20 sm:py-[60px] md:py-[80px]">
+      <section className="px-4 sm:px-8 md:px-12 bg-[#0E0E0E] text-[#FFFFFF] text-left py-20 sm:py-[60px] md:py-[80px]">
         <div className="text-center">
           <p className="text-red-500">{error}</p>
         </div>
@@ -91,7 +91,7 @@ export default function TeldevBlog() {
   }
 
   return (
-    <section className="px-[10%] bg-[#0E0E0E] text-[#FFFFFF] text-left sm:px-[60px] md:px-[80px] lg:px-[100px] py-20 sm:py-[60px] md:py-[80px]">
+    <section className="px-4 sm:px-8 md:px-12 bg-[#0E0E0E] text-[#FFFFFF] text-left py-20 sm:py-[60px] md:py-[80px]">
       <motion.div
         className="max-w-screen-xl mx-auto"
         initial={{ opacity: 0, y: 20 }}

@@ -42,7 +42,7 @@ export default function BlogOpen() {
 
   return (
     <>
-      <section className="min-h-screen bg-black text-white px-4 pb-12 md:px-12 mt-10">
+      <section className="min-h-screen bg-black text-white px-4 sm:px-8 md:px-12 pb-12 mt-10">
         <div className="max-w-3xl mx-auto">
           <nav className="mb-6 text-sm">
             <ol className="flex text-[#a0a0a0]">

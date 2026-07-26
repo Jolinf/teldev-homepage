@@ -148,10 +148,10 @@ export default function Navbar() {
               <motion.li key={link.path} custom={i} variants={linkVariants}>
                 <Link
                   to={link.path}
-                  className={`no-underline transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#1C6CFE] rounded ${
+                  className={`no-underline transition-colors duration-300 px-3 py-1.5 rounded-full focus:outline-none focus:ring-2 focus:ring-[#1C6CFE] ${
                     isActive
-                      ? 'text-[#1C6CFE] border-b-2 border-[#1C6CFE]'
-                      : 'text-[#FFFFFF] hover:text-[#1C6CFE] focus:text-[#1C6CFE]'
+                      ? 'text-[#1C6CFE] bg-[#1C6CFE]/10 font-semibold'
+                      : 'text-[#FFFFFF] hover:text-[#1C6CFE]'
                   }`}
                   aria-current={isActive ? 'page' : undefined}
                   tabIndex={0}
@@ -238,10 +238,10 @@ export default function Navbar() {
                     >
                       <Link
                         to={link.path}
-                        className={`text-2xl no-underline transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#1C6CFE] rounded ${
+                        className={`text-2xl no-underline transition-colors duration-300 px-5 py-2 rounded-full focus:outline-none focus:ring-2 focus:ring-[#1C6CFE] ${
                           isActive
-                            ? 'text-[#1C6CFE]'
-                            : 'text-[#FFFFFF] hover:text-[#1C6CFE] focus:text-[#1C6CFE]'
+                            ? 'text-[#1C6CFE] bg-[#1C6CFE]/10 font-semibold'
+                            : 'text-[#FFFFFF] hover:text-[#1C6CFE]'
                         }`}
                         aria-current={isActive ? 'page' : undefined}
                         tabIndex={0}

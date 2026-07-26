@@ -1,29 +1,30 @@
 // src/sections/Hero.tsx
-import heroImage from '../../assets/Homepage-images/Homepage-herosection image.jpg';
+import heroImage from '../../assets/Homepage-images/Homepage-herosection image.webp';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
 
 export default function Hero() {
   const navigate = useNavigate();
-  const [imageLoaded, setImageLoaded] = useState(false);
-
-  useEffect(() => {
-    // Preload hero image
-    const img = new Image();
-    img.src = heroImage;
-    img.onload = () => setImageLoaded(true);
-  }, []);
 
   return (
     <section className="relative min-h-screen w-full flex items-center justify-center text-center overflow-hidden">
-      {/* Background Image with Parallax Effect */}
-      <motion.div
-        className="absolute inset-0 h-full w-full bg-cover bg-center z-0"
-        style={{
-          backgroundImage: imageLoaded ? `url(${heroImage})` : 'none',
-          backgroundColor: '#0a0a0a',
-        }}
+      {/*
+        Rendered as a real <img>, not a JS-loaded CSS background-image.
+        The previous version loaded the hero image via `new Image()` inside
+        a useEffect, then swapped it into a background-image once loaded —
+        that hides the image from the browser's preload scanner, which
+        normally discovers <img> tags immediately while still parsing the
+        initial HTML/JS, so the image request started late and delayed
+        the largest paint on the page. fetchPriority="high" plus no lazy
+        loading tells the browser this is the page's priority image.
+      */}
+      <motion.img
+        src={heroImage}
+        alt=""
+        aria-hidden="true"
+        fetchPriority="high"
+        decoding="async"
+        className="absolute inset-0 h-full w-full object-cover z-0"
         initial={{ scale: 1.1 }}
         animate={{ scale: 1 }}
         transition={{ duration: 1.5, ease: 'easeOut' }}

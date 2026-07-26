@@ -46,7 +46,7 @@ export default function HowWeHelp() {
   return (
     <motion.section
       aria-labelledby="how-we-help-title"
-      className="box-border bg-black text-white text-left px-[10%] py-20 relative overflow-hidden"
+      className="box-border bg-black text-white text-left px-4 sm:px-8 md:px-12 py-20 relative overflow-hidden"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}
@@ -86,7 +86,7 @@ export default function HowWeHelp() {
             `From day-to-day troubleshooting and secure system setups to IT consulting, email
              support, and digital transformation strategies, we equip you with the tools and
              expertise you need to stay productive, protected, and ahead of the curve.`,
-            `We're not just here to fix problems—we're here to guide, empower, and grow with you.`,
+            `We're not just here to fix problems. We're here to guide, empower, and grow with you.`,
           ].map((text, i) => (
             <motion.p
               key={i}

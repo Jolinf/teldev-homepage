@@ -7,7 +7,7 @@ export default function CoreValues() {
     () => [
       {
         title: 'Expertise',
-        content: `At TELDEV Technologies, expertise is at the heart of everything we do. It reflects our dedication to mastering the tools, technologies, and trends that shape today's digital landscape. Our team brings years of hands-on experience, technical certifications, and a problem-solving mindset to every challenge. We don't just offer support—we offer smart, strategic solutions that are informed, reliable, and forward-thinking. By consistently honing our skills and sharing our knowledge, we empower our clients with the confidence to navigate technology with ease.`,
+        content: `At TELDEV Technologies, expertise is at the heart of everything we do. It reflects our dedication to mastering the tools, technologies, and trends that shape today's digital landscape. Our team brings years of hands-on experience, technical certifications, and a problem-solving mindset to every challenge. We don't just offer support. We offer smart, strategic solutions that are informed, reliable, and forward-thinking. By consistently honing our skills and sharing our knowledge, we empower our clients with the confidence to navigate technology with ease.`,
       },
       {
         title: 'Innovation',
@@ -113,7 +113,7 @@ export default function CoreValues() {
 
   return (
     <motion.section
-      className="bg-[#0A0A0A] text-white px-[10%] py-20 font-inter relative overflow-hidden"
+      className="bg-[#0A0A0A] text-white px-4 sm:px-8 md:px-12 py-20 font-inter relative overflow-hidden"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: '-100px' }}

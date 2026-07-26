@@ -40,7 +40,7 @@ const cardVariants = {
 export default function Mission() {
   return (
     <motion.section
-      className="box-border bg-black text-white px-[10%] py-20 flex flex-col md:flex-row items-center relative overflow-hidden"
+      className="box-border bg-black text-white px-4 sm:px-8 md:px-12 py-20 flex flex-col md:flex-row items-center relative overflow-hidden"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: '-100px' }}

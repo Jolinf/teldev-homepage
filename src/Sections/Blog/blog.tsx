@@ -39,7 +39,7 @@ export default function Blog() {
 
   if (error) {
     return (
-      <section className="min-h-screen bg-black text-white px-4 py-12 md:px-12 mt-20">
+      <section className="min-h-screen bg-black text-white px-4 sm:px-8 md:px-12 py-12 mt-20">
         <p className="text-center text-red-500">{error}</p>
       </section>
     );
@@ -52,7 +52,7 @@ export default function Blog() {
   );
 
   return (
-    <section className="min-h-screen bg-black text-white px-4 py-12 md:px-12">
+    <section className="min-h-screen bg-black text-white px-4 sm:px-8 md:px-12 py-12">
       {/* Search Bar */}
       <div className="mb-12 flex justify-center">
         <input

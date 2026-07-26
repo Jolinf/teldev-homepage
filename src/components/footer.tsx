@@ -77,7 +77,7 @@ export default function Footer() {
   return (
     <footer className="bg-[#1C6CFE] text-white" aria-label="Footer">
       <motion.div
-        className="px-[10%] py-16"
+        className="px-4 sm:px-8 md:px-12 py-16"
         initial={{ opacity: 1 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
@@ -227,7 +227,7 @@ export default function Footer() {
         transition={{ duration: 0.6 }}
       >
         <motion.div
-          className="flex flex-wrap justify-between items-center py-6 px-[10%]"
+          className="flex flex-wrap justify-between items-center py-6 px-4 sm:px-8 md:px-12"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -259,7 +259,7 @@ export default function Footer() {
             style={{ fontFamily: 'Inter, sans-serif' }}
             variants={itemVariants}
           >
-            © 2025 Teldev. All Rights Reserved.
+            © {new Date().getFullYear()} Teldev. All Rights Reserved.
           </motion.p>
         </motion.div>
       </motion.div>

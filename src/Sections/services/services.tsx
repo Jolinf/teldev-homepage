@@ -7,7 +7,7 @@ const services = [
     title: 'Helpdesk Support',
     icon: Headset,
     description:
-      "Your first stop for swift and reliable IT help. From device issues to email setup, we offer step-by-step guidance to keep your business running smoothly — we're here to troubleshoot, resolve, and support every step of the way.",
+      "Your first stop for swift and reliable IT help. From device issues to email setup, we offer step-by-step guidance to keep your business running smoothly. We're here to troubleshoot, resolve, and support every step of the way.",
     link: '/Helpdesk',
     cta: 'Get support',
   },
@@ -23,7 +23,7 @@ const services = [
     title: 'Application and Website Development',
     icon: Code2,
     description:
-      "We build and manage applications and websites tailored to your goals — development, optimization, and everything in between — so your online presence stays fast, functional, and secure.",
+      "We build and manage applications and websites tailored to your goals: development, optimization, and everything in between, so your online presence stays fast, functional, and secure.",
     link: '/Webdev',
     cta: 'Start a project',
   },
@@ -31,7 +31,7 @@ const services = [
     title: 'Cloud Services',
     icon: Cloud,
     description:
-      'Scalable cloud solutions for businesses of any size, including migration, ongoing management, and optimization — built around your budget, not a one-size-fits-all plan.',
+      'Scalable cloud solutions for businesses of any size, including migration, ongoing management, and optimization, built around your budget instead of a one-size-fits-all plan.',
     link: '/Cloud',
     cta: 'Explore cloud options',
   },
@@ -39,7 +39,7 @@ const services = [
     title: 'IT Consulting',
     icon: Lightbulb,
     description:
-      "Make smarter tech decisions with expert advice that aligns your business goals with the right technology — integration, strategy, or cost-saving, guided toward results that matter.",
+      "Make smarter tech decisions with expert advice that aligns your business goals with the right technology, whether that's integration, strategy, or cost-saving, guided toward results that matter.",
     link: '/ItConsulting',
     cta: 'Build a strategy',
   },

@@ -7,7 +7,6 @@ import { useScrollContainer } from '../contexts/ScrollContext';
 
 export default function BlogPage() {
   const { mainRef } = useScrollContainer();
-  console.log('Cloud component rendered');
   return (
     <main ref={mainRef}>
       <Navbar />

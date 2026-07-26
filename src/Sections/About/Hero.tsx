@@ -8,7 +8,7 @@ const textVariants = {
 export default function AboutHero() {
   return (
     <motion.section
-      className="box-border bg-black text-white px-[10%] py-24 sm:py-32 min-h-[70vh] flex items-center relative overflow-hidden"
+      className="box-border bg-black text-white px-4 sm:px-8 md:px-12 py-24 sm:py-32 min-h-[70vh] flex items-center relative overflow-hidden"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: '-100px' }}
@@ -53,7 +53,7 @@ export default function AboutHero() {
           transition={{ duration: 0.8, delay: 0.4 }}
         >
           From troubleshooting to consulting, TELDEV is dedicated to making technology work for
-          you — effectively, affordably, and with a personal touch.
+          you: effectively, affordably, and with a personal touch.
         </motion.p>
       </motion.div>
     </motion.section>

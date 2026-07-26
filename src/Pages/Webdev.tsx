@@ -7,7 +7,6 @@ import { useScrollContainer } from '../contexts/ScrollContext';
 
 export default function WebDev() {
   const { mainRef } = useScrollContainer();
-  console.log('Webdev component rendered');
   return (
     <main ref={mainRef}>
       <ServicesNavbar />

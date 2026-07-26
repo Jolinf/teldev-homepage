@@ -64,7 +64,7 @@ const textVariants = {
 export default function Leaders() {
   return (
     <motion.section
-      className="box-border bg-black text-white px-[10%] py-20 min-h-screen flex flex-col items-center gap-16 relative overflow-hidden"
+      className="box-border bg-black text-white px-4 sm:px-8 md:px-12 py-20 min-h-screen flex flex-col items-center gap-16 relative overflow-hidden"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: '-100px' }}

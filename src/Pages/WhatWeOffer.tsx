@@ -10,7 +10,6 @@ import { useScrollContainer } from '../contexts/ScrollContext';
 export default function WhatWeOffer() {
   useScrollToTopOnMount();
   const { mainRef } = useScrollContainer();
-  console.log('WhatWeOffer component rendered');
   return (
     <main ref={mainRef}>
       <Navbar />

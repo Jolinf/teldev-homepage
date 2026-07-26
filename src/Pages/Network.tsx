@@ -7,7 +7,6 @@ import { useScrollContainer } from '../contexts/ScrollContext';
 
 export default function Network() {
   const { mainRef } = useScrollContainer();
-  console.log('Network component rendered');
   return (
     <main ref={mainRef}>
       <ServicesNavbar />

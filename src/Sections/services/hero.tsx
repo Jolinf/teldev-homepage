@@ -86,7 +86,7 @@ export default function ServicesHero() {
           variants={paragraphVariants}
           tabIndex={0} // focusable to read via keyboard navigation
         >
-          At TELDEV Technologies, we offer more than just technical support—we deliver customized
+          At TELDEV Technologies, we offer more than just technical support. We deliver customized
           solutions designed to make technology work for you. Whether you're running a small
           business, managing a growing team, or flying solo, our services are built to meet your
           needs, your pace, and your goals. From everyday IT support to long-term strategy and

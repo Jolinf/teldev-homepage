@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ArrowLeft } from 'lucide-react';
 
 const servicesLinks = [
   { path: '/Helpdesk', label: 'Helpdesk Support' },
@@ -16,20 +16,16 @@ const navVariants = {
 };
 
 const linkVariants = {
-  hidden: { opacity: 0, x: -20 },
+  hidden: { opacity: 0, y: -10 },
   visible: (i: number) => ({
     opacity: 1,
-    x: 0,
+    y: 0,
     transition: {
-      delay: i * 0.1,
-      duration: 0.5,
+      delay: i * 0.08,
+      duration: 0.4,
       ease: 'easeOut',
     },
   }),
-  hover: {
-    scale: 1.05,
-    transition: { duration: 0.2 },
-  },
 };
 
 const mobileMenuVariants = {
@@ -72,53 +68,47 @@ const ServicesNavbar: React.FC = () => {
       </a>
 
       <motion.header
-        className={`fixed top-4 left-0 right-0 z-50 mx-auto max-w-6xl px-4 py-0 rounded-[20px] transition-all duration-300 ${
+        className={`fixed top-4 left-0 right-0 z-50 mx-auto max-w-6xl px-3 sm:px-4 py-0 rounded-2xl transition-all duration-300 ${
           isScrolled
-            ? 'bg-[#1C6CFE]/90 shadow-xl backdrop-blur-md'
-            : 'bg-[#1C6CFE]/70 shadow-md backdrop-blur-sm'
+            ? 'bg-[#1C6CFE]/95 shadow-xl backdrop-blur-md'
+            : 'bg-[#1C6CFE]/80 shadow-md backdrop-blur-sm'
         }`}
         variants={shouldReduceMotion ? undefined : navVariants}
         initial="visible"
         animate="visible"
       >
         <nav
-          className="w-full sm:px-6 lg:px-8 py-5 flex items-center justify-between m-auto"
+          className="w-full py-2.5 flex items-center gap-2 sm:gap-3"
           aria-label="Services navigation"
           role="navigation"
         >
-          {/* Desktop Navigation Links */}
+          <Link
+            to="/WhatWeOffer"
+            className="flex-shrink-0 inline-flex items-center justify-center w-9 h-9 rounded-lg text-white/85 hover:text-[#1C6CFE] hover:bg-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-white"
+            aria-label="Go back to What We Offer"
+          >
+            <ArrowLeft size={18} aria-hidden="true" />
+          </Link>
+
+          {/* Desktop tab strip: equal-width tabs, active state is a solid
+              block behind the whole tab (not a text-hugging pill and not
+              an underline), so two-line labels never overlap or clip. */}
           <motion.ul
-            className="hidden md:flex items-center justify-center space-x-[30px] text-sm tracking-wide list-none"
+            className="hidden md:grid flex-1 grid-cols-5 gap-1.5 text-sm tracking-wide list-none"
             style={{ fontFamily: 'Inter, sans-serif' }}
             initial="hidden"
             animate="visible"
-            variants={shouldReduceMotion ? undefined : undefined}
           >
-            <motion.li>
-              <Link
-                to="/WhatWeOffer"
-                className="text-lg inline-block text-white no-underline transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-white rounded"
-                style={{ fontFamily: 'Inter, sans-serif' }}
-                aria-label="Go back to What We Offer"
-              >
-                ←
-              </Link>
-            </motion.li>
             {servicesLinks.map((link, i) => {
               const isActive = location.pathname === link.path;
               return (
-                <motion.li
-                  key={link.path}
-                  custom={i}
-                  variants={shouldReduceMotion ? {} : linkVariants}
-                  whileHover={shouldReduceMotion ? {} : 'hover'}
-                >
+                <motion.li key={link.path} custom={i} variants={shouldReduceMotion ? {} : linkVariants}>
                   <Link
                     to={link.path}
-                    className={`no-underline transition-colors duration-300 px-2 py-1 rounded focus:outline-none focus:ring-2 focus:ring-white ${
+                    className={`flex items-center justify-center text-center h-full min-h-[52px] no-underline transition-colors duration-200 px-2 py-2 rounded-lg leading-snug focus:outline-none focus:ring-2 focus:ring-white ${
                       isActive
-                        ? 'text-white border-b-2 border-white font-semibold'
-                        : 'text-white/80 hover:text-white'
+                        ? 'bg-white text-[#1C6CFE] font-semibold'
+                        : 'text-white/80 hover:text-white hover:bg-white/10'
                     }`}
                     aria-current={isActive ? 'page' : undefined}
                   >
@@ -131,7 +121,7 @@ const ServicesNavbar: React.FC = () => {
 
           {/* Mobile Menu Button */}
           <motion.button
-            className="md:hidden text-white focus:outline-none focus:ring-2 focus:ring-white rounded p-1"
+            className="md:hidden ml-auto text-white focus:outline-none focus:ring-2 focus:ring-white rounded p-1"
             onClick={toggleMobileMenu}
             aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={isMobileMenuOpen}
@@ -147,7 +137,7 @@ const ServicesNavbar: React.FC = () => {
             {isMobileMenuOpen && (
               <motion.div
                 id="mobile-menu"
-                className="fixed top-0 right-0 w-full h-screen bg-[#1C6CFE] z-50 md:hidden overflow-auto flex flex-col items-center justify-center space-y-8 px-4"
+                className="fixed top-0 right-0 w-full h-screen bg-[#1C6CFE] z-50 md:hidden overflow-auto flex flex-col items-center justify-center gap-3 px-6"
                 initial="hidden"
                 animate="visible"
                 exit="exit"
@@ -164,12 +154,14 @@ const ServicesNavbar: React.FC = () => {
                       variants={shouldReduceMotion ? {} : linkVariants}
                       initial="hidden"
                       animate="visible"
-                      whileHover={shouldReduceMotion ? {} : { scale: 1.05 }}
+                      className="w-full max-w-sm"
                     >
                       <Link
                         to={link.path}
-                        className={`block text-2xl no-underline transition-colors duration-300 px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-white ${
-                          isActive ? 'text-white font-semibold' : 'text-white/80 hover:text-white'
+                        className={`block text-center text-xl no-underline transition-colors duration-200 px-6 py-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-white ${
+                          isActive
+                            ? 'bg-white text-[#1C6CFE] font-semibold'
+                            : 'text-white/80 hover:text-white hover:bg-white/10'
                         }`}
                         onClick={closeMobileMenu}
                         aria-current={isActive ? 'page' : undefined}

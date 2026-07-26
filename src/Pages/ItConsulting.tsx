@@ -7,7 +7,6 @@ import { useScrollContainer } from '../contexts/ScrollContext';
 
 export default function ItConsulting() {
   const { mainRef } = useScrollContainer();
-  console.log('ItConsulting component rendered');
   return (
     <main ref={mainRef}>
       <ServicesNavbar />

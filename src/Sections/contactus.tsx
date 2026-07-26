@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import emailjs from '@emailjs/browser';
-import contactpicture from '../assets/contacus-image.png';
+import contactpicture from '../assets/contacus-image.webp';
 
 const timeZones = [
   'UTC−12:00',
@@ -82,7 +82,7 @@ const ContactUsPage = () => {
 
   return (
     <section
-      className="px-[10%] py-20 box-border mt-10 bg-[#0A0A0A] text-white font-inter text-center"
+      className="px-4 sm:px-8 md:px-12 py-20 box-border mt-10 bg-[#0A0A0A] text-white font-inter text-center"
       aria-label="Contact Us Section"
     >
       <motion.h1

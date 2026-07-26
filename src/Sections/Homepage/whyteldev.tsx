@@ -1,12 +1,12 @@
 import { motion } from 'framer-motion';
-import expertiseImg from '../../assets/Homepage-images/homepage-whyuwhyteldev-expertise image.jpg';
-import innovationImg from '../../assets/Homepage-images/Homepage-whyuwhyteldev-innovation image.jpg';
-import securityImg from '../../assets/Homepage-images/homepage-whyuwhyteldev-security image.jpg';
-import scalabilityImg from '../../assets/Homepage-images/Homepage-whyuwhyteldev-Scalability image.jpg';
-import supportImg from '../../assets/Homepage-images/homepage-whyuwhyteldev-ongoing support image.jpg';
-import performanceImg from '../../assets/Homepage-images/homepage-whyuwhyteldev-performance image.jpg';
-import customerImg from '../../assets/Homepage-images/Homepage-whyuwhyteldev-custome centric image.jpg';
-import adaptabilityimg from '../../assets/Homepage-images/Homepage-whyuwhyteldev-Adaptability image.png';
+import expertiseImg from '../../assets/Homepage-images/homepage-whyuwhyteldev-expertise image.webp';
+import innovationImg from '../../assets/Homepage-images/Homepage-whyuwhyteldev-innovation image.webp';
+import securityImg from '../../assets/Homepage-images/homepage-whyuwhyteldev-security image.webp';
+import scalabilityImg from '../../assets/Homepage-images/Homepage-whyuwhyteldev-Scalability image.webp';
+import supportImg from '../../assets/Homepage-images/homepage-whyuwhyteldev-ongoing support image.webp';
+import performanceImg from '../../assets/Homepage-images/homepage-whyuwhyteldev-performance image.webp';
+import customerImg from '../../assets/Homepage-images/Homepage-whyuwhyteldev-custome centric image.webp';
+import adaptabilityimg from '../../assets/Homepage-images/Homepage-whyuwhyteldev-Adaptability image.webp';
 
 const cards = [
   {
@@ -20,7 +20,7 @@ const cards = [
     title: 'Innovation',
     imgFront: innovationImg,
     description:
-      'We push boundaries by blending AI, automation, and creativity—delivering forward-thinking solutions designed for the future of tech.',
+      'We push boundaries by blending AI, automation, and creativity, delivering forward-thinking solutions designed for the future of tech.',
     bgColor: '#0A1529',
   },
   {
@@ -34,7 +34,7 @@ const cards = [
     title: 'Scalability',
     imgFront: scalabilityImg,
     description:
-      'As your business grows, so should your tech. Our flexible solutions are built to scale with you—efficiently and seamlessly.',
+      'As your business grows, so should your tech. Our flexible solutions are built to scale with you, efficiently and seamlessly.',
     bgColor: '#8596AB',
   },
   {
@@ -62,14 +62,14 @@ const cards = [
     title: 'Adaptability',
     imgFront: adaptabilityimg,
     description:
-      'Adaptability is our strength—we evolve with technology and client needs, ensuring our solutions stay relevant, responsive, and resilient in a rapidly changing digital world.',
+      'Adaptability is our strength: we evolve with technology and client needs, ensuring our solutions stay relevant, responsive, and resilient in a rapidly changing digital world.',
     bgColor: '#8A5320',
   },
 ];
 
 export default function WhyTeldev() {
   return (
-    <section className="mb-[5%] px-[10%] justify-center bg-[#0A0A0A] text-white py-20 sm:px-6 md:px-8">
+    <section className="mb-[5%] px-4 sm:px-8 md:px-12 justify-center bg-[#0A0A0A] text-white py-20">
       <motion.h2
         className="text-center text-[1.8em] sm:text-[2em] md:text-4xl lg:text-5xl font-semibold mb-[40px]"
         style={{ fontFamily: 'Poppins, sans-serif' }}

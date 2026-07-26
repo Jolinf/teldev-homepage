@@ -12,7 +12,6 @@ import Footer from '../components/footer';
 
 export default function Home() {
   const { mainRef } = useScrollContainer();
-  console.log('Home component rendered');
   return (
     <main ref={mainRef}>
       <Navbar />

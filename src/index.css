@@ -18,9 +18,40 @@ body,
   margin: 0;
   padding: 0;
   width: 100%;
-  overflow-x: hidden;
   box-sizing: border-box;
   background-color: #0a0a0a;
+}
+
+/*
+ * overflow-x: hidden lives on body ONLY — not html, not #root.
+ *
+ * This is the second round of the same underlying bug. The first fix
+ * (moving overflow-x:hidden off #root) was necessary but not sufficient,
+ * because it left overflow-x:hidden on BOTH html and body. Per the CSS
+ * Overflow spec's viewport-propagation rule, the browser normally treats
+ * html and body as ONE scrolling box: it takes body's overflow value and
+ * applies it to the viewport, as long as html's own overflow is left at
+ * the default `visible`. That propagation is what makes "the page"
+ * scroll as a single unit.
+ *
+ * Setting overflow-x:hidden on html directly disables that propagation
+ * (the rule requires html's overflow to be visible), so html and body
+ * become two independently-scrolling boxes instead of one. Each also
+ * gets its overflow-y forced away from visible to auto (the same
+ * axis-forcing quirk noted below), and since their box heights differ by
+ * a sub-pixel or two depending on the page's content, whichever one is
+ * shorter spins up its own scrollbar right next to the real one — a
+ * double-scrollbar artifact that shows up more on some pages than
+ * others depending on how much their content height happens to diverge.
+ *
+ * Restricting overflow-x:hidden to body alone restores the standard
+ * propagation: html stays visible/visible so the special case applies,
+ * body's overflow-x:hidden (and its forced overflow-y:auto) gets
+ * promoted to the viewport as a single scrollbar, and neither element
+ * scrolls independently.
+ */
+body {
+  overflow-x: hidden;
 }
 
 /*

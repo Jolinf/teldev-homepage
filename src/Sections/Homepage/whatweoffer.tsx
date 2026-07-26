@@ -6,7 +6,7 @@ const services = [
   {
     title: 'Helpdesk Support',
     icon: Headset,
-    description: 'Fast, human help when something breaks — not a ticket queue.',
+    description: 'Fast, human help when something breaks, not a ticket queue.',
     items: ['24/7 technical assistance', 'Network configuration', 'Software installation'],
     link: '/Helpdesk',
     cta: 'Get support',
@@ -79,7 +79,7 @@ export default function WhatWeOffer() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
         >
-          Five services, all visible here — no clicking through a carousel to find the one you need.
+          Five services, all visible here. No clicking through a carousel to find the one you need.
         </motion.p>
 
         {/* Bento-style grid: the first service gets more visual weight, the

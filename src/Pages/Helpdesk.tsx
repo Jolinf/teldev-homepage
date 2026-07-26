@@ -7,7 +7,6 @@ import { useScrollContainer } from '../contexts/ScrollContext';
 
 export default function Helpdesk() {
   const { mainRef } = useScrollContainer();
-  console.log('Helpdesk component rendered');
   return (
     <main ref={mainRef}>
       <ServicesNavbar />
