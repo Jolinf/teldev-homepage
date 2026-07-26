@@ -81,7 +81,7 @@ export default function ContactSection() {
         transition={{ duration: 0.6 }}
       >
         <motion.h2
-          className="text-[2em] md:text-4xl font-semibold text-[#1E64F0] mb-8"
+          className="text-[2em] md:text-4xl font-semibold text-[#1C6CFE] mb-8"
           style={{ fontFamily: 'Poppins, sans-serif' }}
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -122,8 +122,8 @@ export default function ContactSection() {
               placeholder="Name"
               aria-invalid={!!errors.name}
               aria-describedby="name-error"
-              className={`w-full p-5 bg-[#0a0a0a] border rounded-[10px] px-4 py-3 outline-none focus:ring-2 focus:ring-[#1E64F0] transition-all duration-300 text-white placeholder-white/60 ${
-                errors.name ? 'border-red-500' : 'border-[#1E64F0]/20'
+              className={`w-full p-5 bg-[#0a0a0a] border rounded-[10px] px-4 py-3 outline-none focus:ring-2 focus:ring-[#1C6CFE] transition-all duration-300 text-white placeholder-white/60 ${
+                errors.name ? 'border-red-500' : 'border-[#1C6CFE]/20'
               }`}
               whileFocus="focus"
               variants={inputVariants}
@@ -158,8 +158,8 @@ export default function ContactSection() {
               placeholder="Email"
               aria-invalid={!!errors.email}
               aria-describedby="email-error"
-              className={`w-full p-5 bg-[#0a0a0a] border rounded-[10px] px-4 py-3 outline-none focus:ring-2 focus:ring-[#1E64F0] transition-all duration-300 text-white placeholder-white/60 ${
-                errors.email ? 'border-red-500' : 'border-[#1E64F0]/20'
+              className={`w-full p-5 bg-[#0a0a0a] border rounded-[10px] px-4 py-3 outline-none focus:ring-2 focus:ring-[#1C6CFE] transition-all duration-300 text-white placeholder-white/60 ${
+                errors.email ? 'border-red-500' : 'border-[#1C6CFE]/20'
               }`}
               whileFocus="focus"
               variants={inputVariants}
@@ -194,8 +194,8 @@ export default function ContactSection() {
               placeholder="Say Hi!"
               aria-invalid={!!errors.message}
               aria-describedby="message-error"
-              className={`w-full p-5 bg-[#0a0a0a] border rounded-[10px] px-4 py-3 outline-none focus:ring-2 focus:ring-[#1E64F0] transition-all duration-300 text-white placeholder-white/60 resize-none ${
-                errors.message ? 'border-red-500' : 'border-[#1E64F0]/20'
+              className={`w-full p-5 bg-[#0a0a0a] border rounded-[10px] px-4 py-3 outline-none focus:ring-2 focus:ring-[#1C6CFE] transition-all duration-300 text-white placeholder-white/60 resize-none ${
+                errors.message ? 'border-red-500' : 'border-[#1C6CFE]/20'
               }`}
               whileFocus="focus"
               variants={inputVariants}

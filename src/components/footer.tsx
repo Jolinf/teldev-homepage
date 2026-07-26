@@ -75,7 +75,7 @@ const itemVariants = {
 
 export default function Footer() {
   return (
-    <footer className="bg-[#1E64F0] text-white" aria-label="Footer">
+    <footer className="bg-[#1C6CFE] text-white" aria-label="Footer">
       <motion.div
         className="px-[10%] py-16"
         initial={{ opacity: 1 }}

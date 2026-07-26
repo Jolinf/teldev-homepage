@@ -100,7 +100,7 @@ export default function TeldevBlog() {
         transition={{ duration: 0.6 }}
       >
         <motion.h2
-          className="text-center text-[1.8em] sm:text-2xl md:text-3xl font-semibold text-[#2F80ED] mb-[5%] sm:mb-10 md:mb-14"
+          className="text-center text-[1.8em] sm:text-2xl md:text-3xl font-semibold text-[#1C6CFE] mb-[5%] sm:mb-10 md:mb-14"
           style={{ fontFamily: 'Poppins, sans-serif' }}
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -198,7 +198,7 @@ export default function TeldevBlog() {
                       {post.content.slice(0, 120)}...
                     </motion.p>
                     <motion.div
-                      className="inline-flex items-center text-[#2F80ED] no-underline text-sm sm:text-base font-medium hover:text-[#1C6CFE] transition-colors duration-300"
+                      className="inline-flex items-center text-[#1C6CFE] no-underline text-sm sm:text-base font-medium hover:text-[#1C6CFE] transition-colors duration-300"
                       initial={{ opacity: 0 }}
                       whileInView={{ opacity: 1 }}
                       viewport={{ once: true }}

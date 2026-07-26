@@ -76,7 +76,7 @@ export default function Hero() {
             whileTap={{ scale: 0.95 }}
             onClick={() => navigate('/ContactUsPage')}
           >
-            Get Started
+            Book a Free Consultation
           </motion.button>
 
           <motion.button
@@ -86,7 +86,7 @@ export default function Hero() {
             whileTap={{ scale: 0.95 }}
             onClick={() => navigate('/Whoweare')}
           >
-            Learn More
+            Meet Our Team
           </motion.button>
         </motion.div>
       </motion.div>

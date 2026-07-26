@@ -35,7 +35,7 @@ export default function Homepagequote2() {
   return (
     <motion.section
       aria-labelledby="quote2-heading"
-      className="py-20 px-6 sm:px-8 md:px-16 bg-[#050505] relative overflow-hidden"
+      className="py-20 px-6 sm:px-8 md:px-16 bg-[#0A0A0A] relative overflow-hidden"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: '-100px' }}

@@ -46,7 +46,7 @@ const inputVariants = {
 const buttonVariants = {
   hover: {
     scale: 1.05,
-    backgroundColor: '#1E64F0',
+    backgroundColor: '#1C6CFE',
     color: '#FFFFFF',
     transition: { duration: 0.3 },
     boxShadow: '0 0 8px rgba(30, 100, 240, 0.6)',
@@ -125,7 +125,7 @@ const ContactUsPage = () => {
                 type="text"
                 placeholder="Your Name"
                 required
-                className="w-full px-4 py-3 bg-transparent border border-white/20 text-white placeholder:text-white/60 rounded-[10px] outline-none focus:ring-2 focus:ring-[#1E64F0]"
+                className="w-full px-4 py-3 bg-transparent border border-white/20 text-white placeholder:text-white/60 rounded-[10px] outline-none focus:ring-2 focus:ring-[#1C6CFE]"
               />
             </motion.div>
 
@@ -139,7 +139,7 @@ const ContactUsPage = () => {
                 type="email"
                 placeholder="you@example.com"
                 required
-                className="w-full px-4 py-3 bg-transparent border border-white/20 text-white placeholder:text-white/60 rounded-[10px] outline-none focus:ring-2 focus:ring-[#1E64F0]"
+                className="w-full px-4 py-3 bg-transparent border border-white/20 text-white placeholder:text-white/60 rounded-[10px] outline-none focus:ring-2 focus:ring-[#1C6CFE]"
               />
             </motion.div>
 
@@ -152,7 +152,7 @@ const ContactUsPage = () => {
                 name="topic"
                 type="text"
                 placeholder="Topic to discuss"
-                className="w-full px-4 py-3 bg-transparent border border-white/20 text-white placeholder:text-white/60 rounded-[10px] outline-none focus:ring-2 focus:ring-[#1E64F0]"
+                className="w-full px-4 py-3 bg-transparent border border-white/20 text-white placeholder:text-white/60 rounded-[10px] outline-none focus:ring-2 focus:ring-[#1C6CFE]"
               />
             </motion.div>
 
@@ -165,7 +165,7 @@ const ContactUsPage = () => {
                 name="timezone"
                 required
                 defaultValue=""
-                className="w-full px-4 py-3 bg-transparent border border-white/20 text-white/80 rounded-[10px] outline-none focus:ring-2 focus:ring-[#1E64F0]"
+                className="w-full px-4 py-3 bg-transparent border border-white/20 text-white/80 rounded-[10px] outline-none focus:ring-2 focus:ring-[#1C6CFE]"
               >
                 <option value="" disabled>
                   Select your time zone
@@ -187,7 +187,7 @@ const ContactUsPage = () => {
                 name="preferred_time"
                 required
                 defaultValue=""
-                className="w-full px-4 py-3 bg-transparent border border-white/20 text-white/80 rounded-[10px] outline-none focus:ring-2 focus:ring-[#1E64F0]"
+                className="w-full px-4 py-3 bg-transparent border border-white/20 text-white/80 rounded-[10px] outline-none focus:ring-2 focus:ring-[#1C6CFE]"
               >
                 <option value="" disabled>
                   Select preferred time
@@ -209,7 +209,7 @@ const ContactUsPage = () => {
                 name="referral_source"
                 required
                 defaultValue=""
-                className="w-full px-4 py-3 bg-transparent border border-white/20 text-white/80 rounded-[10px] outline-none focus:ring-2 focus:ring-[#1E64F0]"
+                className="w-full px-4 py-3 bg-transparent border border-white/20 text-white/80 rounded-[10px] outline-none focus:ring-2 focus:ring-[#1C6CFE]"
               >
                 <option value="" disabled>
                   Select an option
@@ -231,7 +231,7 @@ const ContactUsPage = () => {
                 name="notes"
                 rows={4}
                 placeholder="Additional notes"
-                className="w-full px-4 py-3 bg-transparent border border-white/20 text-white placeholder:text-white/60 rounded-[10px] outline-none focus:ring-2 focus:ring-[#1E64F0] resize-none"
+                className="w-full px-4 py-3 bg-transparent border border-white/20 text-white placeholder:text-white/60 rounded-[10px] outline-none focus:ring-2 focus:ring-[#1C6CFE] resize-none"
               />
             </motion.div>
 
@@ -269,7 +269,7 @@ const ContactUsPage = () => {
           <motion.button
             type="submit"
             disabled={sending}
-            className="px-6 py-3 my-5 bg-[#1E64F0] border-0 text-white font-semibold rounded-[10px] text-base w-full sm:w-auto transition-shadow focus:outline-none focus:ring-4 focus:ring-blue-400"
+            className="px-6 py-3 my-5 bg-[#1C6CFE] border-0 text-white font-semibold rounded-[10px] text-base w-full sm:w-auto transition-shadow focus:outline-none focus:ring-4 focus:ring-blue-400"
             variants={buttonVariants}
             whileHover="hover"
             whileTap="tap"

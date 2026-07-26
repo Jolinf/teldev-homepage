@@ -127,7 +127,7 @@ const OurStory = () => {
               onClick={toggleExpanded}
               aria-expanded={expanded}
               aria-controls="our-story-paragraphs"
-              className="m-0 p-0 border-0 bg-transparent text-[#1673FF] font-medium hover:underline"
+              className="m-0 p-0 border-0 bg-transparent text-[#1C6CFE] font-medium hover:underline"
               variants={buttonVariants}
               whileHover="hover"
               whileTap="tap"

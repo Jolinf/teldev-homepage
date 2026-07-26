@@ -56,7 +56,7 @@ export default function CTA() {
 
   return (
     <motion.section
-      className="py-20 px-4 sm:px-8 md:px-12 bg-[#050505] relative overflow-hidden"
+      className="py-20 px-4 sm:px-8 md:px-12 bg-[#0A0A0A] relative overflow-hidden"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: '-100px' }}
@@ -104,9 +104,9 @@ export default function CTA() {
             onClick={() => {
               navigate('/contactUsPage');
             }}
-            aria-label="Get started with TELDEV Technologies - contact us"
+            aria-label="Book a free consultation with TELDEV Technologies"
           >
-            Get started
+            Book a Free Consultation
           </motion.button>
         </motion.div>
       </motion.div>

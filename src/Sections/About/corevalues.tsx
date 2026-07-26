@@ -143,7 +143,7 @@ export default function CoreValues() {
         </motion.h2>
 
         <motion.div
-          className="divide-y divide-[#1673FF] border-t border-b border-[#1673FF]"
+          className="divide-y divide-[#1C6CFE] border-t border-b border-[#1C6CFE]"
           variants={containerVariants}
         >
           {coreValues.map((value, index) => (
