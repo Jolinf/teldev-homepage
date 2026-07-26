@@ -1,6 +1,5 @@
 import React, { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import emailjs from '@emailjs/browser';
 import contactpicture from '../assets/contacus-image.webp';
 
 const timeZones = [
@@ -61,23 +60,44 @@ const ContactUsPage = () => {
   const formRef = useRef<HTMLFormElement>(null);
   const [sending, setSending] = useState(false);
 
-  const sendEmail = (e: React.FormEvent) => {
+  const sendEmail = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formRef.current) return;
 
+    const formData = new FormData(formRef.current);
+    const payload = {
+      user_name: formData.get('user_name'),
+      user_email: formData.get('user_email'),
+      topic: formData.get('topic'),
+      timezone: formData.get('timezone'),
+      preferred_time: formData.get('preferred_time'),
+      referral_source: formData.get('referral_source'),
+      notes: formData.get('notes'),
+      terms_agreed: formData.get('terms_agreed') === 'on',
+    };
+
     setSending(true);
-    emailjs
-      .sendForm('service_i49mbu6', 'template_z0ptc85', formRef.current, 'ABjR7dcIG-jyKBjex')
-      .then(() => {
-        alert('✅ Message sent successfully!');
-        formRef.current?.reset();
-        setSending(false);
-      })
-      .catch((error) => {
-        console.error('❌ EmailJS error:', error);
-        alert('Something went wrong. Please try again.');
-        setSending(false);
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
       });
+
+      const result = await response.json().catch(() => ({ success: false }));
+
+      if (!response.ok || !result.success) {
+        throw new Error(result.error || `Request failed (${response.status})`);
+      }
+
+      alert('✅ Message sent successfully!');
+      formRef.current?.reset();
+    } catch (error) {
+      console.error('❌ Contact form error:', error);
+      alert('Something went wrong. Please try again.');
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
