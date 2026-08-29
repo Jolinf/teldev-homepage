@@ -2,12 +2,14 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import heroImage from '../../assets/Homepage-images/Homepage-herosection image.webp';
 import tonyVideo from '../../assets/tony.mp4';
 import tonyPoster from '../../assets/tony-poster.webp';
 
 /**
- * Homepage hero: copy on the left, Tony on the right.
+ * Homepage hero. Tony is the hero: he is the background of the section, held
+ * against flat black, with the copy and calls to action laid over the empty
+ * left-hand side. The previous stock photograph of a computer setup has been
+ * removed entirely — Tony and the black replace it.
  *
  * Tony is a short clip of the robot turning his head from his right to his
  * left. Rather than autoplaying it, we scrub it: the horizontal position of
@@ -17,12 +19,20 @@ import tonyPoster from '../../assets/tony-poster.webp';
  * 0..duration with no dead zones at either end, and it is encoded with a
  * keyframe every 4 frames so seeking stays cheap.
  *
- * The clip's background was crushed to true #000 during encoding, and the
- * hero overlay is taken to near-solid black on the right, so the video's
- * rectangle dissolves into the background with no visible box. A CSS blend
- * mode cannot do this job here: the z-20 content wrapper and framer-motion's
- * transforms both open stacking contexts, which isolate a blended element
- * from the background image sitting behind them.
+ * The clip's background was crushed to true #000 during encoding and the
+ * section behind it is also black, so the video's rectangle is invisible and
+ * Tony reads as sitting directly on the page. No blend mode is involved: the
+ * z-indexed content wrapper and framer-motion's transforms both open stacking
+ * contexts, which would isolate a blended element from what sits behind it.
+ *
+ * He is anchored to the right and sized by height so he always stands on the
+ * bottom edge of the section, whatever the viewport. On large screens the copy
+ * sits over the empty left-hand side, with a horizontal scrim holding that side
+ * solid black and fading out before it reaches him. Narrow screens have no
+ * empty left-hand side to use, so instead of overlaying him there, a spacer
+ * reserves the band he occupies at the bottom and the copy is laid out above
+ * it — the copy cannot reach his face because the layout never gives it that
+ * room.
  *
  * Pointer tracking is only set up for devices with a real hovering pointer and
  * only while the hero is on screen. On touch devices, and when the visitor has
@@ -31,6 +41,10 @@ import tonyPoster from '../../assets/tony-poster.webp';
  */
 
 const CLAMP = (v: number) => (v < 0 ? 0 : v > 1 ? 1 : v);
+
+/** Shared sizing for the clip and its still fallback. */
+const TONY_CLASS =
+  'h-full w-auto max-w-none object-contain object-bottom select-none pointer-events-none';
 
 export default function Hero() {
   const navigate = useNavigate();
@@ -64,7 +78,7 @@ export default function Hero() {
     const section = sectionRef.current;
     if (!video || !section) return;
 
-    // Skip the work entirely once the hero has scrolled out of view.
+    // Stop the work once the hero has scrolled out of view.
     const observer = new IntersectionObserver(
       ([entry]) => {
         visibleRef.current = entry.isIntersecting;
@@ -104,133 +118,136 @@ export default function Hero() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen w-full flex items-center overflow-hidden"
+      className="relative min-h-screen w-full overflow-hidden bg-black"
     >
-      {/*
-        Rendered as a real <img>, not a JS-loaded CSS background-image, so the
-        browser's preload scanner finds it while still parsing the initial
-        HTML. fetchPriority="high" plus no lazy loading marks it as the page's
-        priority image.
-      */}
-      <motion.img
-        src={heroImage}
-        alt=""
+      {/* Tony: the background of the section */}
+      <motion.div
+        className="pointer-events-none absolute right-0 bottom-0 z-0 h-[34vh] sm:h-[38vh] lg:top-0 lg:h-full lg:right-[-2%] xl:right-0"
+        initial={{ opacity: 0, scale: 1.04 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.1, ease: 'easeOut' }}
         aria-hidden="true"
-        fetchPriority="high"
-        decoding="async"
-        className="absolute inset-0 h-full w-full object-cover z-0"
-        initial={{ scale: 1.1 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 1.5, ease: 'easeOut' }}
+      >
+        {canTrack ? (
+          <video
+            ref={videoRef}
+            src={tonyVideo}
+            poster={tonyPoster}
+            muted
+            playsInline
+            preload="auto"
+            tabIndex={-1}
+            onLoadedMetadata={(event) => {
+              // Start him facing forward, before the pointer has moved.
+              const el = event.currentTarget;
+              if (el.duration) el.currentTime = el.duration / 2;
+            }}
+            className={TONY_CLASS}
+          />
+        ) : (
+          <img
+            src={tonyPoster}
+            alt=""
+            loading="eager"
+            decoding="async"
+            fetchPriority="high"
+            className={TONY_CLASS}
+          />
+        )}
+      </motion.div>
+
+      {/*
+        Readability scrim. Solid black under the copy, fully transparent well
+        before it reaches Tony, so the text always sits on black and he is
+        never dimmed. The vertical pass only does anything on small screens,
+        where he sits behind the lower half of the copy.
+      */}
+      <div
+        className="absolute inset-0 z-10 hidden lg:block"
+        aria-hidden="true"
+        style={{
+          background:
+            'linear-gradient(90deg, #000 0%, #000 36%, rgba(0,0,0,0.78) 48%, rgba(0,0,0,0) 68%)',
+        }}
+      />
+      <div
+        className="absolute inset-0 z-10 lg:hidden"
+        aria-hidden="true"
+        style={{
+          background:
+            'linear-gradient(180deg, #000 0%, #000 52%, rgba(0,0,0,0.55) 68%, rgba(0,0,0,0) 84%)',
+        }}
       />
 
-      {/*
-        Two overlays instead of the previous even wash. The vertical one keeps
-        the old darkening; the horizontal one leaves the photo faintly readable
-        behind the copy on the left and takes the right-hand side to effectively
-        solid black, which is what lets Tony's black backdrop disappear.
-      */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/75 to-black/90 z-10" />
-      <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-black/85 to-black/98 z-10" />
-
-      {/* Content */}
-      <div className="relative z-20 w-full max-w-[85rem] mx-auto px-6 pt-32 pb-16 sm:pt-36 lg:pt-32 lg:pb-20">
-        <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-10 lg:gap-8 items-center">
-          {/* Copy */}
-          <motion.div
-            className="text-center lg:text-left"
+      {/* Copy */}
+      <div className="relative z-20 flex min-h-screen flex-col lg:justify-center">
+        <div className="w-full max-w-[85rem] mx-auto px-6 pt-28 sm:pt-32 lg:py-32">
+        <motion.div
+          className="text-left max-w-xl lg:max-w-[30rem] xl:max-w-[38rem]"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          <motion.h1
+            className="text-white font-bold text-4xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl leading-tight sm:leading-tight mb-6"
+            style={{ fontFamily: 'Poppins, sans-serif' }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <motion.h1
-              className="text-white font-bold text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl leading-tight sm:leading-tight mb-6"
-              style={{ fontFamily: 'Poppins, sans-serif' }}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              Bringing Technology to <span className="text-[#1C6CFE]">You</span>
-            </motion.h1>
+            Bringing Technology to <span className="text-[#1C6CFE]">You</span>
+          </motion.h1>
 
-            <motion.p
-              className="text-[#F5F5F5] max-w-2xl mx-auto lg:mx-0 text-lg sm:text-xl md:text-2xl leading-relaxed sm:leading-relaxed font-medium mb-10"
-              style={{ fontFamily: 'Poppins, sans-serif' }}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-            >
-              Making technology, artificial intelligence, and automation accessible, practical, and
-              impactful for individuals, businesses, and communities. Starting in Nigeria.
-            </motion.p>
+          <motion.p
+            className="text-[#F5F5F5] text-lg sm:text-xl md:text-2xl lg:text-lg xl:text-xl leading-relaxed sm:leading-relaxed font-medium mb-10"
+            style={{ fontFamily: 'Poppins, sans-serif' }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+          >
+            Making technology, artificial intelligence, and automation accessible, practical, and
+            impactful for individuals, businesses, and communities. Starting in Nigeria.
+          </motion.p>
 
-            {/* Stacked calls to action */}
-            <motion.div
-              className="flex flex-col gap-4 items-stretch sm:items-center lg:items-start max-w-sm mx-auto lg:mx-0"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-            >
-              <motion.button
-                type="button"
-                className="w-full sm:w-64 px-8 py-4 bg-[#1752c4] text-white font-semibold rounded-xl shadow-md hover:shadow-xl hover:bg-[#123f8f] transition-all duration-300 text-base sm:text-lg focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
-                style={{ fontFamily: 'Inter, sans-serif' }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => navigate('/ContactUsPage')}
-              >
-                Book a Free Consultation
-              </motion.button>
-
-              <motion.button
-                type="button"
-                className="w-full sm:w-64 px-8 py-4 border-2 border-white text-white font-semibold rounded-xl hover:bg-white hover:text-[#0F1729] transition-all duration-300 text-base sm:text-lg focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
-                style={{ fontFamily: 'Inter, sans-serif' }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => navigate('/Whoweare')}
-              >
-                Meet Our Team
-              </motion.button>
-            </motion.div>
-          </motion.div>
-
-          {/* Tony */}
+          {/* Stacked calls to action */}
           <motion.div
-            className="relative flex justify-center lg:justify-end"
-            initial={{ opacity: 0, scale: 0.94 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.9, delay: 0.35, ease: 'easeOut' }}
+            className="flex flex-col gap-4 items-start"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
           >
-            {canTrack ? (
-              <video
-                ref={videoRef}
-                src={tonyVideo}
-                poster={tonyPoster}
-                muted
-                playsInline
-                preload="auto"
-                aria-hidden="true"
-                tabIndex={-1}
-                onLoadedMetadata={(event) => {
-                  // Start him facing forward, before the pointer has moved.
-                  const el = event.currentTarget;
-                  if (el.duration) el.currentTime = el.duration / 2;
-                }}
-                className="relative w-[16rem] sm:w-[20rem] lg:w-full lg:max-w-[30rem] h-auto select-none"
-              />
-            ) : (
-              <img
-                src={tonyPoster}
-                alt=""
-                aria-hidden="true"
-                loading="eager"
-                decoding="async"
-                className="relative w-[16rem] sm:w-[20rem] lg:w-full lg:max-w-[30rem] h-auto select-none"
-              />
-            )}
+            <motion.button
+              type="button"
+              className="w-full sm:w-72 px-8 py-4 bg-[#1752c4] text-white font-semibold rounded-xl shadow-md hover:shadow-xl hover:bg-[#123f8f] transition-all duration-300 text-base sm:text-lg focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
+              style={{ fontFamily: 'Inter, sans-serif' }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => navigate('/ContactUsPage')}
+            >
+              Book a Free Consultation
+            </motion.button>
+
+            <motion.button
+              type="button"
+              className="w-full sm:w-72 px-8 py-4 border-2 border-white text-white font-semibold rounded-xl hover:bg-white hover:text-[#0F1729] transition-all duration-300 text-base sm:text-lg focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
+              style={{ fontFamily: 'Inter, sans-serif' }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => navigate('/Whoweare')}
+            >
+              Meet Our Team
+            </motion.button>
           </motion.div>
+        </motion.div>
         </div>
+
+        {/*
+          Reserves the bottom band Tony stands in on narrow screens, so the copy
+          is laid out above him rather than on top of him. mt-auto pins it to
+          the bottom; if the copy is tall the section simply grows past 100vh
+          and he stays on the bottom edge.
+        */}
+        <div className="mt-auto h-[34vh] sm:h-[38vh] w-full lg:hidden" aria-hidden="true" />
       </div>
     </section>
   );
