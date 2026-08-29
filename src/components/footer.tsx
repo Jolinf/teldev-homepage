@@ -22,7 +22,8 @@ const footerLinks = {
     { name: 'Home', path: '/' },
     { name: 'Who we are', path: '/Whoweare' },
     { name: 'What we do', path: '/Whatweoffer' },
-    { name: 'Blog', path: '/blog' },
+    // Blog is temporarily hidden from navigation; the route and page code remain in place.
+    // { name: 'Blog', path: '/blog' },
   ],
   services: [
     { name: 'Helpdesk Support', path: '/Helpdesk' },
@@ -30,6 +31,7 @@ const footerLinks = {
     { name: 'Application & website management', path: '/Webdev' },
     { name: 'Cloud Services', path: '/Cloud' },
     { name: 'IT Consulting', path: '/Itconsulting' },
+    { name: 'AI & Automation', path: '/AiAutomation' },
   ],
   info: [
     {

@@ -89,9 +89,10 @@ export default function ServicesHero() {
           At TELDEV Technologies, we offer more than just technical support. We deliver customized
           solutions designed to make technology work for you. Whether you're running a small
           business, managing a growing team, or flying solo, our services are built to meet your
-          needs, your pace, and your goals. From everyday IT support to long-term strategy and
-          systems that scale, we partner with you to simplify the complex, secure what matters, and
-          set you up for long-term success. Here's how we help you make technology your advantage.
+          needs, your pace, and your goals. From everyday IT support to cloud, system integration,
+          AI and automation, we partner with you to simplify the complex, remove the work that
+          should not exist, and set you up for long-term success. Here's how we help you make
+          technology your advantage.
         </motion.p>
       </motion.div>
     </motion.section>

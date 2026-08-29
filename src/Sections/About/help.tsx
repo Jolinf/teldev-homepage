@@ -83,9 +83,13 @@ export default function HowWeHelp() {
              you're running a small business, managing a growing team, or just need help navigating
              the digital world, we provide customized IT support and solutions designed to meet you
              where you are.`,
-            `From day-to-day troubleshooting and secure system setups to IT consulting, email
-             support, and digital transformation strategies, we equip you with the tools and
-             expertise you need to stay productive, protected, and ahead of the curve.`,
+            `From day-to-day troubleshooting and secure system setups to IT consulting, cloud,
+             system integration, automation and digital transformation strategies, we equip you
+             with the tools and expertise you need to stay productive, protected, and ahead of the
+             curve.`,
+            `We also believe access to technology is incomplete without the knowledge to use it, so
+             we explain what we build, train the people who will run it, and leave you able to
+             operate it without us.`,
             `We're not just here to fix problems. We're here to guide, empower, and grow with you.`,
           ].map((text, i) => (
             <motion.p

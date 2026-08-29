@@ -4,6 +4,7 @@ import Footer from '../components/footer';
 import SEO from '../components/SEO';
 import AboutHero from '../Sections/About/Hero';
 import Mission from '../Sections/About/mission';
+import Ambition from '../Sections/About/ambition';
 import CoreValues from '../Sections/About/corevalues';
 import Leaders from '../Sections/About/leaders';
 import OurStory from '../Sections/About/ourstory';
@@ -17,13 +18,14 @@ export default function WhoWeAre() {
     <>
       <SEO
         title="About TelDev Technologies"
-        description="Founded in 2021, TelDev Technologies builds custom IT support and software solutions for individuals, small businesses, and growing enterprises."
+        description="TelDev Technologies makes technology, AI and automation accessible, practical and impactful for individuals, businesses and communities — starting in Nigeria. Our mission, vision, strategic pillars and leadership."
         path="/whoweare"
       />
       <Navbar />
       <main ref={mainRef}>
         <AboutHero />
         <Mission />
+        <Ambition />
         <CoreValues />
         <Leaders />
         <OurStory />

@@ -89,9 +89,10 @@ export default function Mission() {
             className="text-[#E0E0E0] text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed"
             style={{ fontFamily: 'Inter, sans-serif' }}
           >
-            To be a trusted leader in technology support and innovation, empowering individuals and
-            businesses through accessible, customer-focused IT solutions that drive growth,
-            efficiency, and digital confidence.
+            To usher in a new era of technological advancement across Africa by making technology,
+            artificial intelligence, and automation accessible, practical, and impactful,
+            empowering every individual, business, and community to reach their full potential.
+            Our starting point is Nigeria.
           </motion.p>
         </motion.article>
 
@@ -121,10 +122,11 @@ export default function Mission() {
             className="text-[#E0E0E0] text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed"
             style={{ fontFamily: 'Inter, sans-serif' }}
           >
-            Our mission is to simplify technology for everyone by delivering reliable, personalized
-            IT support and solutions. We are dedicated to providing expert guidance, responsive
-            service, and innovative tools that help our clients navigate and thrive in a rapidly
-            evolving digital world.
+            TELDEV Technologies exists to make technology accessible, practical, and valuable for
+            everyone by transforming innovation into solutions that become a natural part of
+            everyday life. Through digital transformation, education, automation and emerging
+            technologies, we empower individuals, businesses, and communities to simplify work,
+            unlock opportunities, and create lasting value.
           </motion.p>
         </motion.article>
       </motion.div>

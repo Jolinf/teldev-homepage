@@ -15,7 +15,7 @@ export default function WhatWeOffer() {
     <>
       <SEO
         title="Our Services"
-        description="Helpdesk support, network and infrastructure, application and website management, cloud services, and IT consulting from TelDev Technologies."
+        description="Helpdesk support, network and infrastructure, application and website management, cloud services, IT consulting, and AI and automation from TelDev Technologies."
         path="/whatweoffer"
       />
       <Navbar />

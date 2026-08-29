@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Headset, Network, Code2, Cloud, Lightbulb, ArrowRight } from 'lucide-react';
+import { Headset, Network, Code2, Cloud, Lightbulb, Bot, ArrowRight } from 'lucide-react';
 
 const services = [
   {
@@ -42,6 +42,14 @@ const services = [
       "Make smarter tech decisions with expert advice that aligns your business goals with the right technology, whether that's integration, strategy, or cost-saving, guided toward results that matter.",
     link: '/ItConsulting',
     cta: 'Build a strategy',
+  },
+  {
+    title: 'AI & Automation',
+    icon: Bot,
+    description:
+      'Repetitive, rule-based work is where most businesses quietly lose their hours. We map the process, remove the steps that should not exist, and automate what survives, with AI applied where it genuinely reduces effort rather than because it is fashionable.',
+    link: '/AiAutomation',
+    cta: 'Explore automation',
   },
 ];
 

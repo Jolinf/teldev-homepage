@@ -9,6 +9,7 @@ const servicesLinks = [
   { path: '/WebDev', label: 'Applications and Website Management' },
   { path: '/Cloud', label: 'Cloud Services' },
   { path: '/ItConsulting', label: 'IT Consulting' },
+  { path: '/AiAutomation', label: 'AI & Automation' },
 ];
 
 const navVariants = {

@@ -12,6 +12,7 @@ const Network = lazy(() => import('./Pages/Network'));
 const Webdev = lazy(() => import('./Pages/Webdev'));
 const Cloud = lazy(() => import('./Pages/Cloud'));
 const ItConsulting = lazy(() => import('./Pages/ItConsulting'));
+const AiAutomation = lazy(() => import('./Pages/AiAutomation'));
 const ContactUsPage = lazy(() => import('./Pages/ContactUsPage'));
 const BlogPage = lazy(() => import('./Pages/BlogPage'));
 const BlogOpen = lazy(() => import('./Sections/Blog/open'));
@@ -39,6 +40,7 @@ function App() {
         <Route path="/Webdev" element={<Webdev />} />
         <Route path="/Cloud" element={<Cloud />} />
         <Route path="/ItConsulting" element={<ItConsulting />} />
+        <Route path="/AiAutomation" element={<AiAutomation />} />
         <Route path="/ContactUsPage" element={<ContactUsPage />} />
         <Route path="/BlogPage" element={<BlogPage />} />
         <Route path="/blog/:slug" element={<BlogOpen />} />

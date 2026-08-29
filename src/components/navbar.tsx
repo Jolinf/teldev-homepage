@@ -9,7 +9,8 @@ const navLinks = [
   { path: '/', label: 'Home' },
   { path: '/whoweare', label: 'Who we are' },
   { path: '/whatweoffer', label: 'What we do' },
-  { path: '/blogpage', label: 'Blog' },
+  // Blog is temporarily hidden from navigation; the route and page code remain in place.
+  // { path: '/blogpage', label: 'Blog' },
 ];
 
 const navVariants = {

@@ -47,8 +47,7 @@ export default function Homepagequote1() {
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          "Technology is nothing. What's important is that you have faith in people, that they're
-          basically good and smart, and if you give them tools, they'll do wonderful things with
+          "Technology should not be something that people struggle to reach. We bring it to
           them."
         </motion.blockquote>
 
@@ -72,7 +71,7 @@ export default function Homepagequote1() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.5 }}
           >
-            Steve Jobs
+            Joshua Ulinfun, CEO
           </motion.span>
         </motion.div>
       </motion.div>

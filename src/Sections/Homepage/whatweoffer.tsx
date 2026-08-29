@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Headset, Network, Code2, Cloud, Lightbulb, ArrowRight } from 'lucide-react';
+import { Headset, Network, Code2, Cloud, Lightbulb, Bot, ArrowRight } from 'lucide-react';
 
 const services = [
   {
@@ -44,6 +44,21 @@ const services = [
     link: '/ItConsulting',
     cta: 'Build a strategy',
   },
+  {
+    title: 'AI & Automation',
+    icon: Bot,
+    description:
+      'We optimize the process first, then automate only the parts that earn their keep. Every automation ships with a defined boundary, an owner, and a failure alert.',
+    items: [
+      'Automation opportunity assessment',
+      'Workflow & process automation',
+      'AI-assisted business systems',
+      'System integration & data flow',
+    ],
+    link: '/AiAutomation',
+    cta: 'Explore automation',
+    wide: true,
+  },
 ];
 
 const cardVariants = {
@@ -79,7 +94,7 @@ export default function WhatWeOffer() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
         >
-          Five services, all visible here. No clicking through a carousel to find the one you need.
+          Six services, all visible here. No clicking through a carousel to find the one you need.
         </motion.p>
 
         {/* Bento-style grid: the first service gets more visual weight, the
@@ -99,18 +114,20 @@ export default function WhatWeOffer() {
                 viewport={{ once: true, margin: '-80px' }}
                 className={`group relative rounded-2xl border border-white/10 bg-[#0F1729] p-6 sm:p-7 flex flex-col transition-colors duration-300 hover:border-[#1C6CFE]/60 ${
                   service.featured ? 'lg:col-span-2 lg:row-span-2 lg:p-9' : ''
-                }`}
+                } ${service.wide ? 'md:col-span-2 lg:col-span-4 lg:p-9' : ''}`}
               >
                 <div
                   className={`inline-flex items-center justify-center rounded-xl bg-[#1C6CFE]/10 text-[#1C6CFE] mb-5 ${
-                    service.featured ? 'w-14 h-14' : 'w-12 h-12'
+                    service.featured || service.wide ? 'w-14 h-14' : 'w-12 h-12'
                   }`}
                 >
-                  <Icon size={service.featured ? 28 : 24} aria-hidden="true" />
+                  <Icon size={service.featured || service.wide ? 28 : 24} aria-hidden="true" />
                 </div>
 
                 <h3
-                  className={`font-semibold mb-2 ${service.featured ? 'text-2xl sm:text-3xl' : 'text-xl'}`}
+                  className={`font-semibold mb-2 ${
+                    service.featured || service.wide ? 'text-2xl sm:text-3xl' : 'text-xl'
+                  }`}
                   style={{ fontFamily: 'Poppins, sans-serif' }}
                 >
                   {service.title}
@@ -120,7 +137,11 @@ export default function WhatWeOffer() {
                   {service.description}
                 </p>
 
-                <ul className="space-y-2 mb-6 text-sm sm:text-base">
+                <ul
+                  className={`space-y-2 mb-6 text-sm sm:text-base ${
+                    service.wide ? 'lg:grid lg:grid-cols-2 lg:gap-x-10 lg:gap-y-2 lg:space-y-0' : ''
+                  }`}
+                >
                   {service.items.map((item) => (
                     <li key={item} className="flex items-start gap-2 text-[#F5F5F5]">
                       <span className="text-[#1C6CFE] mt-1" aria-hidden="true">

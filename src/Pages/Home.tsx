@@ -5,7 +5,8 @@ import { useScrollContainer } from '../contexts/ScrollContext';
 import Hero from '../Sections/Homepage/Hero';
 import Homepagequote1 from '../Sections/Homepage/Homepage-quote1';
 import Homepagequote2 from '../Sections/Homepage/Homepage-quote2';
-import TeldevBlog from '../Sections/Homepage/TeldevBlog';
+// Blog section is temporarily removed from the homepage; the component remains in the codebase.
+// import TeldevBlog from '../Sections/Homepage/TeldevBlog';
 import WhatWeOffer from '../Sections/Homepage/whatweoffer';
 import WhyTeldev from '../Sections/Homepage/whyteldev';
 import Footer from '../components/footer';
@@ -16,8 +17,8 @@ export default function Home() {
   return (
     <>
       <SEO
-        title="IT Support, Helpdesk & Cloud Services"
-        description="TelDev Technologies delivers helpdesk support, network infrastructure, cloud services, custom software and IT consulting for small and growing businesses."
+        title="IT Support, Cloud, AI & Automation"
+        description="TelDev Technologies delivers helpdesk support, network infrastructure, cloud services, custom software, IT consulting and business automation for small and growing businesses in Nigeria."
         path="/"
       />
       <Navbar />
@@ -28,7 +29,7 @@ export default function Home() {
           <WhyTeldev />
           <Homepagequote2 />
           <WhatWeOffer />
-          <TeldevBlog />
+          {/* <TeldevBlog /> */}
           {/* <ContactSection /> */}
         </div>
 

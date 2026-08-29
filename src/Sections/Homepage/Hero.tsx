@@ -59,8 +59,8 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
         >
-          Delivering innovative software solutions, IT consulting, and cybersecurity to help your
-          business thrive in a digital world.
+          Making technology, artificial intelligence, and automation accessible, practical, and
+          impactful for individuals, businesses, and communities. Starting in Nigeria.
         </motion.p>
 
         {/* Call-to-Actions */}
