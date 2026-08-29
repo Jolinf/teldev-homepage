@@ -8,6 +8,7 @@ import Homepagequote2 from '../Sections/Homepage/Homepage-quote2';
 // Blog section is temporarily removed from the homepage; the component remains in the codebase.
 // import TeldevBlog from '../Sections/Homepage/TeldevBlog';
 import WhatWeOffer from '../Sections/Homepage/whatweoffer';
+import HomepageCTA from '../Sections/Homepage/cta';
 import WhyTeldev from '../Sections/Homepage/whyteldev';
 import Footer from '../components/footer';
 // import ContactSection from '../Sections/Homepage/contact';
@@ -29,6 +30,7 @@ export default function Home() {
           <WhyTeldev />
           <Homepagequote2 />
           <WhatWeOffer />
+          <HomepageCTA />
           {/* <TeldevBlog /> */}
           {/* <ContactSection /> */}
         </div>

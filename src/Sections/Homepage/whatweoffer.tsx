@@ -10,7 +10,6 @@ const services = [
     items: ['24/7 technical assistance', 'Network configuration', 'Software installation'],
     link: '/Helpdesk',
     cta: 'Get support',
-    featured: true,
   },
   {
     title: 'Network & Infrastructure',
@@ -47,8 +46,7 @@ const services = [
   {
     title: 'AI & Automation',
     icon: Bot,
-    description:
-      'We optimize the process first, then automate only the parts that earn their keep. Every automation ships with a defined boundary, an owner, and a failure alert.',
+    description: 'We optimize the process first, then automate only what earns its keep.',
     items: [
       'Automation opportunity assessment',
       'Workflow & process automation',
@@ -57,7 +55,6 @@ const services = [
     ],
     link: '/AiAutomation',
     cta: 'Explore automation',
-    wide: true,
   },
 ];
 
@@ -74,7 +71,7 @@ export default function WhatWeOffer() {
   return (
     <section
       aria-label="What We Offer"
-      className="what-we-offer-section box-border px-[6%] sm:px-6 md:px-12 py-20 mb-[5%] text-white bg-[#0A0A0A]"
+      className="what-we-offer-section box-border px-[6%] sm:px-6 md:px-12 pt-20 pb-14 text-white bg-[#0A0A0A]"
     >
       <div className="max-w-7xl mx-auto">
         <motion.h2
@@ -94,14 +91,16 @@ export default function WhatWeOffer() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
         >
-          Six services, all visible here. No clicking through a carousel to find the one you need.
+          Six services, from the day-to-day support that keeps you running to the automation that
+          removes the work entirely. Start where your problem is.
         </motion.p>
 
-        {/* Bento-style grid: the first service gets more visual weight, the
-            remaining four sit evenly below. All five are visible at once,
-            replacing the previous single-slide carousel that hid 4 of 5
-            services behind manual arrow clicks. */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+        {/* Even 3 x 2 grid. All six services carry the same visual weight and
+            are visible at once, replacing both the earlier single-slide
+            carousel (which hid 4 of 5 services behind arrow clicks) and the
+            bento layout, whose featured + full-width cards left the six cards
+            unevenly balanced. */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 items-stretch">
           {services.map((service, i) => {
             const Icon = service.icon;
             return (
@@ -112,22 +111,16 @@ export default function WhatWeOffer() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: '-80px' }}
-                className={`group relative rounded-2xl border border-white/10 bg-[#0F1729] p-6 sm:p-7 flex flex-col transition-colors duration-300 hover:border-[#1C6CFE]/60 ${
-                  service.featured ? 'lg:col-span-2 lg:row-span-2 lg:p-9' : ''
-                } ${service.wide ? 'md:col-span-2 lg:col-span-4 lg:p-9' : ''}`}
+                className="group relative h-full rounded-2xl border border-white/10 bg-[#0F1729] p-6 sm:p-7 flex flex-col transition-colors duration-300 hover:border-[#1C6CFE]/60"
               >
                 <div
-                  className={`inline-flex items-center justify-center rounded-xl bg-[#1C6CFE]/10 text-[#1C6CFE] mb-5 ${
-                    service.featured || service.wide ? 'w-14 h-14' : 'w-12 h-12'
-                  }`}
+                  className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-[#1C6CFE]/10 text-[#1C6CFE] mb-5"
                 >
-                  <Icon size={service.featured || service.wide ? 28 : 24} aria-hidden="true" />
+                  <Icon size={24} aria-hidden="true" />
                 </div>
 
                 <h3
-                  className={`font-semibold mb-2 ${
-                    service.featured || service.wide ? 'text-2xl sm:text-3xl' : 'text-xl'
-                  }`}
+                  className="text-xl font-semibold mb-2"
                   style={{ fontFamily: 'Poppins, sans-serif' }}
                 >
                   {service.title}
@@ -137,11 +130,7 @@ export default function WhatWeOffer() {
                   {service.description}
                 </p>
 
-                <ul
-                  className={`space-y-2 mb-6 text-sm sm:text-base ${
-                    service.wide ? 'lg:grid lg:grid-cols-2 lg:gap-x-10 lg:gap-y-2 lg:space-y-0' : ''
-                  }`}
-                >
+                <ul className="space-y-2 mb-6 text-sm sm:text-base">
                   {service.items.map((item) => (
                     <li key={item} className="flex items-start gap-2 text-[#F5F5F5]">
                       <span className="text-[#1C6CFE] mt-1" aria-hidden="true">
