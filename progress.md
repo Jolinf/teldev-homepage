@@ -101,13 +101,26 @@ data-backed (blog/work listing pages).
       checklist, env vars needed
 - [ ] `README.md` updated: run/build/add-blog-post/add-case-study/regenerate-tokens/deploy
 
-## Open questions (blocking full sign-off, not blocking build)
+## Decisions (confirmed with user, 2026-09-17)
 
-See AUDIT.md "Open questions for the user" — deploy target (Vercel vs GitHub Pages),
-Strapi live-or-legacy, `Server/` still needed, old→new route mapping for the four service
-sub-pages.
+- **Deploy target: Vercel.** `.github/workflows/*.yml` GitHub Pages deploy is being removed
+  as part of Phase 1 — Vercel is the only target going forward.
+- **Blog CMS: Strapi (`blog-cms/`) is legacy/unused.** Proceeding with MDX-in-repo as the
+  brief specifies. Existing MongoDB posts (via `api/posts.ts`) will be exported to MDX so
+  nothing published is lost; `blog-cms/` itself is left untouched in the repo (not deleted)
+  for the user to remove separately later.
+- **`Server/` is not needed.** Left untouched in the repo (not deleted); only
+  `api/contact.ts` (Microsoft Graph mailer) and `api/posts.ts` (Mongo export source) logic
+  carries forward into the Next.js app.
+
+## Open questions (not blocking build, still flag in PR)
+
+Old→new route mapping for the four service sub-pages (`/Helpdesk`, `/Network`,
+`/Webdev`, `/Cloud`, `/ItConsulting` → the four `services/[slug]` values) is a best guess in
+AUDIT.md — confirm against real copy while porting `src/Pages/*` content, not blocking.
 
 ## Session log
 
-- 2026-09-17: Branch created, audit written, progress tracker set up. Next: confirm
-  root-replacement approach for Phase 1 scaffold, then start scaffolding.
+- 2026-09-17: Branch created, audit written, progress tracker set up. User confirmed:
+  Vercel-only deploy (drop GH Pages workflow), MDX blog (Strapi legacy, export Mongo posts),
+  `Server/` not needed. Next: remove GH Pages workflow, scaffold Next.js at repo root.
