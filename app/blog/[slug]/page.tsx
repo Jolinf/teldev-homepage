@@ -6,6 +6,8 @@ import { Breadcrumbs } from '@/components/ui/breadcrumbs';
 import { Badge } from '@/components/ui/badge';
 import { ArticleProse, mdxComponents } from '@/components/article-prose';
 import { getAllBlogPosts, getBlogPost } from '@/lib/content';
+import { generateMetadata as generateSEOMetadata, generateJsonLdGraph, breadcrumbSchema, articleSchema } from '@/lib/seo';
+import { JsonLd } from '@/components/json-ld';
 
 export function generateStaticParams() {
   return getAllBlogPosts().map((post) => ({ slug: post.slug }));
@@ -19,27 +21,30 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { slug } = await params;
   const post = getBlogPost(slug);
   if (!post) return {};
-  return { title: post.frontmatter.title, description: post.frontmatter.excerpt };
+  return generateSEOMetadata({
+    title: post.frontmatter.title,
+    description: post.frontmatter.excerpt,
+    path: `/blog/${slug}`,
+    type: 'article',
+    publishedTime: post.frontmatter.date,
+  });
 }
 
 export default async function BlogPostPage({ params }: PageProps) {
   const { slug } = await params;
   const post = getBlogPost(slug);
   if (!post) notFound();
-
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
-    headline: post.frontmatter.title,
-    description: post.frontmatter.excerpt,
-    datePublished: post.frontmatter.date,
-    author: { '@type': 'Organization', name: 'TELDEV Technologies' },
-  };
+  const breadcrumbs = [{ label: 'Home', href: '/' }, { label: 'Blog', href: '/blog' }, { label: post.frontmatter.title }];
 
   return (
     <Section>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Blog', href: '/blog' }, { label: post.frontmatter.title }]} />
+      <JsonLd
+        graph={generateJsonLdGraph([
+          articleSchema({ title: post.frontmatter.title, description: post.frontmatter.excerpt, publishedTime: post.frontmatter.date }),
+          breadcrumbSchema(breadcrumbs),
+        ])}
+      />
+      <Breadcrumbs items={breadcrumbs} />
       <div className="ds-stack" style={{ gap: '12px', alignItems: 'flex-start' }}>
         <Badge tone="neutral">{post.frontmatter.category}</Badge>
         <h1 className="h1">{post.frontmatter.title}</h1>

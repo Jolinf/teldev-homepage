@@ -9,11 +9,16 @@ import { Pagination } from '@/components/ui/pagination';
 import { Reveal } from '@/components/reveal';
 import { EmptyState } from '@/components/empty-state';
 import { getAllBlogPosts } from '@/lib/content';
+import { generateMetadata as generateSEOMetadata, generateJsonLdGraph, breadcrumbSchema } from '@/lib/seo';
+import { JsonLd } from '@/components/json-ld';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = generateSEOMetadata({
   title: 'Blog',
   description: 'Practical advice on websites, IT, cloud and automation for Nigerian businesses.',
-};
+  path: '/blog',
+});
+
+const breadcrumbs = [{ label: 'Home', href: '/' }, { label: 'Blog' }];
 
 const PAGE_SIZE = 9;
 
@@ -32,8 +37,9 @@ export default async function BlogPage({ searchParams }: { searchParams: Promise
 
   return (
     <>
+      <JsonLd graph={generateJsonLdGraph([breadcrumbSchema(breadcrumbs)])} />
       <PageHero
-        breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Blog' }]}
+        breadcrumbs={breadcrumbs}
         title="Plain-English guides to"
         accent="business technology."
         lead="Practical advice on websites, IT, cloud and automation for Nigerian businesses."

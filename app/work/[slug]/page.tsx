@@ -6,6 +6,8 @@ import { Breadcrumbs } from '@/components/ui/breadcrumbs';
 import { Badge } from '@/components/ui/badge';
 import { ArticleProse, mdxComponents } from '@/components/article-prose';
 import { getAllWorkEntries, getWorkEntry } from '@/lib/content';
+import { generateMetadata as generateSEOMetadata, generateJsonLdGraph, breadcrumbSchema } from '@/lib/seo';
+import { JsonLd } from '@/components/json-ld';
 
 export function generateStaticParams() {
   return getAllWorkEntries().map((entry) => ({ slug: entry.slug }));
@@ -19,17 +21,19 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { slug } = await params;
   const entry = getWorkEntry(slug);
   if (!entry) return {};
-  return { title: entry.frontmatter.title, description: entry.frontmatter.summary };
+  return generateSEOMetadata({ title: entry.frontmatter.title, description: entry.frontmatter.summary, path: `/work/${slug}` });
 }
 
 export default async function WorkEntryPage({ params }: PageProps) {
   const { slug } = await params;
   const entry = getWorkEntry(slug);
   if (!entry) notFound();
+  const breadcrumbs = [{ label: 'Home', href: '/' }, { label: 'Work', href: '/work' }, { label: entry.frontmatter.title }];
 
   return (
     <Section>
-      <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Work', href: '/work' }, { label: entry.frontmatter.title }]} />
+      <JsonLd graph={generateJsonLdGraph([breadcrumbSchema(breadcrumbs)])} />
+      <Breadcrumbs items={breadcrumbs} />
       <div className="ds-stack" style={{ gap: '12px', alignItems: 'flex-start' }}>
         {entry.frontmatter.placeholder && <Badge tone="warning">Placeholder case study</Badge>}
         <h1 className="h1">{entry.frontmatter.title}</h1>

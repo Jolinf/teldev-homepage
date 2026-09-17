@@ -9,17 +9,24 @@ import { Section } from '@/components/section';
 import { Button } from '@/components/ui/button';
 import { Container } from '@/components/container';
 import { SERVICES, SERVICE_DETAILS } from '@/content/services';
+import { generateMetadata as generateSEOMetadata, generateJsonLdGraph, breadcrumbSchema } from '@/lib/seo';
+import { JsonLd } from '@/components/json-ld';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = generateSEOMetadata({
   title: 'Services',
-  description: "Websites, day-to-day IT, cloud and custom software for small and growing organisations in Nigeria. Tell us the problem; we'll tell you what it takes.",
-};
+  description:
+    "Websites, day-to-day IT, cloud and custom software for small and growing organisations in Nigeria. Tell us the problem; we'll tell you what it takes.",
+  path: '/services',
+});
+
+const breadcrumbs = [{ label: 'Home', href: '/' }, { label: 'Services' }];
 
 export default function ServicesPage() {
   return (
     <>
+      <JsonLd graph={generateJsonLdGraph([breadcrumbSchema(breadcrumbs)])} />
       <PageHero
-        breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Services' }]}
+        breadcrumbs={breadcrumbs}
         title="Four services,"
         accent="scoped plainly."
         lead="Websites, day-to-day IT, cloud and custom software for small and growing organisations in Nigeria. Tell us the problem; we'll tell you what it takes."

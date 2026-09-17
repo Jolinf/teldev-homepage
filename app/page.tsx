@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { JsonLd } from '@/components/json-ld';
 import { Section } from '@/components/section';
 import { SplitHero } from '@/components/split-hero';
 import { SectionHeader } from '@/components/section-header';
@@ -10,16 +11,20 @@ import { CTABanner } from '@/components/cta-banner';
 import { Reveal } from '@/components/reveal';
 import { SERVICES } from '@/content/services';
 import { TESTIMONIALS } from '@/content/testimonials';
+import { generateMetadata as generateSEOMetadata, generateJsonLdGraph, organizationSchema } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = generateSEOMetadata({
   title: 'Home',
   description:
     'TELDEV helps businesses, institutions and individuals understand, adopt and get real value from technology — starting in Nigeria.',
-};
+  path: '/',
+  keywords: ['IT support Lagos', 'website development Nigeria', 'Microsoft 365 setup', 'AI automation Nigeria'],
+});
 
 export default function HomePage() {
   return (
     <>
+      <JsonLd graph={generateJsonLdGraph([organizationSchema()])} />
       <SplitHero />
 
       <Section>

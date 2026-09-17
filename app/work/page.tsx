@@ -10,19 +10,25 @@ import { CTABanner } from '@/components/cta-banner';
 import { Reveal } from '@/components/reveal';
 import { getAllWorkEntries } from '@/lib/content';
 import { TESTIMONIALS } from '@/content/testimonials';
+import { generateMetadata as generateSEOMetadata, generateJsonLdGraph, breadcrumbSchema } from '@/lib/seo';
+import { JsonLd } from '@/components/json-ld';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = generateSEOMetadata({
   title: 'Work',
-  description: "The problem, what we did, and what changed — for businesses and institutions across Nigeria.",
-};
+  description: 'The problem, what we did, and what changed — for businesses and institutions across Nigeria.',
+  path: '/work',
+});
+
+const breadcrumbs = [{ label: 'Home', href: '/' }, { label: 'Work' }];
 
 export default function WorkPage() {
   const entries = getAllWorkEntries();
 
   return (
     <>
+      <JsonLd graph={generateJsonLdGraph([breadcrumbSchema(breadcrumbs)])} />
       <PageHero
-        breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Work' }]}
+        breadcrumbs={breadcrumbs}
         title="Work we've done,"
         accent="told plainly."
         lead="The problem, what we did, and what changed — for businesses and institutions across Nigeria."

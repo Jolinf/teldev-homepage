@@ -9,6 +9,8 @@ import { Icon } from '@/components/ui/icon';
 import { Button } from '@/components/ui/button';
 import { SERVICES, SERVICE_DETAILS, type ServiceSlug } from '@/content/services';
 import type { IconName } from '@/lib/icons';
+import { generateMetadata as generateSEOMetadata, generateJsonLdGraph, serviceSchema, breadcrumbSchema } from '@/lib/seo';
+import { JsonLd } from '@/components/json-ld';
 
 export function generateStaticParams() {
   return SERVICES.map((s) => ({ slug: s.slug }));
@@ -50,7 +52,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { slug } = await params;
   const detail = getDetail(slug);
   if (!detail) return {};
-  return { title: detail.title, description: detail.lead };
+  return generateSEOMetadata({ title: detail.title, description: detail.lead, path: `/services/${slug}` });
 }
 
 export default async function ServiceDetailPage({ params }: PageProps) {
@@ -65,11 +67,13 @@ export default async function ServiceDetailPage({ params }: PageProps) {
     { icon: 'sparkles', title: 'What we do', body: detail.what },
     { icon: 'check-circle', title: 'Outcomes', body: detail.outcomes },
   ];
+  const breadcrumbs = [{ label: 'Home', href: '/' }, { label: 'Services', href: '/services' }, { label: detail.title }];
 
   return (
     <>
+      <JsonLd graph={generateJsonLdGraph([serviceSchema({ name: detail.title, description: detail.lead }), breadcrumbSchema(breadcrumbs)])} />
       <PageHero
-        breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Services', href: '/services' }, { label: detail.title }]}
+        breadcrumbs={breadcrumbs}
         title={detail.title}
         lead={detail.lead}
         actions={

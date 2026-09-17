@@ -9,18 +9,24 @@ import { Timeline } from '@/components/timeline';
 import { TeamCard } from '@/components/team-card';
 import { Reveal } from '@/components/reveal';
 import { TEAM } from '@/content/team';
+import { generateMetadata as generateSEOMetadata, generateJsonLdGraph, breadcrumbSchema } from '@/lib/seo';
+import { JsonLd } from '@/components/json-ld';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = generateSEOMetadata({
   title: 'About',
   description:
     'We help businesses, institutions and individuals understand, adopt and get real value from technology — starting in Nigeria.',
-};
+  path: '/about',
+});
+
+const breadcrumbs = [{ label: 'Home', href: '/' }, { label: 'About' }];
 
 export default function AboutPage() {
   return (
     <>
+      <JsonLd graph={generateJsonLdGraph([breadcrumbSchema(breadcrumbs)])} />
       <PageHero
-        breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'About' }]}
+        breadcrumbs={breadcrumbs}
         title="Technology should be"
         accent="accessible to everyone."
         lead="We help businesses, institutions and individuals understand, adopt and get real value from technology — starting in Nigeria."

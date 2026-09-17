@@ -9,20 +9,26 @@ import { EventHighlight } from '@/components/event-highlight';
 import { CTABanner } from '@/components/cta-banner';
 import { Reveal } from '@/components/reveal';
 import { Button } from '@/components/ui/button';
+import { generateMetadata as generateSEOMetadata, generateJsonLdGraph, breadcrumbSchema } from '@/lib/seo';
+import { JsonLd } from '@/components/json-ld';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = generateSEOMetadata({
   title: 'Partnerships',
   description:
     'We work alongside universities, schools and event organisers to build digital skills and community impact across Nigeria.',
-};
+  path: '/partnerships',
+});
+
+const breadcrumbs = [{ label: 'Home', href: '/' }, { label: 'Partnerships' }];
 
 export default function PartnershipsPage() {
   const runCard = <FlowCard label="How a partnership runs" steps={['Proposal', 'Plan', 'Event']} />;
 
   return (
     <>
+      <JsonLd graph={generateJsonLdGraph([breadcrumbSchema(breadcrumbs)])} />
       <PageHero
-        breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Partnerships' }]}
+        breadcrumbs={breadcrumbs}
         title="Partner with us on"
         accent="technology education."
         lead="We work alongside universities, schools and event organisers to build digital skills and community impact across Nigeria."

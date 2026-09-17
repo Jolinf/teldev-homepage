@@ -21,6 +21,7 @@ const mono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://www.teldev.org'),
   title: {
     default: 'TELDEV Technologies',
     template: '%s · TELDEV Technologies',
