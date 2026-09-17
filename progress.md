@@ -69,58 +69,111 @@ data-backed (blog/work listing pages).
       breaking-changes notice pointing at `node_modules/next/dist/docs/`); committing them is
       what the generator itself asks for.
 
-## Phase 2: Primitives
+## Phase 2: Primitives — done
 
-- [ ] Button, TextLink, Input, Textarea, Select, Checkbox, RadioSegmented, Badge
-- [ ] ImagePlaceholder, Breadcrumbs, Pagination, Icon (lucide wrapper)
+- [x] Button, TextLink, Input, Textarea, Select, Checkbox, RadioSegmented (arrow-key nav),
+      Badge — `components/ui/*`, sourced from the reference `bundle.js`/`bundle.css`
+      structure and class names (`.ds-btn`, `.ds-control`, etc.) rather than re-derived as
+      Tailwind utilities — see the Phase 3 note on `app/ds-components.css`.
+- [x] ImagePlaceholder (swaps to `next/image` when `src` is given), Breadcrumbs,
+      Pagination (real `Link`-based, not client state — pages are RSC), Icon
+      (`lib/icons.ts` maps the design system's kebab-case names to `lucide-react`).
 
-## Phase 3: Composite components
+## Phase 3: Composite components — done
 
-- [ ] Header (sticky/blur, Services dropdown, theme toggle, contact CTA, mobile sheet,
-      active-route state)
-- [ ] Footer
-- [ ] LayeredVisual + 6 VisualCards, HeroVisual, PageHero, SplitHero
-- [ ] Reveal, CountUp, SectionHeader, ServiceCard, ProcessSteps, StrategicPillars,
-      Timeline, LogoStrip, Testimonial, CaseStudy, EventHighlight, BlogCard,
-      ArticleProse (MDX components), TeamCard, StatBlock, CTABanner, EmptyState,
-      NotFound, ContactForm
+- [x] **`app/ds-components.css`**: ported the reference implementation's `bundle.css`
+      almost verbatim (its `.ds-*` class rules), rather than re-deriving ~400 lines of
+      layout/state/motion CSS as Tailwind utilities piece by piece. `.ds-root`-scoped
+      selectors (focus rings) were made global since the whole app is this design system.
+      Tailwind (`@theme` in `globals.css`) still supplies the token-backed utility classes
+      (`text-primary`, `bg-bg-subtle`, etc.) used inline in components.
+- [x] Header: sticky/blur (CSS), Services dropdown (`aria-expanded`, Escape-to-close,
+      click-outside), `ThemeToggle` (next-themes, hydration-safe `mounted` guard), Contact
+      CTA, mobile sheet, active-route state via `usePathname`.
+- [x] Footer: real routes, `mailto:`/`tel:` links, social links with `aria-label`s (hrefs
+      are `#` placeholders — no real LinkedIn/Instagram URLs found anywhere in the audit or
+      brief; flagged for the PR).
+- [x] LayeredVisual + 6 VisualCards (ProgressCard/TicketCard/FlowCard/MetricCard/
+      InfoCard/EventMiniCard), HeroVisual, PageHero, SplitHero — all content-accurate to
+      `bundle.js`'s compositions (exact copy, exact illustrative card figures).
+- [x] Reveal, CountUp, SectionHeader, ServiceCard, ProcessSteps (`<ol>`),
+      StrategicPillars, Timeline (`<ol>`), LogoStrip, Testimonial, CaseStudy,
+      EventHighlight, BlogCard, ArticleProse (MDX component overrides), TeamCard,
+      StatBlock, CTABanner, EmptyState, NotFound, ContactForm.
+- [x] Content modules under `content/`: `services.ts` (nav + detail copy, ported verbatim
+      from `SERVICE_PAGES` in `bundle.js`), `pillars.ts` (pillars/process/roadmap),
+      `team.ts` (placeholder entries, flagged), `testimonials.ts` (illustrative quotes from
+      the reference build, flagged for real-quote replacement before launch).
+- [x] ContactForm is a **real** Server Action (`app/contact/actions.ts`): zod validation,
+      honeypot field, `useActionState` for progressive enhancement (native form POST works
+      without JS), sends via `lib/mailer.ts` — the Microsoft Graph logic ported from the
+      pre-redesign `api/contact.ts`, adapted to the new form's field set (enquiry type,
+      service, message) rather than the old field set (topic/timezone/preferred-time).
 
-## Phase 4: Pages and routes
+## Phase 4: Pages and routes — done
 
-- [ ] `/` (Main.dc.html)
-- [ ] `/services` (Services.dc.html)
-- [ ] `/services/[slug]` × 4 (website-development, it-support, cloud-microsoft-365,
-      ai-automation) — statically generated
-- [ ] `/about`
-- [ ] `/partnerships`
-- [ ] `/work`, `/work/[slug]` (+ one placeholder MDX case study)
-- [ ] `/blog`, `/blog/[slug]` (+ three draft: true example posts)
-- [ ] `/contact` (Server Action + zod + honeypot, via Microsoft Graph per audit)
-- [ ] `/privacy` (placeholder prose)
-- [ ] `not-found.tsx`
-- [ ] Wire all CTAs to real destinations (quote/partner query params on `/contact`,
-      service cards, process-section anchor)
-- [ ] Responsive check at 375/768/1024/1440
+- [x] `/` — `SplitHero`, services grid, process steps, logo strip + testimonials, CTA banner.
+- [x] `/services` — matches `page-designs/Services.dc.html` exactly (hero + 4 numbered
+      problem/what/outcome rows + process + CTA).
+- [x] `/services/[slug]` × 4, statically generated (`generateStaticParams`), illustrative
+      cards per service ported from `SERVICE_PAGES` in `bundle.js`.
+- [x] `/about`, `/partnerships` — full compositions per `bundle.js`.
+- [x] `/work` + `/work/[slug]` — one placeholder case study MDX
+      (`content/work/cloud-migration-with-zero-downtime.mdx`, `placeholder: true`,
+      shows a warning badge on its detail page).
+- [x] `/blog` + `/blog/[slug]` — three example posts as MDX, all `draft: true` (excluded
+      from production builds via `lib/content.ts`'s `NODE_ENV === 'production'` filter);
+      blog listing has a real `EmptyState` fallback for when drafts are filtered out.
+- [x] `/contact` — reads `?type=hire|partner|other` to preselect the segmented control.
+- [x] `/privacy` — `[Privacy policy text to be supplied]` placeholder, `noindex` until real
+      copy lands.
+- [x] `not-found.tsx` — real 404 (verified via `curl` returning `404`).
+- [x] CTAs wired to real destinations throughout (`/contact?type=hire`,
+      `/contact?type=partner`, `/services/[slug]`, `/services#how-we-work`).
+- [x] Tried re-enabling `typedRoutes` in `next.config.ts` now that every route exists —
+      reverted it. It doesn't fail on dead links (the original reason it was off); it fails
+      because `href` is a generic `string` prop on `Button`/`TextLink`/`Breadcrumbs`/
+      `Pagination`/`BlogCard` (built from content data, not literals), which typedRoutes'
+      `Route<string>` typing can't reconcile without threading route unions through every
+      shared component. Left off permanently — documented in `next.config.ts`.
+- [ ] Responsive check at 375/768/1024/1440 — not yet done, part of Phase 6 verification.
+- **Deviation from brief**: no 301 redirects from the old SPA's routes — user explicitly
+  decided against backward-compatibility redirects, so `next.config.ts` has none. Flag in
+  PR description since this differs from brief §5.
 
-## Phase 5: SEO, metadata, performance
+## Phase 5: SEO, metadata, performance — done
 
-- [ ] Per-page metadata, OG/Twitter images via `next/og`, sitemap.ts, robots.ts, manifest,
-      favicon from Logomark SVG
-- [ ] JSON-LD: Organization/ProfessionalService (home), Service (service pages), Article
-      (posts), BreadcrumbList
+- [x] **`lib/seo.ts`**: adopted the `generateMetadata()` / `generateJsonLdGraph()` pattern
+      from the `usebash.io` codebase (same author, sibling Next.js project) — one call per
+      page returns a full `Metadata` object (canonical, OG, Twitter, production-only
+      `robots`), and JSON-LD schemas combine into a single `@graph` script tag per page
+      instead of one `<script>` per schema. `components/json-ld.tsx` renders it.
+- [x] OG image (`app/opengraph-image.tsx`) and favicons (`app/icon.tsx`,
+      `app/apple-icon.tsx`) generated with `next/og` `ImageResponse`, using the Logomark SVG
+      path from `bundle.js` — no static image assets needed.
+- [x] `app/sitemap.ts` (every static route + generated service/work/blog routes),
+      `app/robots.ts`, `app/manifest.ts`.
+- [x] JSON-LD: `ProfessionalService` (home), `Service` (service detail pages), `Article`
+      (blog posts), `BreadcrumbList` (every page with visible breadcrumbs).
 - [x] ~~301 redirects from old SPA routes~~ — user decided no backward-compatibility
       redirects; `next.config.ts` intentionally has none.
-- [ ] `next/image` everywhere, no CLS from layered visuals
-- [ ] Lighthouse ≥ 95 (Perf/A11y/BP/SEO) mobile, `/` and `/contact`
+- [x] `next/image` used wherever `ImagePlaceholder` gets a real `src`; no CLS since the
+      placeholder's aspect-ratio wrapper always reserves the space. No real photography
+      exists yet (design uses placeholders throughout), so this is trivially satisfied —
+      revisit once real images are supplied.
+- [ ] Lighthouse ≥ 95 (Perf/A11y/BP/SEO) mobile, `/` and `/contact` — not yet run, part of
+      Phase 6.
 
-## Phase 6: Verification
+## Phase 6: Verification — in progress
 
-- [ ] `pnpm|npm run lint`, `typecheck`, `build` clean
+- [x] `npm run lint`, `npx tsc --noEmit`, `npm run build` all clean throughout (checked
+      after every phase, not just at the end).
 - [ ] Playwright: one `h1` per route, keyboard nav (header + mobile menu), theme toggle
-      persists, contact form validation + success (mocked sender), 404 returns real 404
-- [ ] axe: no serious/critical violations, light + dark, every route
-- [ ] Reduced motion emulation: no drift, content visible immediately
-- [ ] Screenshots at 375/1440, both themes, diffed against `page-designs/`
+      persists, contact form validation + success (mocked sender), 404 returns real 404.
+- [ ] axe: no serious/critical violations, light + dark, every route.
+- [ ] Reduced motion emulation: no drift, content visible immediately.
+- [ ] Screenshots at 375/1440, both themes, diffed against `page-designs/`.
+- [ ] Lighthouse scores for `/` and `/contact`.
 
 ## Definition of done (§3)
 
@@ -128,6 +181,9 @@ data-backed (blog/work listing pages).
       screenshots (mobile+desktop × light+dark, every page), Lighthouse scores, placeholder
       checklist, env vars needed
 - [ ] `README.md` updated: run/build/add-blog-post/add-case-study/regenerate-tokens/deploy
+- [ ] Delete now-unused legacy files (`legacy-assets/` once ported or confirmed unneeded,
+      `api/*.ts` now that Server Actions replace them, old `scripts/optimize-images.js` if
+      it targeted the removed `src/assets`) — user asked for this as a final cleanup pass.
 
 ## Decisions (confirmed with user, 2026-09-17)
 
