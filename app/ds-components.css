@@ -141,18 +141,22 @@ select.ds-control { appearance: none; padding-right: var(--space-8); }
 .ds-header__bar { display: flex; align-items: center; justify-content: space-between; min-height: 72px; gap: var(--space-6); }
 .ds-header__logo { display: flex; align-items: center; gap: var(--space-2); color: var(--text); text-decoration: none; font-weight: 800; }
 .ds-nav { display: none; align-items: center; gap: var(--space-6); }
-@media (min-width: 1024px) { .ds-nav { display: flex; } .ds-header__mobile-btn { display: none; } }
-.ds-nav a, .ds-nav button.ds-nav__link { color: var(--text); text-decoration: none; font-weight: 600; font-size: 14px; background: none; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; min-height: 44px; }
-.ds-nav a:hover, .ds-nav button.ds-nav__link:hover { color: var(--link); }
-.ds-nav a[aria-current="page"] { color: var(--link); }
+/* `> a` on purpose: a plain `.ds-nav a` also matches links nested inside
+   `.ds-dropdown__panel`, and at equal-ish specificity was overriding that panel's own
+   item layout (collapsing it to a centered inline-flex row instead of a full-width,
+   left-aligned column). */
+.ds-nav > a, .ds-nav button.ds-nav__link { color: var(--text); text-decoration: none; font-weight: 600; font-size: 14px; background: none; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; min-height: 44px; }
+.ds-nav > a:hover, .ds-nav button.ds-nav__link:hover { color: var(--link); }
+.ds-nav > a[aria-current="page"] { color: var(--link); }
 .ds-header__mobile-btn { width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; background: transparent; border: 1px solid var(--border); border-radius: var(--radius-md); color: var(--text); cursor: pointer; }
 .ds-theme-toggle { width: 44px; height: 44px; border-radius: var(--radius-full); border: 1px solid var(--border); background: var(--surface); color: var(--text); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; }
-/* padding-bottom + negative margin extends the wrapper's hoverable box to bridge the
-   gap down to the panel, so onMouseLeave doesn't fire while crossing that gap on the
-   way from the trigger to the panel (the wrapper's own box used to end at the button,
-   making the gap a dead zone that closed the menu before the pointer ever reached it). */
-.ds-dropdown { position: relative; padding-bottom: var(--space-2); margin-bottom: calc(-1 * var(--space-2)); }
-.ds-dropdown__panel { position: absolute; top: 100%; left: 0; min-width: 300px; background: var(--surface-raised); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); padding: var(--space-2); }
+/* Declared after the base rules above on purpose — at equal specificity, an earlier
+   plain `.ds-header__mobile-btn { display: inline-flex }` was winning over this media
+   query's `display: none` regardless of viewport width, since media-query wrapping
+   doesn't add specificity, only source order broke the tie. */
+@media (min-width: 1024px) { .ds-nav { display: flex; } .ds-header__mobile-btn { display: none; } }
+.ds-dropdown { position: relative; }
+.ds-dropdown__panel { position: absolute; top: calc(100% + var(--space-2)); left: 0; min-width: 300px; background: var(--surface-raised); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); padding: var(--space-2); }
 .ds-dropdown__item { display: flex; flex-direction: column; gap: 2px; padding: var(--space-3); border-radius: var(--radius-md); color: var(--text); text-decoration: none; }
 .ds-dropdown__item:hover { background: var(--bg-subtle); }
 .ds-dropdown__item strong { display: block; }

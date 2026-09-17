@@ -48,7 +48,10 @@ export function Header() {
         </Link>
 
         <nav className="ds-nav" aria-label="Primary">
-          <div className="ds-dropdown" ref={dropdownRef} onMouseLeave={() => setServicesOpen(false)}>
+          {/* Click-toggled, so it only closes on outside click or Escape (below) — no
+              onMouseLeave. Mixing click-to-open with hover-to-close is what caused the
+              menu to close itself while the pointer was still moving toward the panel. */}
+          <div className="ds-dropdown" ref={dropdownRef}>
             <button
               type="button"
               className="ds-nav__link"
