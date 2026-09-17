@@ -38,11 +38,6 @@
     ".next/dev/types/**/*.ts"
   ],
   "exclude": [
-    "node_modules",
-    "legacy-assets",
-    "teldev-redesign-kit",
-    "blog-cms",
-    "Server",
-    "api"
+    "node_modules"
   ]
 }

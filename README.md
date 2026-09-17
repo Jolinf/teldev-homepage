@@ -1,75 +1,130 @@
-# TelDev Homepage
+# TELDEV Technologies — website
 
-A modern, responsive website built with React, TypeScript, and Vite. This project showcases TelDev's services and company information with beautiful animations and a user-friendly interface.
+The TELDEV Technologies marketing site: Next.js App Router, TypeScript, Tailwind CSS v4.
+See `progress.md` for the full rebuild history and `docs/redesign/AUDIT.md` for the
+pre-migration audit of the previous (Vite/React Router) site.
 
-## Features
+The site was built against a design-system kit (`teldev-redesign-kit/`: tokens.json,
+component READMEs, page compositions, a reference implementation bundle) that has since
+been deleted once every token, component and page was ported — `app/ds-tokens.css` and
+`app/ds-components.css` are now the hand-maintained source of truth (see below).
 
-- Responsive design for all screen sizes
-- Smooth animations using Framer Motion
-- Modern UI with Tailwind CSS
-- Type-safe development with TypeScript
-- Client-side routing with React Router
-- Mobile-first approach
+## Stack
 
-## Tech Stack
+- Next.js 16 (App Router), TypeScript (strict)
+- Tailwind CSS v4, mapped onto the design tokens in `app/ds-tokens.css`
+- `next-themes` for light/dark (`data-theme` attribute, `defaultTheme="system"`)
+- MDX (`next-mdx-remote`) for blog posts and case studies, `gray-matter` for frontmatter
+- `react-hook-form`-free: the one form (contact) uses a Server Action + `zod` + `useActionState`
+- `lucide-react` icons, `@vercel/analytics` + `@vercel/speed-insights`
+- Playwright + `@axe-core/playwright` for e2e/accessibility tests
 
-- React 19
-- TypeScript
-- Vite
-- Tailwind CSS
-- Framer Motion
-- React Router DOM
-- Lucide Icons
-
-## Getting Started
-
-1. Clone the repository:
-
-```bash
-git clone https://github.com/yourusername/teldev-homepage.git
-cd teldev-homepage
-```
-
-2. Install dependencies:
+## Getting started
 
 ```bash
 npm install
-```
-
-3. Start the development server:
-
-```bash
 npm run dev
 ```
 
-4. Build for production:
+## Build
 
 ```bash
 npm run build
+npm run start   # serve the production build locally
 ```
 
-## Project Structure
+Other scripts: `npm run lint`, `npm run typecheck` (`tsc --noEmit`), `npm run test:e2e`
+(Playwright — see below).
 
+## Changing design tokens
+
+`app/ds-tokens.css` (colour/spacing/radius/shadow/opacity custom properties, `:root` for
+light and `[data-theme="dark"]` for dark, plus the `.h1`–`.h6`/`.body`/`.overline`
+type-style classes) used to be generated from `teldev-redesign-kit/design-system/tokens.json`
+by a `scripts/build-tokens.ts` compiler. Both the kit and the script were removed once
+every token was ported — the file is now hand-edited directly. Mobile type sizes (the
+`@media (max-width: 767px)` block at the bottom) were originally transcribed from a
+typography table in the kit's `token-reference.md`; there's no longer a second source to
+keep in sync with, since that table no longer exists in this repo.
+
+Everything else design-system-related — component layout, motion, state (`.ds-btn`,
+`.ds-card`, `.ds-lv`, etc.) — lives in `app/ds-components.css`, originally ported from the
+kit's reference implementation bundle and now likewise hand-maintained directly.
+
+## Adding a blog post
+
+Add an `.mdx` file to `content/blog/`:
+
+```mdx
+---
+title: "Post title"
+excerpt: "One sentence for the card and the meta description."
+category: "Guides"
+date: "2026-03-01"
+readTime: "4 min read"
+draft: false
+---
+
+Post body in Markdown/MDX. See `components/article-prose.tsx` for the styled elements
+available (headings, blockquote, code, tables, images).
 ```
-teldev-homepage/
-├── src/
-│   ├── components/     # Reusable UI components
-│   ├── Sections/       # Page sections and content
-│   ├── Pages/          # Route components
-│   ├── Styles/         # Global styles and CSS
-│   └── assets/         # Images and other static assets
-├── public/             # Public assets
-└── ...config files
+
+`draft: true` posts render in development but are excluded from production builds (see
+`lib/content.ts`) — that's how the three example posts shipped with this redesign work.
+Set `draft: false` (or remove the field) when a post is ready to publish.
+
+## Adding a case study
+
+Same pattern, in `content/work/`:
+
+```mdx
+---
+title: "Case study title"
+summary: "One sentence for the card."
+note: "A short scene description for the (currently placeholder) photograph."
+metricLabel: "Downtime during move"
+metricValue: "0 hrs"
+placeholder: false
+---
+
+Case study body in MDX.
 ```
 
-## Contributing
+`placeholder: true` shows a warning badge on the detail page — use it for illustrative
+entries the way `content/work/cloud-migration-with-zero-downtime.mdx` does until a real
+project replaces it.
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+## Testing
 
-## License
+```bash
+npm run test:e2e
+```
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+Runs the Playwright suite in `e2e/`: every route renders with exactly one `h1` and the
+404 route returns a real 404 (`routes.spec.ts`); header keyboard navigation, theme
+persistence, and contact-form validation (`navigation.spec.ts`); zero serious/critical
+axe violations on every route in both themes (`accessibility.spec.ts`); reduced-motion
+content is visible immediately with no drift (`reduced-motion.spec.ts`).
+
+The config launches system Chrome (`channel: 'chrome'`) rather than Playwright's own
+bundled browser — swap `playwright.config.ts` back to a plain `devices['Desktop Chrome']`
+project (and run `npx playwright install chromium`) if you'd rather use Playwright's own
+pinned browser build in an environment with normal internet access.
+
+## Deploying
+
+Vercel is the deploy target (see `docs/redesign/AUDIT.md` for why — a GitHub Pages
+workflow existed alongside it before this redesign and has been removed). Required
+environment variables:
+
+| Variable | Purpose |
+| --- | --- |
+| `GRAPH_TENANT_ID`, `GRAPH_CLIENT_ID`, `GRAPH_CLIENT_SECRET` | Microsoft Graph app registration the contact form sends mail through (`lib/mailer.ts`) |
+| `GRAPH_TIMEOUT_MS` | Optional, defaults to 30000 |
+| `CONTACT_SENDER_EMAIL` | Optional, defaults to `noreply@teldev.org` |
+| `CONTACT_RECIPIENT_EMAIL` | Optional, defaults to `contact@teldev.org` |
+| `CONTACT_EMAIL_LOGO_URL` | Optional absolute URL; falls back to a text logo in the notification email |
+
+`vercel.json` carries security headers and image cache headers; Next.js handles routing,
+`sitemap.xml`, `robots.txt`, and the manifest natively (see `app/sitemap.ts`,
+`app/robots.ts`, `app/manifest.ts`).
