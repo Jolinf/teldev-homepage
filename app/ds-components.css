@@ -115,7 +115,7 @@ select.ds-control { appearance: none; padding-right: var(--space-8); }
 /* ---------- Badge ---------- */
 .ds-badge { display: inline-flex; align-items: center; gap: var(--space-1); padding: 2px var(--space-3); border-radius: var(--radius-sm); font-weight: 600; }
 .ds-badge--neutral { background: var(--bg-subtle); color: var(--text); border: 1px solid var(--border); }
-.ds-badge--brand { background: color-mix(in srgb, var(--primary) 12%, transparent); color: var(--primary); }
+.ds-badge--brand { background: color-mix(in srgb, var(--primary) 12%, transparent); color: var(--link-hover); }
 .ds-badge--success { background: color-mix(in srgb, var(--success-solid) 14%, transparent); color: var(--success); }
 .ds-badge--warning { background: color-mix(in srgb, var(--warning-solid) 20%, transparent); color: var(--warning); }
 .ds-badge--danger { background: color-mix(in srgb, var(--danger-solid) 12%, transparent); color: var(--danger); }
@@ -143,8 +143,8 @@ select.ds-control { appearance: none; padding-right: var(--space-8); }
 .ds-nav { display: none; align-items: center; gap: var(--space-6); }
 @media (min-width: 1024px) { .ds-nav { display: flex; } .ds-header__mobile-btn { display: none; } }
 .ds-nav a, .ds-nav button.ds-nav__link { color: var(--text); text-decoration: none; font-weight: 600; font-size: 14px; background: none; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; min-height: 44px; }
-.ds-nav a:hover, .ds-nav button.ds-nav__link:hover { color: var(--primary); }
-.ds-nav a[aria-current="page"] { color: var(--primary); }
+.ds-nav a:hover, .ds-nav button.ds-nav__link:hover { color: var(--link); }
+.ds-nav a[aria-current="page"] { color: var(--link); }
 .ds-header__mobile-btn { width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; background: transparent; border: 1px solid var(--border); border-radius: var(--radius-md); color: var(--text); cursor: pointer; }
 .ds-theme-toggle { width: 44px; height: 44px; border-radius: var(--radius-full); border: 1px solid var(--border); background: var(--surface); color: var(--text); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; }
 .ds-dropdown { position: relative; }
@@ -160,20 +160,22 @@ select.ds-control { appearance: none; padding-right: var(--space-8); }
 /* ---------- Footer ---------- */
 .ds-footer { background: var(--bg-subtle); border-top: 1px solid var(--border); padding-block: var(--space-16); }
 .ds-footer a { color: var(--text-muted); text-decoration: none; }
-.ds-footer a:hover { color: var(--primary); }
+.ds-footer a:hover { color: var(--link); }
 .ds-footer__cols { display: grid; gap: var(--space-8); grid-template-columns: 1fr; }
 @media (min-width: 768px) { .ds-footer__cols { grid-template-columns: 2fr 1fr 1fr 1fr; } }
 .ds-footer__bottom { display: flex; flex-wrap: wrap; gap: var(--space-4); justify-content: space-between; align-items: center; border-top: 1px solid var(--border); margin-top: var(--space-10); padding-top: var(--space-6); color: var(--text-muted); }
 .ds-footer .ds-footer__cols a { font-size: 14px; line-height: 21px; }
 .ds-social { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: var(--radius-full); border: 1px solid var(--border); color: var(--text-muted); }
-.ds-social:hover { color: var(--primary); border-color: var(--primary); }
+.ds-social:hover { color: var(--link); border-color: var(--link); }
 
 /* ---------- Hero ---------- */
 .ds-hero { display: grid; gap: var(--space-6); grid-template-columns: 1fr; }
 @media (min-width: 768px) { .ds-hero { grid-template-columns: 1fr 1fr; } }
 .ds-hero__path { border-radius: var(--radius-xl); padding: var(--space-8); display: flex; flex-direction: column; gap: var(--space-4); border: 1px solid var(--border); }
 .ds-hero__path--primary { background: var(--primary); color: var(--primary-foreground); border-color: transparent; }
-.ds-hero__path--primary .ds-hero__eyebrow, .ds-hero__path--primary .ds-hero__desc { color: color-mix(in srgb, var(--primary-foreground) 82%, transparent); }
+/* Full-opacity primary-foreground: mixing it down (as the reference implementation did)
+   drops the already-tight 4.54:1 white-on-primary ratio below WCAG AA. */
+.ds-hero__path--primary .ds-hero__eyebrow, .ds-hero__path--primary .ds-hero__desc { color: var(--primary-foreground); }
 .ds-hero__path--secondary { background: var(--surface); color: var(--text); }
 .ds-hero__eyebrow { font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
 .ds-hero__path .ds-btn { align-self: flex-start; }
@@ -186,11 +188,15 @@ select.ds-control { appearance: none; padding-right: var(--space-8); }
 /* ---------- Section header ---------- */
 .ds-sectionhead { display: flex; flex-direction: column; gap: var(--space-3); max-width: 640px; }
 .ds-sectionhead--center { align-items: center; text-align: center; max-width: 720px; margin-inline: auto; }
-.ds-sectionhead .ds-overline { color: var(--primary); }
+/* 12px bold overline text needs the full 4.5:1 AA floor (too small to count as "large
+   text"), and --link (blue-600 light / blue-400 dark) measures 4.34:1 on --bg-subtle in
+   light mode — just under. --link-hover is darker in light mode (blue-700) and lighter in
+   dark mode (blue-300), clearing the floor in both. */
+.ds-sectionhead .ds-overline { color: var(--link-hover); }
 
 /* ---------- Service card / pillar / process ---------- */
 .ds-servicecard { display: flex; flex-direction: column; gap: var(--space-4); }
-.ds-icon-tile { width: 48px; height: 48px; border-radius: var(--radius-md); background: color-mix(in srgb, var(--primary) 10%, transparent); color: var(--primary); display: inline-flex; align-items: center; justify-content: center; }
+.ds-icon-tile { width: 48px; height: 48px; border-radius: var(--radius-md); background: color-mix(in srgb, var(--primary) 10%, transparent); color: var(--link); display: inline-flex; align-items: center; justify-content: center; }
 .ds-pillars { display: grid; gap: var(--space-6); grid-template-columns: repeat(1,1fr); }
 @media (min-width: 640px) { .ds-pillars { grid-template-columns: repeat(2,1fr); } }
 @media (min-width: 1024px) { .ds-pillars { grid-template-columns: repeat(5,1fr); } }
@@ -258,7 +264,7 @@ select.ds-control { appearance: none; padding-right: var(--space-8); }
 /* ---------- breadcrumbs / pagination / empty / 404 ---------- */
 .ds-breadcrumbs { display: flex; align-items: center; gap: var(--space-2); color: var(--text-muted); flex-wrap: wrap; }
 .ds-breadcrumbs a { color: var(--text-muted); text-decoration: none; }
-.ds-breadcrumbs a:hover { color: var(--primary); text-decoration: underline; }
+.ds-breadcrumbs a:hover { color: var(--link); text-decoration: underline; }
 .ds-breadcrumbs [aria-current] { color: var(--text); font-weight: 600; }
 .ds-pagination { display: flex; align-items: center; gap: var(--space-2); }
 .ds-pagination a, .ds-pagination button { width: 40px; height: 40px; border-radius: var(--radius-md); border: 1px solid var(--border); background: var(--surface); color: var(--text); cursor: pointer; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; text-decoration: none; }
