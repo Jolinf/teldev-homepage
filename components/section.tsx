@@ -1,18 +1,18 @@
 import type { ReactNode } from 'react';
+import { Container } from './container';
 
 interface SectionProps {
   children: ReactNode;
   className?: string;
   subtle?: boolean;
-  as?: 'section' | 'div';
+  gap?: boolean;
 }
 
-export function Section({ children, className = '', subtle = false, as: As = 'section' }: SectionProps) {
+/** Matches the reference `Section` composition: a `.ds-section` with a stacked `.ds-container`. */
+export function Section({ children, className = '', subtle = false, gap = true }: SectionProps) {
   return (
-    <As
-      className={`py-16 md:py-20 lg:py-32 ${subtle ? 'bg-bg-subtle' : ''} ${className}`}
-    >
-      {children}
-    </As>
+    <section className={`ds-section ${subtle ? 'ds-section--subtle' : ''} ${className}`}>
+      <Container className={gap ? 'ds-stack ds-section-gap' : ''}>{children}</Container>
+    </section>
   );
 }
