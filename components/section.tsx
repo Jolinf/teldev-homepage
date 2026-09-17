@@ -6,12 +6,13 @@ interface SectionProps {
   className?: string;
   subtle?: boolean;
   gap?: boolean;
+  id?: string;
 }
 
 /** Matches the reference `Section` composition: a `.ds-section` with a stacked `.ds-container`. */
-export function Section({ children, className = '', subtle = false, gap = true }: SectionProps) {
+export function Section({ children, className = '', subtle = false, gap = true, id }: SectionProps) {
   return (
-    <section className={`ds-section ${subtle ? 'ds-section--subtle' : ''} ${className}`}>
+    <section id={id} className={`ds-section ${subtle ? 'ds-section--subtle' : ''} ${className}`}>
       <Container className={gap ? 'ds-stack ds-section-gap' : ''}>{children}</Container>
     </section>
   );

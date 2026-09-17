@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Plus_Jakarta_Sans, IBM_Plex_Mono } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import NextTopLoader from 'nextjs-toploader';
 import { ThemeProvider } from './theme-provider';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
@@ -31,6 +32,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${sans.variable} ${mono.variable}`}>
+        <NextTopLoader color="#1C6CFE" showSpinner={false} />
         <ThemeProvider>
           <a href="#main" className="skip-link">
             Skip to content
