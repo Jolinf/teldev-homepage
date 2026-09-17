@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+  <link rel="stylesheet" href="teldev-site.css">
+  <link rel="stylesheet" href="ds/teldev/components/bundle.css">
+  <script src="ds/teldev/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500&display=swap">
+  <style>
+    body { margin: 0; }
+    a { color: #1c6cfe; } a:hover { color: #0b53e5; }
+  </style>
+</helmet>
+<div class="ds-root" style="width: 1440px; height: 4200px; display: flex; flex-direction: column; background: #f9fafb;">
+  <x-import component-from-global-scope="TELDEV.Header"></x-import>
+
+  <section class="ds-section ds-hero-section" style="background: #ffffff;">
+    <div class="ds-container" style="display: flex; flex-direction: column; gap: 56px;">
+      <div class="ds-hero-top">
+        <div class="ds-anim-in" style="display: flex; flex-direction: column; gap: 20px;">
+          <h1 class="display">Bringing technology <span class="ds-accent-text">to you.</span></h1>
+          <p class="lead" style="color: #555d6d; max-width: 540px;">TELDEV helps businesses, institutions and individuals understand, adopt and get real value from technology — starting in Nigeria, with an ambition across Africa.</p>
+        </div>
+        <x-import component-from-global-scope="TELDEV.HeroVisual"></x-import>
+      </div>
+      <div class="ds-hero">
+        <div class="ds-hero__path ds-hero__path--primary">
+          <span class="ds-hero__eyebrow small">For businesses</span>
+          <h2 class="h3">Hire us</h2>
+          <p class="body ds-hero__desc">Website development, IT support, cloud setup or custom software — tell us the problem and we'll tell you plainly how we'd solve it.</p>
+          <x-import component-from-global-scope="TELDEV.Button" variant="secondary" icon="arrow-right">Request a quote</x-import>
+        </div>
+        <div class="ds-hero__path ds-hero__path--secondary">
+          <span class="ds-hero__eyebrow small" style="color: #555d6d;">For sponsors &amp; institutions</span>
+          <h2 class="h3">Partner with us</h2>
+          <p class="body ds-hero__desc" style="color: #555d6d;">We work alongside universities, schools and event organisers on technology education and community impact across Nigeria.</p>
+          <x-import component-from-global-scope="TELDEV.Button" variant="primary" icon="arrow-right">Start a partnership</x-import>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ds-section" style="background: #f9fafb;">
+    <div class="ds-container" style="display: flex; flex-direction: column; gap: 40px;">
+      <div class="ds-sectionhead">
+        <span class="overline ds-overline">What we do · Hire us</span>
+        <h2 class="h2">Four ways we help</h2>
+        <p class="lead" style="color: #555d6d;">Live, paid services — not a roadmap.</p>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px;">
+        <x-import component-from-global-scope="TELDEV.ServiceCard" icon="building" title="Website development" description="Marketing sites and web apps your customers can actually use." style="display: block; height: 100%;"></x-import>
+        <x-import component-from-global-scope="TELDEV.ServiceCard" icon="server" title="IT support, helpdesk &amp; networking" description="A helpdesk your team can reach, and networks set up properly." style="display: block; height: 100%;"></x-import>
+        <x-import component-from-global-scope="TELDEV.ServiceCard" icon="cloud" title="Cloud &amp; Microsoft 365 setup" description="Mail, files and accounts moved and configured with confidence." style="display: block; height: 100%;"></x-import>
+        <x-import component-from-global-scope="TELDEV.ServiceCard" icon="sparkles" title="AI, automation &amp; custom software" description="Purpose-built tools, with the repetitive steps automated." style="display: block; height: 100%;"></x-import>
+      </div>
+    </div>
+  </section>
+
+  <section class="ds-section" style="background: #ffffff;">
+    <div class="ds-container" style="display: flex; flex-direction: column; gap: 40px;">
+      <div class="ds-sectionhead">
+        <span class="overline ds-overline">How we work</span>
+        <h2 class="h2">Plain steps, no black box</h2>
+        <p class="lead" style="color: #555d6d;">The same four steps whether you hire us or partner with us.</p>
+      </div>
+      <x-import component-from-global-scope="TELDEV.ProcessSteps"></x-import>
+    </div>
+  </section>
+
+  <section class="ds-section" style="background: #f9fafb;">
+    <div class="ds-container" style="display: flex; flex-direction: column; gap: 40px;">
+      <div class="ds-sectionhead">
+        <span class="overline ds-overline">Trusted by</span>
+        <h2 class="h2">Organisations we work with</h2>
+      </div>
+      <x-import component-from-global-scope="TELDEV.LogoStrip" names="{{logos}}"></x-import>
+      <div class="ds-two-col">
+        <x-import component-from-global-scope="TELDEV.Testimonial" quote="[A two-sentence quote from a real client, used with permission]" name="[Client name]" role="[Role, organisation]"></x-import>
+        <x-import component-from-global-scope="TELDEV.Testimonial" quote="[A second client quote — ideally from a partner institution]" name="[Client name]" role="[Role, organisation]"></x-import>
+      </div>
+    </div>
+  </section>
+
+  <section class="ds-section" style="background: #ffffff;">
+    <div class="ds-container">
+      <x-import component-from-global-scope="TELDEV.CTABanner" heading="Ready to bring technology to your business?" body="Tell us what you're trying to do — we'll tell you plainly whether we can help." cta="Request a quote"></x-import>
+    </div>
+  </section>
+
+  <x-import component-from-global-scope="TELDEV.Footer"></x-import>
+</div>
+</x-dc>
+<script data-dc-script data-props='{"$preview":{"width":1440,"height":4200}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      logos: ["University of Lagos", "NAMS", "[Client logo 1]", "[Client logo 2]", "[Client logo 3]"]
+    };
+  }
+}
+</script>
+</body>
+</html>

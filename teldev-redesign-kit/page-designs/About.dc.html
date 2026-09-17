@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+  <link rel="stylesheet" href="teldev-site.css">
+  <link rel="stylesheet" href="ds/teldev/components/bundle.css">
+  <script src="ds/teldev/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500&display=swap">
+  <style>
+    body { margin: 0; }
+    a { color: #1c6cfe; } a:hover { color: #0b53e5; }
+  </style>
+</helmet>
+<div class="ds-root" style="width: 1440px; height: 3800px; display: flex; flex-direction: column; background: #f9fafb;">
+  <x-import component-from-global-scope="TELDEV.Header"></x-import>
+
+  <section class="ds-section ds-hero-section" style="background: #ffffff;">
+    <div class="ds-container ds-hero-top">
+      <div class="ds-anim-in" style="display: flex; flex-direction: column; gap: 20px; align-items: flex-start;">
+        <x-import component-from-global-scope="TELDEV.Breadcrumbs" items="{{crumbs}}"></x-import>
+        <h1 class="h1">Technology should be <span class="ds-accent-text">accessible to everyone.</span></h1>
+        <p class="lead" style="color: #555d6d; max-width: 540px;">We help businesses, institutions and individuals understand, adopt and get real value from technology — starting in Nigeria.</p>
+      </div>
+      <x-import component-from-global-scope="TELDEV.LayeredVisual" photo="{{photo}}" cards="{{cards}}"></x-import>
+    </div>
+  </section>
+
+  <section class="ds-section" style="background: #f9fafb;">
+    <div class="ds-container" style="display: flex; flex-direction: column; gap: 40px;">
+      <div class="ds-sectionhead">
+        <span class="overline ds-overline">What we believe</span>
+        <h2 class="h2">Five pillars behind the work</h2>
+      </div>
+      <x-import component-from-global-scope="TELDEV.StrategicPillars"></x-import>
+    </div>
+  </section>
+
+  <section class="ds-section" style="background: #ffffff;">
+    <div class="ds-container ds-two-col ds-two-col--start">
+      <div class="ds-sectionhead">
+        <span class="overline ds-overline">Roadmap</span>
+        <h2 class="h2">Nigeria first, then Africa</h2>
+        <p class="lead" style="color: #555d6d;">Where TELDEV is today, and where it's going.</p>
+      </div>
+      <x-import component-from-global-scope="TELDEV.Timeline"></x-import>
+    </div>
+  </section>
+
+  <section class="ds-section" style="background: #f9fafb;">
+    <div class="ds-container" style="display: flex; flex-direction: column; gap: 40px;">
+      <div class="ds-sectionhead">
+        <span class="overline ds-overline">Team</span>
+        <h2 class="h2">The people you'll work with</h2>
+      </div>
+      <div class="ds-team-grid">
+        <x-import component-from-global-scope="TELDEV.TeamCard" name="[Founder name]" role="Co-Founder" bio="[One or two sentences of real background]" note="Candid portrait, natural light"></x-import>
+        <x-import component-from-global-scope="TELDEV.TeamCard" name="[Founder name]" role="Co-Founder" bio="[One or two sentences of real background]" note="Candid portrait, natural light"></x-import>
+      </div>
+    </div>
+  </section>
+
+  <x-import component-from-global-scope="TELDEV.Footer"></x-import>
+</div>
+</x-dc>
+<script data-dc-script data-props='{"$preview":{"width":1440,"height":3800}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const h = window.React.createElement, T = window.TELDEV || {};
+    return {
+      crumbs: [{ label: "Home", href: "#" }, { label: "About" }],
+      photo: { label: "Team photograph", note: "The TELDEV team together at the Lagos office, candid, natural light." },
+      cards: T.MetricCard ? [
+        { pos: "tl", width: "230px", content: h(T.MetricCard, { icon: "building", label: "Services live today", value: "4", sub: "Web · IT · Cloud · AI" }) },
+        { pos: "br", width: "290px", content: h(T.FlowCard, { label: "Where we're heading", steps: ["Nigeria", "West Africa", "Africa"], doneIndex: 0 }) },
+        { pos: "bl", content: h(T.InfoCard, { icon: "map-pin", title: "Based in Lagos", sub: "Working across Nigeria" }) }
+      ] : []
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+  <link rel="stylesheet" href="teldev-site.css">
+  <link rel="stylesheet" href="ds/teldev/components/bundle.css">
+  <script src="ds/teldev/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500&display=swap">
+  <style>
+    body { margin: 0; }
+    a { color: #1c6cfe; } a:hover { color: #0b53e5; }
+  </style>
+</helmet>
+<div class="ds-root" style="width: 1440px; height: 2700px; display: flex; flex-direction: column; background: #f9fafb;">
+  <x-import component-from-global-scope="TELDEV.Header"></x-import>
+
+  <section class="ds-section ds-hero-section" style="background: #ffffff;">
+    <div class="ds-container ds-hero-top">
+      <div class="ds-anim-in" style="display: flex; flex-direction: column; gap: 20px; align-items: flex-start;">
+        <x-import component-from-global-scope="TELDEV.Breadcrumbs" items="{{crumbs}}"></x-import>
+        <h1 class="h1">Plain-English guides to <span class="ds-accent-text">business technology.</span></h1>
+        <p class="lead" style="color: #555d6d; max-width: 540px;">Practical advice on websites, IT, cloud and automation for Nigerian businesses.</p>
+      </div>
+      <x-import component-from-global-scope="TELDEV.LayeredVisual" photo="{{photo}}" cards="{{cards}}"></x-import>
+    </div>
+  </section>
+
+  <section class="ds-section" style="background: #f9fafb;">
+    <div class="ds-container" style="display: flex; flex-direction: column; gap: 40px;">
+      <div class="ds-sectionhead">
+        <span class="overline ds-overline">Latest</span>
+        <h2 class="h2">Recent articles</h2>
+      </div>
+      <div class="ds-blog-grid">
+        <x-import component-from-global-scope="TELDEV.BlogCard" ratio="4x3" category="Guides" title="Five signs your business is ready for Microsoft 365" excerpt="What to check before you move your team's mail and files to the cloud." date="[Date] · 4 min read"></x-import>
+        <x-import component-from-global-scope="TELDEV.BlogCard" ratio="4x3" category="Company news" title="What our UNILAG partnership covers" excerpt="A short note on the programme and who it's for." date="[Date] · 2 min read"></x-import>
+        <x-import component-from-global-scope="TELDEV.BlogCard" ratio="4x3" category="IT support" title="A simple backup plan for a small office" excerpt="Three copies, two places, one tested restore." date="[Date] · 5 min read"></x-import>
+      </div>
+      <x-import component-from-global-scope="TELDEV.Pagination" page="{{one}}" count="{{three}}"></x-import>
+    </div>
+  </section>
+
+  <x-import component-from-global-scope="TELDEV.Footer"></x-import>
+</div>
+</x-dc>
+<script data-dc-script data-props='{"$preview":{"width":1440,"height":2700}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const h = window.React.createElement, T = window.TELDEV || {};
+    return {
+      one: 1,
+      three: 3,
+      crumbs: [{ label: "Home", href: "#" }, { label: "Blog" }],
+      photo: { ratio: "16x9", label: "Featured article image", note: "Photo for the featured guide." },
+      cards: T.TicketCard ? [
+        { pos: "bl", width: "300px", content: h(T.TicketCard, { code: "Featured · 4 min read", status: "Guides", tone: "brand", statusIcon: "info", title: "Five signs your business is ready for Microsoft 365", sub: "What to check before you move mail and files" }) }
+      ] : []
+    };
+  }
+}
+</script>
+</body>
+</html>

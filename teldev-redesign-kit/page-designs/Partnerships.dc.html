@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+  <link rel="stylesheet" href="teldev-site.css">
+  <link rel="stylesheet" href="ds/teldev/components/bundle.css">
+  <script src="ds/teldev/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500&display=swap">
+  <style>
+    body { margin: 0; }
+    a { color: #1c6cfe; } a:hover { color: #0b53e5; }
+  </style>
+</helmet>
+<div class="ds-root" style="width: 1440px; height: 3400px; display: flex; flex-direction: column; background: #f9fafb;">
+  <x-import component-from-global-scope="TELDEV.Header"></x-import>
+
+  <section class="ds-section ds-hero-section" style="background: #ffffff;">
+    <div class="ds-container ds-hero-top">
+      <div class="ds-anim-in" style="display: flex; flex-direction: column; gap: 20px; align-items: flex-start;">
+        <x-import component-from-global-scope="TELDEV.Breadcrumbs" items="{{crumbs}}"></x-import>
+        <h1 class="h1">Partner with us on <span class="ds-accent-text">technology education.</span></h1>
+        <p class="lead" style="color: #555d6d; max-width: 540px;">We work alongside universities, schools and event organisers to build digital skills and community impact across Nigeria.</p>
+        <div style="display: flex; gap: 12px; margin-top: 8px;">
+          <x-import component-from-global-scope="TELDEV.Button" variant="primary" size="lg" icon="arrow-right">Start a partnership</x-import>
+        </div>
+      </div>
+      <x-import component-from-global-scope="TELDEV.LayeredVisual" photo="{{photo}}" cards="{{cards}}"></x-import>
+    </div>
+  </section>
+
+  <section class="ds-section" style="background: #f9fafb;">
+    <div class="ds-container" style="display: flex; flex-direction: column; gap: 40px;">
+      <div class="ds-sectionhead">
+        <span class="overline ds-overline">Partners</span>
+        <h2 class="h2">Who we've worked with</h2>
+      </div>
+      <x-import component-from-global-scope="TELDEV.LogoStrip" names="{{logos}}"></x-import>
+    </div>
+  </section>
+
+  <section class="ds-section" style="background: #ffffff;">
+    <div class="ds-container" style="display: flex; flex-direction: column; gap: 40px;">
+      <div class="ds-sectionhead">
+        <span class="overline ds-overline">Highlights</span>
+        <h2 class="h2">Partnerships and events</h2>
+      </div>
+      <div class="ds-two-col">
+        <x-import component-from-global-scope="TELDEV.EventHighlight" media="{{yes}}" date="{{namsDate}}" tag="Partnership" title="NAMS 7th Annual Convention" description="TELDEV supported the technology track alongside the University of Lagos." note="Students at the technology track session, candid, real venue."></x-import>
+        <x-import component-from-global-scope="TELDEV.EventHighlight" media="{{yes}}" date="{{unilagDate}}" tag="Sponsorship" title="University of Lagos sponsorship" description="Supporting student technology projects at UNILAG." note="Students presenting projects on campus, natural light."></x-import>
+      </div>
+    </div>
+  </section>
+
+  <section class="ds-section" style="background: #f9fafb;">
+    <div class="ds-container">
+      <x-import component-from-global-scope="TELDEV.CTABanner" heading="Planning an event or programme?" body="Tell us about your audience and goals — we'll suggest how TELDEV can take part." cta="Start a partnership" card="{{runCard}}"></x-import>
+    </div>
+  </section>
+
+  <x-import component-from-global-scope="TELDEV.Footer"></x-import>
+</div>
+</x-dc>
+<script data-dc-script data-props='{"$preview":{"width":1440,"height":3400}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const h = window.React.createElement, T = window.TELDEV || {};
+    const ok = !!T.FlowCard;
+    return {
+      yes: true,
+      crumbs: [{ label: "Home", href: "#" }, { label: "Partnerships" }],
+      logos: ["University of Lagos", "NAMS", "[Partner logo 1]", "[Partner logo 2]"],
+      namsDate: { mon: "Mar", day: "14" },
+      unilagDate: { mon: "Sep", day: "02" },
+      photo: { label: "Event photograph", note: "Students at a technology session run with TELDEV, candid, real venue." },
+      runCard: ok ? h(T.FlowCard, { label: "How a partnership runs", steps: ["Proposal", "Plan", "Event"] }) : null,
+      cards: ok ? [
+        { pos: "tl", width: "270px", content: h(T.EventMiniCard, { mon: "Mar", day: "14", title: "NAMS 7th Annual Convention", sub: "Technology track" }) },
+        { pos: "br", width: "270px", content: h(T.EventMiniCard, { mon: "Sep", day: "02", title: "University of Lagos", sub: "Sponsorship" }) },
+        { pos: "bl", content: h(T.FlowCard, { label: "How a partnership runs", steps: ["Proposal", "Plan", "Event"] }) }
+      ] : []
+    };
+  }
+}
+</script>
+</body>
+</html>
