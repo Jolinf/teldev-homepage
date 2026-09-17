@@ -10,7 +10,9 @@ export function ServiceCard({ icon, title, description, href }: { icon: IconName
       </div>
       <h3 className="h5">{title}</h3>
       <p className="small text-text-muted">{description}</p>
-      <TextLink href={href}>Learn more →</TextLink>
+      <TextLink href={href} ariaLabel={`Learn more about ${title}`}>
+        Learn more →
+      </TextLink>
     </div>
   );
 }
