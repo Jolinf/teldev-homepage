@@ -14,7 +14,7 @@ export function EmptyState({ icon = 'inbox', title, description, action, actionH
   return (
     <div className="ds-emptystate">
       <Icon name={icon} size={40} className="ds-emptystate__icon" />
-      <h4 className="h5">{title}</h4>
+      <h3 className="h5">{title}</h3>
       <p className="small text-text-muted" style={{ maxWidth: '320px' }}>
         {description}
       </p>

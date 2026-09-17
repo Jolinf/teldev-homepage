@@ -9,7 +9,7 @@ export function ProcessSteps() {
           <span className="ds-process__num" aria-hidden="true">
             {i + 1}
           </span>
-          <h4 className="h6">{s.title}</h4>
+          <h3 className="h6">{s.title}</h3>
           <p className="small text-text-muted" style={{ marginTop: '6px' }}>
             {s.description}
           </p>

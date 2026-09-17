@@ -12,7 +12,7 @@ export function Timeline() {
           className={`ds-timeline__item ${it.done ? 'ds-timeline__item--done' : ''}`}
         >
           <span className="ds-timeline__dot" />
-          <h4 className="h6">{it.title}</h4>
+          <h3 className="h6">{it.title}</h3>
           <p className="small text-text-muted">{it.description}</p>
         </Reveal>
       ))}

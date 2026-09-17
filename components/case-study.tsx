@@ -35,7 +35,9 @@ export function CaseStudy({
         <Badge tone="success">Case study</Badge>
         <h3 className="h4">{title}</h3>
         <p className="small text-text-muted">{summary}</p>
-        <TextLink href={href}>Read the case study →</TextLink>
+        <TextLink href={href} ariaLabel={`Read the case study: ${title}`}>
+          Read the case study →
+        </TextLink>
       </div>
     </div>
   );

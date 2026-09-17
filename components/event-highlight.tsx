@@ -17,9 +17,9 @@ export function EventHighlight({ date, tag, tagTone = 'brand', title, descriptio
   const body = (
     <>
       <Badge tone={tagTone}>{tag}</Badge>
-      <h4 className="h5" style={{ marginTop: '6px' }}>
+      <h3 className="h5" style={{ marginTop: '6px' }}>
         {title}
-      </h4>
+      </h3>
       <p className="small text-text-muted">{description}</p>
     </>
   );

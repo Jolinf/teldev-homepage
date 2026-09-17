@@ -7,7 +7,7 @@ export function TeamCard({ name, role, bio, linkedin }: { name: string; role: st
       <div className="ds-media" style={{ maxWidth: '220px' }}>
         <ImagePlaceholder ratio="1x1" label="Portrait" />
       </div>
-      <h4 className="h5">{name}</h4>
+      <h3 className="h5">{name}</h3>
       <span className="small text-text-muted">{role}</span>
       <p className="small">{bio}</p>
       <a href={linkedin ?? '#'} aria-label={`${name} on LinkedIn`} className="ds-social" style={{ width: 36, height: 36 }}>

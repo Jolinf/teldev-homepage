@@ -18,7 +18,7 @@ export function ContactForm({ defaultEnquiryType = 'hire' }: { defaultEnquiryTyp
   if (state.status === 'success') {
     return (
       <div className="ds-card" style={{ maxWidth: '560px' }}>
-        <h3 className="h4">Message sent</h3>
+        <h2 className="h4">Message sent</h2>
         <p className="small text-text-muted" style={{ marginTop: '8px' }}>
           Thanks — we reply within one working day.
         </p>
@@ -29,7 +29,7 @@ export function ContactForm({ defaultEnquiryType = 'hire' }: { defaultEnquiryTyp
   return (
     <form action={formAction} className="ds-card ds-stack" style={{ gap: '20px', maxWidth: '560px' }}>
       <div>
-        <h3 className="h4">Tell us what you need</h3>
+        <h2 className="h4">Tell us what you need</h2>
         <p className="small text-text-muted">We reply within one working day.</p>
       </div>
 
