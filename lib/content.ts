@@ -10,7 +10,12 @@ const blogFrontmatterSchema = z.object({
   date: z.string(),
   readTime: z.string(),
   draft: z.boolean().optional().default(false),
+  /** Pins the post as the blog page's lead story instead of the newest one. */
+  featured: z.boolean().optional().default(false),
   image: z.string().optional(),
+  imageAlt: z.string().optional(),
+  author: z.string().optional().default('TELDEV Technologies'),
+  authorRole: z.string().optional(),
 });
 
 const workFrontmatterSchema = z.object({
@@ -56,4 +61,28 @@ export function getAllWorkEntries() {
 
 export function getWorkEntry(slug: string) {
   return getAllWorkEntries().find((entry) => entry.slug === slug);
+}
+
+/** URL-safe id for a heading, shared by the MDX `h2` override and the table of contents. */
+export function slugify(text: string) {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '')
+    .trim()
+    .replace(/\s+/g, '-');
+}
+
+/** The `##` headings in a post, for its "On this page" list. */
+export function getHeadings(content: string) {
+  return content
+    .split('\n')
+    .filter((line) => /^## /.test(line))
+    .map((line) => {
+      const text = line
+        .replace(/^## /, '')
+        .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
+        .replace(/[*_`]/g, '')
+        .trim();
+      return { text, id: slugify(text) };
+    });
 }

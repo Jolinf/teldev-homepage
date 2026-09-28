@@ -1,7 +1,7 @@
 import { LayeredVisual } from './layered-visual';
 import { ProgressCard, TicketCard, FlowCard } from './visual-cards';
 
-/** The homepage preset of LayeredVisual — card figures are illustrative, per the brief. */
+/** The homepage preset of LayeredVisual; card figures are illustrative, per the brief. */
 export function HeroVisual({ photoSrc, photoAlt }: { photoSrc?: string; photoAlt?: string }) {
   return (
     <LayeredVisual

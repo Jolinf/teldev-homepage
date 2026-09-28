@@ -2,7 +2,7 @@ import axios, { type AxiosError } from 'axios';
 
 /**
  * Contact form -> Microsoft Graph mailer. Ported from the pre-redesign api/contact.ts
- * (see docs/redesign/AUDIT.md) — the brief's own stack table specifies Resend, but the
+ * (see docs/redesign/AUDIT.md); the brief's own stack table specifies Resend, but the
  * live deployment already sends through Microsoft Graph with real, working credentials,
  * so per the brief's ground rule 2 ("if it conflicts, keep the old behaviour working and
  * flag it") this keeps Graph rather than introducing a second provider.
@@ -155,7 +155,7 @@ function buildContactNotificationEmail(fields: ContactFields, submittedAt: Date)
                       <h1 style="margin:0;color:${BRAND_DARK};font-size:22px;line-height:1.25;">New enquiry</h1>
                     </div>
                     <p style="margin:0 0 14px;color:#334155;font-size:15px;line-height:1.65;">
-                      <strong>${safeName}</strong> submitted the contact form on teldev.org. Details are below — reply to this email to write back directly to them.
+                      <strong>${safeName}</strong> submitted the contact form on teldev.org. Details are below. Reply to this email to write back directly to them.
                     </p>
                     ${detailMarkup}
                     <div style="margin-top:28px;padding-top:22px;border-top:1px solid #e2e8f0;color:#475569;font-size:14px;line-height:1.6;">
@@ -193,7 +193,7 @@ function getGraphErrorDetails(error: unknown) {
 
 export async function sendContactNotification(fields: ContactFields) {
   if (!isGraphConfigured()) {
-    console.error('Microsoft Graph credentials are not configured — refusing to send.');
+    console.error('Microsoft Graph credentials are not configured; refusing to send.');
     return { ok: false as const, error: 'The contact form is not configured on this deployment.' };
   }
 

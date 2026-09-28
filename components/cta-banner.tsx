@@ -13,7 +13,7 @@ interface CTABannerProps {
 
 export function CTABanner({
   heading = 'Ready to bring technology to your business?',
-  body = "Tell us what you're trying to do — we'll tell you plainly whether we can help.",
+  body = "Tell us what you're trying to do, and we'll tell you plainly whether we can help.",
   cta = 'Request a quote',
   href = '/contact?type=hire',
   card,
@@ -23,7 +23,7 @@ export function CTABanner({
       <div className="ds-stack" style={{ gap: '16px', alignItems: 'flex-start' }}>
         <h3 className="h3">{heading}</h3>
         {/* Full-opacity white-on-primary text: primary-foreground on primary is 4.54:1,
-            the accessibility doc's documented floor — any opacity reduction drops it
+            the accessibility doc's documented floor; any opacity reduction drops it
             below WCAG AA, so unlike the reference implementation this stays at 100%. */}
         <p className="body">{body}</p>
         <Button variant="secondary" icon="arrow-right" href={href}>

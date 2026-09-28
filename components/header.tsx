@@ -13,7 +13,8 @@ import { SERVICES } from '@/content/services';
 const NAV_LINKS = [
   { href: '/about', label: 'About' },
   { href: '/partnerships', label: 'Partnerships' },
-  { href: '/work', label: 'Work' },
+  // Work is hidden until there is a real case study; the /work pages still exist.
+  // { href: '/work', label: 'Work' },
   { href: '/blog', label: 'Blog' },
 ];
 
@@ -48,7 +49,7 @@ export function Header() {
         </Link>
 
         <nav className="ds-nav" aria-label="Primary">
-          {/* Click-toggled, so it only closes on outside click or Escape (below) — no
+          {/* Click-toggled, so it only closes on outside click or Escape (below); no
               onMouseLeave. Mixing click-to-open with hover-to-close is what caused the
               menu to close itself while the pointer was still moving toward the panel. */}
           <div className="ds-dropdown" ref={dropdownRef}>
@@ -56,7 +57,7 @@ export function Header() {
               type="button"
               className="ds-nav__link"
               aria-expanded={servicesOpen}
-              aria-haspopup="true"
+              aria-controls="services-menu"
               aria-current={pathname.startsWith('/services') ? 'page' : undefined}
               onClick={() => setServicesOpen((v) => !v)}
             >
@@ -64,9 +65,9 @@ export function Header() {
               <Icon name="chevron-down" size={16} />
             </button>
             {servicesOpen && (
-              <div className="ds-dropdown__panel" role="menu">
+              <div className="ds-dropdown__panel" id="services-menu">
                 {SERVICES.map((s) => (
-                  <Link key={s.slug} href={`/services/${s.slug}`} role="menuitem" className="ds-dropdown__item">
+                  <Link key={s.slug} href={`/services/${s.slug}`} className="ds-dropdown__item">
                     <strong className="label">{s.name}</strong>
                     <span className="small">{s.desc}</span>
                   </Link>
@@ -84,7 +85,7 @@ export function Header() {
         <div className="ds-row" style={{ gap: '12px' }}>
           <ThemeToggle />
           <Button variant="primary" size="sm" className="ds-header__nav-cta" href="/contact">
-            Contact
+            Contact us
           </Button>
           <button
             type="button"
@@ -110,7 +111,7 @@ export function Header() {
               </Link>
             ))}
             <Button variant="primary" href="/contact">
-              Contact
+              Contact us
             </Button>
           </div>
         </Container>

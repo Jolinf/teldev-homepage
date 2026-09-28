@@ -7,7 +7,7 @@ interface TextLinkProps {
   inline?: boolean;
   external?: boolean;
   className?: string;
-  /** For generic copy like "Learn more →" — gives the link a real accessible name
+  /** For generic copy like "Learn more →"; gives the link a real accessible name
       without changing the visible text. */
   ariaLabel?: string;
   children: ReactNode;

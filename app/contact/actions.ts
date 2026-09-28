@@ -10,7 +10,7 @@ const contactSchema = z.object({
   service: z.string().trim().optional().default(''),
   message: z.string().trim().min(1, 'Tell us a bit about what you need.'),
   agreed: z.literal('on', { message: 'Agree to be contacted to send this enquiry.' }),
-  // Honeypot: real users never fill this in — bots that fill every field do.
+  // Honeypot: real users never fill this in; bots that fill every field do.
   company: z.string().max(0).optional().or(z.literal('')),
 });
 
@@ -44,7 +44,7 @@ export async function submitContactForm(_prevState: ContactFormState, formData: 
   }
 
   if (parsed.data.company) {
-    // Honeypot tripped — pretend success so the bot moves on, send nothing.
+    // Honeypot tripped; pretend success so the bot moves on, send nothing.
     return { status: 'success' };
   }
 

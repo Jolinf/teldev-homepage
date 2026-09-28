@@ -5,9 +5,9 @@ test.describe('Header keyboard navigation', () => {
     await page.goto('/');
     const trigger = page.getByRole('button', { name: 'Services', exact: false });
     await trigger.click();
-    await expect(page.getByRole('menu')).toBeVisible();
+    await expect(page.locator('#services-menu')).toBeVisible();
     await page.keyboard.press('Escape');
-    await expect(page.getByRole('menu')).toBeHidden();
+    await expect(page.locator('#services-menu')).toBeHidden();
   });
 
   test('mobile menu opens and closes by keyboard-accessible button', async ({ page }) => {

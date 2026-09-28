@@ -25,7 +25,7 @@ export function BlogCard({ href, category, title, excerpt, date, image }: BlogCa
           {title}
         </Link>
       </h3>
-      <p className="small text-text-muted">{excerpt}</p>
+      <p className="body text-text-muted">{excerpt}</p>
       <span className="caption text-text-muted">{date}</span>
     </article>
   );

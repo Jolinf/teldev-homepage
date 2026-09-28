@@ -19,8 +19,8 @@ export function ContactForm({ defaultEnquiryType = 'hire' }: { defaultEnquiryTyp
     return (
       <div className="ds-card" style={{ maxWidth: '560px' }}>
         <h2 className="h4">Message sent</h2>
-        <p className="small text-text-muted" style={{ marginTop: '8px' }}>
-          Thanks — we reply within one working day.
+        <p className="body text-text-muted" style={{ marginTop: '8px' }}>
+          Thanks. We reply within one working day.
         </p>
       </div>
     );
@@ -33,7 +33,7 @@ export function ContactForm({ defaultEnquiryType = 'hire' }: { defaultEnquiryTyp
         <p className="small text-text-muted">We reply within one working day.</p>
       </div>
 
-      {/* Honeypot — hidden from sighted users, real bots fill every field. */}
+      {/* Honeypot; hidden from sighted users, real bots fill every field. */}
       <div aria-hidden="true" style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', overflow: 'hidden' }}>
         <label htmlFor="company">Company</label>
         <input id="company" name="company" type="text" tabIndex={-1} autoComplete="off" />
@@ -75,7 +75,7 @@ export function ContactForm({ defaultEnquiryType = 'hire' }: { defaultEnquiryTyp
         required
         error={state.fieldErrors?.message}
       />
-      <Checkbox id="agreed" name="agreed" defaultChecked>
+      <Checkbox id="agreed" name="agreed">
         I agree to be contacted about this enquiry.
       </Checkbox>
       {state.fieldErrors?.agreed && <p className="small ds-error-text">{state.fieldErrors.agreed}</p>}

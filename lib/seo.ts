@@ -28,18 +28,33 @@ export interface SEOConfig {
 
 /**
  * Full production SEO; disallows crawling outside production so staging never gets
- * indexed. `title` is the page's short title (e.g. "Services") — the `<title>` tag
+ * indexed. `title` is the page's short title (e.g. "Services"); the `<title>` tag
  * itself picks up the root layout's `%s · TELDEV Technologies` template automatically,
  * but Open Graph/Twitter cards don't inherit that template, so this spells the full
  * title out for them explicitly.
  */
 export function generateMetadata(config: SEOConfig): Metadata {
-  const { title, description, path, keywords = [], noindex = false, image, imageAlt, type = 'website', publishedTime } = config;
+  const {
+    title,
+    description,
+    path,
+    keywords = [],
+    noindex = false,
+    image,
+    imageAlt,
+    type = 'website',
+    publishedTime,
+  } = config;
 
   const canonical = `${SITE_URL}${path}`;
   const shouldIndex = isProduction && !noindex;
   const fullTitle = title === SITE_NAME ? title : `${title} · ${SITE_NAME}`;
-  const ogImage = { url: image ?? DEFAULT_OG_IMAGE, alt: imageAlt ?? fullTitle, width: 1200, height: 630 };
+  const ogImage = {
+    url: image ?? DEFAULT_OG_IMAGE,
+    alt: imageAlt ?? fullTitle,
+    width: 1200,
+    height: 630,
+  };
 
   return {
     title,
@@ -66,7 +81,7 @@ export function generateMetadata(config: SEOConfig): Metadata {
   };
 }
 
-type SchemaType = 'ProfessionalService' | 'Service' | 'Article' | 'BreadcrumbList';
+type SchemaType = 'ProfessionalService' | 'Service' | 'Article' | 'BreadcrumbList' | 'Event';
 
 export function generateStructuredData(type: SchemaType, data: Record<string, unknown>): object {
   return { '@context': 'https://schema.org', '@type': type, ...data };
@@ -75,10 +90,17 @@ export function generateStructuredData(type: SchemaType, data: Record<string, un
 export function organizationSchema() {
   return generateStructuredData('ProfessionalService', {
     name: SITE_NAME,
-    description: 'Bringing technology to you.',
+    description:
+      'Helpdesk support, network infrastructure, application and website development, cloud solutions, IT consulting and AI & automation for individuals, businesses and communities in Nigeria.',
     url: SITE_URL,
     email: 'contact@teldev.org',
-    telephone: '+2347084036561',
+    telephone: ['+2347084036561', '+2349037562951'],
+    foundingDate: '2021',
+    sameAs: [
+      'https://www.linkedin.com/company/teldev-ng/',
+      'https://www.instagram.com/teldev_ltd/',
+      'https://github.com/TelDev-LTD',
+    ],
     address: { '@type': 'PostalAddress', addressLocality: 'Lagos', addressCountry: 'NG' },
   });
 }
@@ -92,7 +114,15 @@ export function serviceSchema({ name, description }: { name: string; description
   });
 }
 
-export function articleSchema({ title, description, publishedTime }: { title: string; description: string; publishedTime: string }) {
+export function articleSchema({
+  title,
+  description,
+  publishedTime,
+}: {
+  title: string;
+  description: string;
+  publishedTime: string;
+}) {
   return generateStructuredData('Article', {
     headline: title,
     description,

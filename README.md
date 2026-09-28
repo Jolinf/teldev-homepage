@@ -1,4 +1,4 @@
-# TELDEV Technologies — website
+# TELDEV Technologies: website
 
 The TELDEV Technologies marketing site: Next.js App Router, TypeScript, Tailwind CSS v4.
 See `progress.md` for the full rebuild history and `docs/redesign/AUDIT.md` for the
@@ -6,7 +6,7 @@ pre-migration audit of the previous (Vite/React Router) site.
 
 The site was built against a design-system kit (`teldev-redesign-kit/`: tokens.json,
 component READMEs, page compositions, a reference implementation bundle) that has since
-been deleted once every token, component and page was ported — `app/ds-tokens.css` and
+been deleted once every token, component and page was ported; `app/ds-tokens.css` and
 `app/ds-components.css` are now the hand-maintained source of truth (see below).
 
 ## Stack
@@ -34,7 +34,7 @@ npm run start   # serve the production build locally
 ```
 
 Other scripts: `npm run lint`, `npm run typecheck` (`tsc --noEmit`), `npm run test:e2e`
-(Playwright — see below).
+(Playwright; see below).
 
 ## Changing design tokens
 
@@ -42,13 +42,13 @@ Other scripts: `npm run lint`, `npm run typecheck` (`tsc --noEmit`), `npm run te
 light and `[data-theme="dark"]` for dark, plus the `.h1`–`.h6`/`.body`/`.overline`
 type-style classes) used to be generated from `teldev-redesign-kit/design-system/tokens.json`
 by a `scripts/build-tokens.ts` compiler. Both the kit and the script were removed once
-every token was ported — the file is now hand-edited directly. Mobile type sizes (the
+every token was ported; the file is now hand-edited directly. Mobile type sizes (the
 `@media (max-width: 767px)` block at the bottom) were originally transcribed from a
 typography table in the kit's `token-reference.md`; there's no longer a second source to
 keep in sync with, since that table no longer exists in this repo.
 
-Everything else design-system-related — component layout, motion, state (`.ds-btn`,
-`.ds-card`, `.ds-lv`, etc.) — lives in `app/ds-components.css`, originally ported from the
+Everything else design-system-related; component layout, motion, state (`.ds-btn`,
+`.ds-card`, `.ds-lv`, etc.); lives in `app/ds-components.css`, originally ported from the
 kit's reference implementation bundle and now likewise hand-maintained directly.
 
 ## Adding a blog post
@@ -63,14 +63,35 @@ category: "Guides"
 date: "2026-03-01"
 readTime: "4 min read"
 draft: false
+image: "/blog/my-post-cover.jpg"   # optional cover (16:9); without it the post gets a branded cover
+imageAlt: "What the cover shows"    # optional
+author: "Joshua Ulinfun"            # optional, defaults to "TELDEV Technologies"
+authorRole: "CEO & Co-Founder"      # optional
 ---
 
 Post body in Markdown/MDX. See `components/article-prose.tsx` for the styled elements
 available (headings, blockquote, code, tables, images).
+
+Every `##` heading becomes an entry in the post's "On this page" list automatically.
+Two extra blocks are available inside posts to break up long text:
+
+```mdx
+<KeyFigures>
+  <Figure value="140M" label="What the number means" source="Where it's from" />
+  <Figure value="45.5%" label="..." source="..." />
+</KeyFigures>
+
+<Callout title="Optional title">
+  A highlighted aside.
+</Callout>
+```
+
+Images use normal Markdown (`![alt](/blog/image.jpg "Optional caption")`); the quoted
+title becomes a caption.
 ```
 
 `draft: true` posts render in development but are excluded from production builds (see
-`lib/content.ts`) — that's how the three example posts shipped with this redesign work.
+`lib/content.ts`); that's how the three example posts shipped with this redesign work.
 Set `draft: false` (or remove the field) when a post is ready to publish.
 
 ## Adding a case study
@@ -90,7 +111,7 @@ placeholder: false
 Case study body in MDX.
 ```
 
-`placeholder: true` shows a warning badge on the detail page — use it for illustrative
+`placeholder: true` shows a warning badge on the detail page; use it for illustrative
 entries the way `content/work/cloud-migration-with-zero-downtime.mdx` does until a real
 project replaces it.
 
@@ -107,13 +128,13 @@ axe violations on every route in both themes (`accessibility.spec.ts`); reduced-
 content is visible immediately with no drift (`reduced-motion.spec.ts`).
 
 The config launches system Chrome (`channel: 'chrome'`) rather than Playwright's own
-bundled browser — swap `playwright.config.ts` back to a plain `devices['Desktop Chrome']`
+bundled browser; swap `playwright.config.ts` back to a plain `devices['Desktop Chrome']`
 project (and run `npx playwright install chromium`) if you'd rather use Playwright's own
 pinned browser build in an environment with normal internet access.
 
 ## Deploying
 
-Vercel is the deploy target (see `docs/redesign/AUDIT.md` for why — a GitHub Pages
+Vercel is the deploy target (see `docs/redesign/AUDIT.md` for why; a GitHub Pages
 workflow existed alongside it before this redesign and has been removed). Required
 environment variables:
 

@@ -10,7 +10,7 @@ export function ProcessSteps() {
             {i + 1}
           </span>
           <h3 className="h6">{s.title}</h3>
-          <p className="small text-text-muted" style={{ marginTop: '6px' }}>
+          <p className="body text-text-muted" style={{ marginTop: '6px' }}>
             {s.description}
           </p>
         </Reveal>

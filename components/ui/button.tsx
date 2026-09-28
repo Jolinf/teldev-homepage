@@ -65,7 +65,19 @@ export function Button(props: Props) {
     );
   }
 
-  const buttonProps = props as ButtonAsButton;
+  // Strip the component-only props so they don't leak onto the DOM <button>
+  // (React rejects `loading={false}` there, and `variant`/`icon` aren't valid attributes).
+  const {
+    variant: _variant,
+    size: _size,
+    icon: _icon,
+    iconPosition: _iconPosition,
+    loading: _loading,
+    className: _className,
+    children: _children,
+    href: _href,
+    ...buttonProps
+  } = props as ButtonAsButton;
   return (
     <button
       {...buttonProps}

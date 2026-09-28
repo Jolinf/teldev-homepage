@@ -32,6 +32,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* Marks JS as available before first paint, so scroll reveals only start hidden when they can run. */}
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
+      </head>
       <body className={`${sans.variable} ${mono.variable}`}>
         <NextTopLoader color="#1C6CFE" showSpinner={false} />
         <ThemeProvider>

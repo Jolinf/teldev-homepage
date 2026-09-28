@@ -13,7 +13,7 @@ export function Timeline() {
         >
           <span className="ds-timeline__dot" />
           <h3 className="h6">{it.title}</h3>
-          <p className="small text-text-muted">{it.description}</p>
+          <p className="body text-text-muted">{it.description}</p>
         </Reveal>
       ))}
     </ol>

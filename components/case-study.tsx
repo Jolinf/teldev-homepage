@@ -34,7 +34,7 @@ export function CaseStudy({
       <div className="ds-stack" style={{ gap: '10px', alignItems: 'flex-start' }}>
         <Badge tone="success">Case study</Badge>
         <h3 className="h4">{title}</h3>
-        <p className="small text-text-muted">{summary}</p>
+        <p className="body text-text-muted">{summary}</p>
         <TextLink href={href} ariaLabel={`Read the case study: ${title}`}>
           Read the case study →
         </TextLink>

@@ -10,7 +10,7 @@ export function StrategicPillars() {
             {String(i + 1).padStart(2, '0')}
           </span>
           <h3 className="h6">{p.title}</h3>
-          <p className="small text-text-muted">{p.description}</p>
+          <p className="body text-text-muted">{p.description}</p>
         </Reveal>
       ))}
     </div>

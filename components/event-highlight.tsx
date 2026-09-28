@@ -1,4 +1,5 @@
 import { Badge } from './ui/badge';
+import { TextLink } from './ui/text-link';
 import { ImagePlaceholder } from './ui/image-placeholder';
 
 type BadgeTone = 'neutral' | 'brand' | 'success' | 'warning' | 'danger';
@@ -11,16 +12,44 @@ interface EventHighlightProps {
   description: string;
   note?: string;
   media?: boolean;
+  /** Photo for the media variant; a placeholder shows without it. */
+  image?: { src: string; alt: string };
+  /**
+   * Optional link. An internal path (e.g. an event page) makes the whole card clickable;
+   * an external URL opens in a new tab.
+   */
+  link?: { href: string; label: string };
 }
 
-export function EventHighlight({ date, tag, tagTone = 'brand', title, description, note, media }: EventHighlightProps) {
+export function EventHighlight({
+  date,
+  tag,
+  tagTone = 'brand',
+  title,
+  description,
+  note,
+  media,
+  image,
+  link,
+}: EventHighlightProps) {
+  const external = !!link && /^https?:\/\//.test(link.href);
   const body = (
     <>
       <Badge tone={tagTone}>{tag}</Badge>
       <h3 className="h5" style={{ marginTop: '6px' }}>
         {title}
       </h3>
-      <p className="small text-text-muted">{description}</p>
+      <p className="body text-text-muted">{description}</p>
+      {link && (
+        <TextLink
+          href={link.href}
+          external={external}
+          className={external ? undefined : 'ds-stretched'}
+          ariaLabel={external ? undefined : `${link.label}: ${title}`}
+        >
+          {link.label} {external ? null : '→'}
+        </TextLink>
+      )}
     </>
   );
 
@@ -28,13 +57,23 @@ export function EventHighlight({ date, tag, tagTone = 'brand', title, descriptio
     return (
       <div className="ds-card ds-card--hover ds-event--media">
         <div className="ds-media">
-          <ImagePlaceholder ratio="16x9" label="Event photograph" note={note} />
+          <ImagePlaceholder
+            ratio="16x9"
+            label="Event photograph"
+            note={note}
+            src={image?.src}
+            alt={image?.alt}
+            sizes="(min-width: 768px) 600px, 100vw"
+          />
           <div className="ds-event__date ds-event__date--overlay">
             <div>{date.mon}</div>
             <div>{date.day}</div>
           </div>
         </div>
-        <div className="ds-stack" style={{ gap: '4px', marginTop: '16px', alignItems: 'flex-start' }}>
+        <div
+          className="ds-stack"
+          style={{ gap: '4px', marginTop: '16px', alignItems: 'flex-start' }}
+        >
           {body}
         </div>
       </div>

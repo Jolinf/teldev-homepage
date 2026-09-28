@@ -21,7 +21,6 @@ export function Footer() {
             <span className="label-sm">Company</span>
             <Link href="/about">About</Link>
             <Link href="/partnerships">Partnerships</Link>
-            <Link href="/work">Work</Link>
             <Link href="/blog">Blog</Link>
           </div>
           <div className="ds-stack" style={{ gap: '10px' }}>
@@ -46,6 +45,10 @@ export function Footer() {
               <Icon name="phone" size={15} />
               +234 708 403 6561
             </a>
+            <a href="tel:+2349037562951" className="small ds-row" style={{ gap: '8px' }}>
+              <Icon name="phone" size={15} />
+              +234 903 756 2951
+            </a>
           </div>
         </div>
         <div className="ds-footer__bottom">
@@ -56,10 +59,22 @@ export function Footer() {
             </TextLink>
           </span>
           <div className="ds-row" style={{ gap: '8px' }}>
-            <a href="#" className="ds-social" aria-label="TELDEV on LinkedIn">
+            <a
+              href="https://www.linkedin.com/company/teldev-ng/"
+              className="ds-social"
+              aria-label="TELDEV on LinkedIn"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Icon name="linkedin" size={18} />
             </a>
-            <a href="#" className="ds-social" aria-label="TELDEV on Instagram">
+            <a
+              href="https://www.instagram.com/teldev_ltd/"
+              className="ds-social"
+              aria-label="TELDEV on Instagram"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Icon name="instagram" size={18} />
             </a>
           </div>
