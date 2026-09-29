@@ -48,7 +48,7 @@ export default function PartnershipsPage() {
 
       <Section subtle>
         <SectionHeader heading="Who we've worked with" />
-        <LogoStrip names={['University of Lagos', NAMS_WR.logo, BASH.logo]} />
+        <LogoStrip variant="wordmark" names={['University of Lagos', NAMS_WR.logo, BASH.logo]} />
       </Section>
 
       <Section>
@@ -57,10 +57,11 @@ export default function PartnershipsPage() {
 
       <Section subtle>
         <SectionHeader heading="Partnerships and events" />
-        <div className="ds-two-col">
+        <div>
           <Reveal>
             <EventHighlight
               media
+              wide
               date={EVENT.dateShort}
               tag="Official Tech & Innovation Partner"
               title={EVENT.title}

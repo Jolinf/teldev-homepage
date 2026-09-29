@@ -40,10 +40,44 @@ export const NAMS_WR_CONVENTION = {
     instagram: 'https://www.instagram.com/namswrgram/',
   },
 
-  /** Hero photo; empty until photos are supplied. */
-  hero: undefined as EventPhoto | undefined,
-  /** Gallery photos; placeholders show until supplied. */
-  gallery: [] as EventPhoto[],
+  /** Hero photo; also the Partnerships card image and the social share image. */
+  hero: {
+    src: '/events/nams-wr-2026/group-photo.webp',
+    alt: "Speakers, organisers and delegates standing together in front of the 7th NAMS Western Region Convention banner at the University of Lagos.",
+  } as EventPhoto | undefined,
+  /** Gallery photos. The first one is shown wide. */
+  gallery: [
+    {
+      src: '/events/nams-wr-2026/panel-session.webp',
+      alt: 'Three panellists seated on stage, with Joshua Ulinfun speaking into a microphone and the convention programme on the screen behind them.',
+      caption: 'The panel on AI & Innovations in Nigerian Bio-entrepreneurship.',
+    },
+    {
+      src: '/events/nams-wr-2026/joshua-speaking.webp',
+      alt: 'Joshua Ulinfun, seated, speaking into a microphone during the panel session.',
+      caption: 'Joshua Ulinfun speaking during the panel.',
+    },
+    {
+      src: '/events/nams-wr-2026/plaque-presentation.webp',
+      alt: 'Joshua Ulinfun receiving a plaque from a convention official in front of the event banner.',
+      caption: 'Receiving a plaque on behalf of TELDEV Technologies.',
+    },
+    {
+      src: '/events/nams-wr-2026/panelist-speaking.webp',
+      alt: 'A fellow panellist in a cap speaking into a microphone while Joshua Ulinfun listens.',
+      caption: 'A fellow panellist makes his point.',
+    },
+    {
+      src: '/events/nams-wr-2026/joshua-listening.webp',
+      alt: 'Joshua Ulinfun seated on stage, listening, beside a Microbial banner.',
+      caption: 'On stage beside convention partner Microbial.',
+    },
+    {
+      src: '/events/nams-wr-2026/group-delegates.webp',
+      alt: 'Six delegates posing in front of the convention banner.',
+      caption: 'With delegates at the convention.',
+    },
+  ] as EventPhoto[],
 
   glance: [
     { label: 'Dates', value: '24–27 September 2026' },

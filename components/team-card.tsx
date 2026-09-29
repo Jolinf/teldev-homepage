@@ -16,14 +16,19 @@ export function TeamCard({ name, role, linkedin, avatar }: TeamMember) {
       </div>
       <h3 className="h5">{name}</h3>
       <span className="small text-text-muted">{role}</span>
-      <a
-        href={linkedin ?? '#'}
-        aria-label={`${name} on LinkedIn`}
-        className="ds-social"
-        style={{ width: 44, height: 44 }}
-      >
-        <Icon name="linkedin" size={16} />
-      </a>
+      {/* Shown only once a real profile URL is set in content/team.ts. */}
+      {linkedin && (
+        <a
+          href={linkedin}
+          aria-label={`${name} on LinkedIn`}
+          className="ds-social"
+          style={{ width: 44, height: 44 }}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Icon name="linkedin" size={16} />
+        </a>
+      )}
     </div>
   );
 }

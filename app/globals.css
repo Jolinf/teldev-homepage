@@ -4,7 +4,9 @@
 
 @custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
 
-@theme {
+/* `inline` makes utilities (text-text-muted, bg-surface...) read the token variables where
+   they are used, so scoped remaps like `.ds-navy` apply to them too. */
+@theme inline {
   --color-bg: var(--bg);
   --color-bg-subtle: var(--bg-subtle);
   --color-surface: var(--surface);

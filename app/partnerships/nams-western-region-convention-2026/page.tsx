@@ -38,8 +38,6 @@ const breadcrumbs = [
   { label: 'NAMS Western Region Convention' },
 ];
 
-const GALLERY_SLOTS = 6;
-
 export default function NamsConventionPage() {
   const eventSchema = generateStructuredData('Event', {
     name: `${EVENT.title}: ${EVENT.edition}`,
@@ -88,17 +86,18 @@ export default function NamsConventionPage() {
               </li>
             </ul>
           </div>
-          <div className="ds-event-hero__media ds-anim-in" style={{ animationDelay: '150ms' }}>
-            <ImagePlaceholder
-              ratio="16x9"
-              src={EVENT.hero?.src}
-              alt={EVENT.hero?.alt}
-              label="Convention photograph"
-              note="Delegates at the 7th NAMS Western Region Convention, University of Lagos."
-              priority
-              sizes="(min-width: 1280px) 1200px, 100vw"
-            />
-          </div>
+          {EVENT.hero && (
+            <div className="ds-event-hero__media ds-anim-in" style={{ animationDelay: '150ms' }}>
+              <ImagePlaceholder
+                ratio="16x9"
+                src={EVENT.hero.src}
+                alt={EVENT.hero.alt}
+                label="Convention photograph"
+                priority
+                sizes="(min-width: 1280px) 1200px, 100vw"
+              />
+            </div>
+          )}
         </Container>
       </section>
 
@@ -301,31 +300,32 @@ export default function NamsConventionPage() {
         </div>
       </Section>
 
-      {/* Gallery */}
+      {/* Gallery (only once photos exist) */}
       <Section>
-        <SectionHeader heading="Gallery" lead="Moments from The UNILAG Experience '26." />
-        <div className="ds-gallery">
-          {(EVENT.gallery.length
-            ? EVENT.gallery
-            : Array.from({ length: GALLERY_SLOTS }, () => undefined)
-          ).map((photo, i) => (
-            <figure
-              key={photo?.src ?? i}
-              className={`ds-gallery__item ${i === 0 ? 'ds-gallery__item--wide' : ''}`}
-            >
-              <ImagePlaceholder
-                ratio={i === 0 ? '16x9' : '4x3'}
-                src={photo?.src}
-                alt={photo?.alt}
-                label="Convention photograph"
-                sizes="(min-width: 1024px) 400px, 100vw"
-              />
-              {photo?.caption && (
-                <figcaption className="small text-text-muted">{photo.caption}</figcaption>
-              )}
-            </figure>
-          ))}
-        </div>
+        {EVENT.gallery.length > 0 && (
+          <>
+            <SectionHeader heading="Gallery" lead="Moments from The UNILAG Experience '26." />
+            <div className="ds-gallery">
+              {EVENT.gallery.map((photo, i) => (
+                <figure
+                  key={photo.src}
+                  className={`ds-gallery__item ${i === 0 ? 'ds-gallery__item--wide' : ''}`}
+                >
+                  <ImagePlaceholder
+                    ratio={i === 0 ? '16x9' : '4x3'}
+                    src={photo.src}
+                    alt={photo.alt}
+                    label="Convention photograph"
+                    sizes={i === 0 ? '(min-width: 1024px) 800px, 100vw' : '(min-width: 1024px) 400px, 100vw'}
+                  />
+                  {photo.caption && (
+                    <figcaption className="small text-text-muted">{photo.caption}</figcaption>
+                  )}
+                </figure>
+              ))}
+            </div>
+          </>
+        )}
 
         <div className="ds-row ds-wrap ds-event-links">
           <TextLink href={EVENT.links.announcement} external>

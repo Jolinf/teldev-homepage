@@ -79,16 +79,17 @@ Status key: `[ ]` open · `[~]` partly in / waiting on someone · `[x]` done
       ChatGPT show-of-hands turned into a statement; "pandemic of ignorance" and "a
       different story in Africa" reworded; paragraphs tightened. The delivered text is
       in the .docx. Title and pull quote: `speechTitle`, `speechQuote`.
-    - **Photos**: set `hero: { src, alt }` and `gallery: [{ src, alt, caption? }]`; put
-      files in `public/events/nams-wr-2026/`. The hero photo also becomes the card image
-      on Partnerships and the social share image.
+    - **Photos**: added 2026-09-29 from `Downloads/NAMS PICTURES` (13 photos; 7 near-duplicates
+      dropped). Hero: the large group photo; gallery: panel, speaking, plaque, fellow
+      panellist, on stage by Microbial, delegates (`public/events/nams-wr-2026/`). Hero and
+      gallery hide automatically if emptied.
     - **Confirm before launch**: TELDEV had a seat on the innovation panel; the panel
       answers are written as TELDEV's answers (review for accuracy of voice); the
       sponsorship went to delegate accommodation and NAMS Hub Buses.
   - University of Lagos sponsorship card: removed 2026-09-26 (decision).
 - [ ] **8. Founder LinkedIn URLs.** Bios were removed from the About page cards
-      (decision 2026-09-26), so only LinkedIn URLs remain; the icons link to `#` until
-      they're added to `content/team.ts`.
+      (decision 2026-09-26). The LinkedIn icons are hidden until a `linkedin` URL is set
+      for each founder in `content/team.ts`; they appear automatically once set.
 - [ ] **9. Statement of Intent and TSIM manual**; not in the content folder. The site
       uses their wording as already ported into the old site's code; add the source
       documents to check against when they're available.

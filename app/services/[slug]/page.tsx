@@ -5,6 +5,10 @@ import { Reveal } from '@/components/reveal';
 import { Container } from '@/components/container';
 import { Icon } from '@/components/ui/icon';
 import { Button } from '@/components/ui/button';
+import { Section } from '@/components/section';
+import { SectionHeader } from '@/components/section-header';
+import { ProcessSteps } from '@/components/process-steps';
+import { CTABanner } from '@/components/cta-banner';
 import { SERVICES, SERVICE_DETAILS, type ServiceSlug } from '@/content/services';
 import type { IconName } from '@/lib/icons';
 import {
@@ -75,7 +79,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
             <Button variant="primary" size="lg" icon="arrow-right" href="/contact?type=hire">
               Request a quote
             </Button>
-            <Button variant="ghost" size="lg" href="/services#how-we-work">
+            <Button variant="ghost" size="lg" href="#how-we-work">
               See how we work
             </Button>
           </>
@@ -103,18 +107,18 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         </Container>
       </section>
 
-      <nav aria-label="Other services" className="ds-section">
-        <Container className="ds-stack" style={{ gap: '16px' }}>
-          <span className="label-sm text-text-muted">Other services</span>
-          <div className="ds-row ds-wrap" style={{ gap: '12px' }}>
-            {SERVICES.filter((s) => s.slug !== nav.slug).map((s) => (
-              <Button key={s.slug} variant="secondary" size="sm" href={`/services/${s.slug}`}>
-                {s.name}
-              </Button>
-            ))}
-          </div>
-        </Container>
-      </nav>
+      <Section navy id="how-we-work">
+        <SectionHeader heading="Plain steps, no black box" />
+        <ProcessSteps />
+      </Section>
+
+      <Section>
+        <CTABanner
+          heading={`Need help with ${detail.title.toLowerCase()}?`}
+          body="Tell us what's going wrong or what you want to build. We reply within one working day with a plain answer on how we'd approach it."
+          cta="Request a quote"
+        />
+      </Section>
     </>
   );
 }

@@ -20,7 +20,7 @@ export function SplitHero({ photoSrc, photoAlt }: { photoSrc?: string; photoAlt?
         </div>
         <div className="ds-hero">
           <div
-            className="ds-hero__path ds-hero__path--primary ds-anim-in"
+            className="ds-hero__path ds-hero__path--primary ds-navy ds-anim-in"
             style={{ animationDelay: '240ms' }}
           >
             <span className="ds-hero__eyebrow small">For businesses</span>
@@ -29,7 +29,7 @@ export function SplitHero({ photoSrc, photoAlt }: { photoSrc?: string; photoAlt?
               Helpdesk, networks, websites and apps, cloud, IT consulting or automation. Tell us
               the problem and we&apos;ll tell you plainly how we&apos;d solve it.
             </p>
-            <Button variant="secondary" icon="arrow-right" href="/contact?type=hire">
+            <Button variant="primary" icon="arrow-right" href="/contact?type=hire">
               Request a quote
             </Button>
           </div>

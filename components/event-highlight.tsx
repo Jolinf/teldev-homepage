@@ -12,6 +12,8 @@ interface EventHighlightProps {
   description: string;
   note?: string;
   media?: boolean;
+  /** Media variant laid out side by side (photo left, text right) on tablet and up. */
+  wide?: boolean;
   /** Photo for the media variant; a placeholder shows without it. */
   image?: { src: string; alt: string };
   /**
@@ -29,6 +31,7 @@ export function EventHighlight({
   description,
   note,
   media,
+  wide,
   image,
   link,
 }: EventHighlightProps) {
@@ -55,7 +58,7 @@ export function EventHighlight({
 
   if (media) {
     return (
-      <div className="ds-card ds-card--hover ds-event--media">
+      <div className={`ds-card ds-card--hover ds-event--media ${wide ? 'ds-event--wide' : ''}`}>
         <div className="ds-media">
           <ImagePlaceholder
             ratio="16x9"
@@ -63,7 +66,7 @@ export function EventHighlight({
             note={note}
             src={image?.src}
             alt={image?.alt}
-            sizes="(min-width: 768px) 600px, 100vw"
+            sizes={wide ? '(min-width: 768px) 640px, 100vw' : '(min-width: 768px) 600px, 100vw'}
           />
           <div className="ds-event__date ds-event__date--overlay">
             <div>{date.mon}</div>

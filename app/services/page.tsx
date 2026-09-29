@@ -5,7 +5,8 @@ import { ProcessSteps } from '@/components/process-steps';
 import { CTABanner } from '@/components/cta-banner';
 import { Section } from '@/components/section';
 import { Button } from '@/components/ui/button';
-import { Container } from '@/components/container';
+import { Reveal } from '@/components/reveal';
+import { ServiceCard } from '@/components/service-card';
 import { SERVICES, SERVICE_DETAILS } from '@/content/services';
 import {
   generateMetadata as generateSEOMetadata,
@@ -43,44 +44,26 @@ export default function ServicesPage() {
         }
       />
 
-      {SERVICES.map((s, i) => {
-        const detail = SERVICE_DETAILS[s.slug];
-        return (
-          <section
-            key={s.slug}
-            className="ds-section"
-            style={{ background: i % 2 === 0 ? 'var(--bg-subtle)' : 'var(--bg)' }}
-          >
-            <Container>
-              <div className="ds-detail-cols" style={{ gridTemplateColumns: '1fr 2fr' }}>
-                <div className="ds-stack" style={{ gap: '16px', alignItems: 'flex-start' }}>
-                  <h2 className="h3">{detail.title}</h2>
-                  <p className="body text-text-muted">{detail.lead}</p>
-                  <Button variant="secondary" icon="arrow-right" href={`/services/${s.slug}`}>
-                    Learn more
-                  </Button>
-                </div>
-                <div className="ds-detail-cols">
-                  <div className="ds-card ds-stack" style={{ gap: '10px' }}>
-                    <h3 className="h6">The problem</h3>
-                    <p className="body text-text-muted">{detail.problem}</p>
-                  </div>
-                  <div className="ds-card ds-stack" style={{ gap: '10px' }}>
-                    <h3 className="h6">What we do</h3>
-                    <p className="body text-text-muted">{detail.what}</p>
-                  </div>
-                  <div className="ds-card ds-stack" style={{ gap: '10px' }}>
-                    <h3 className="h6">Outcomes</h3>
-                    <p className="body text-text-muted">{detail.outcomes}</p>
-                  </div>
-                </div>
-              </div>
-            </Container>
-          </section>
-        );
-      })}
+      <Section subtle>
+        <SectionHeader
+          heading="What each service covers"
+          lead="A short overview of each. Open any service for the problem it solves, what we do and what changes afterwards."
+        />
+        <div className="ds-grid-12">
+          {SERVICES.map((s, i) => (
+            <Reveal key={s.slug} delay={i * 90} className="ds-svc-col">
+              <ServiceCard
+                icon={s.icon}
+                title={SERVICE_DETAILS[s.slug].title}
+                description={SERVICE_DETAILS[s.slug].lead}
+                href={`/services/${s.slug}`}
+              />
+            </Reveal>
+          ))}
+        </div>
+      </Section>
 
-      <Section subtle id="how-we-work">
+      <Section navy id="how-we-work">
         <SectionHeader heading="Plain steps, no black box" />
         <ProcessSteps />
       </Section>

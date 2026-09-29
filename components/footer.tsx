@@ -7,7 +7,7 @@ import { SERVICES } from '@/content/services';
 
 export function Footer() {
   return (
-    <footer className="ds-footer">
+    <footer className="ds-footer ds-navy">
       <Container>
         <div className="ds-footer__cols">
           <div className="ds-stack" style={{ gap: '12px', maxWidth: '320px' }}>

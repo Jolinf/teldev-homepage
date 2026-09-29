@@ -48,7 +48,7 @@ export default function HomePage() {
           heading="Six ways we help"
           lead="From the day-to-day support that keeps you running to the automation that removes the work entirely. Start where your problem is."
         />
-        <div className="ds-grid-12">
+        <div className="ds-grid-12 ds-svc-compact">
           {SERVICES.map((s, i) => (
             <Reveal key={s.slug} delay={i * 90} className="ds-svc-col">
               <ServiceCard
@@ -62,7 +62,7 @@ export default function HomePage() {
         </div>
       </Section>
 
-      <Section subtle>
+      <Section navy>
         <SectionHeader
           heading="Plain steps, no black box"
           lead="The same four steps whether you hire us or partner with us."
@@ -72,7 +72,7 @@ export default function HomePage() {
 
       <Section>
         <SectionHeader heading="Organisations we work with" />
-        <LogoStrip names={[NAMS_WR.logo, BASH.logo]} />
+        <LogoStrip variant="wordmark" names={[NAMS_WR.logo, BASH.logo]} />
         {APPROVED_TESTIMONIALS.length > 0 && (
           <div className="ds-two-col">
             {APPROVED_TESTIMONIALS.map((t, i) => (
