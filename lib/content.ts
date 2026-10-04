@@ -55,8 +55,9 @@ export function getBlogPost(slug: string) {
   return getAllBlogPosts().find((post) => post.slug === slug);
 }
 
+// Placeholder case studies are visible in development only, so the live site never shows invented work.
 export function getAllWorkEntries() {
-  return readMdxDir(WORK_DIR, workFrontmatterSchema);
+  return readMdxDir(WORK_DIR, workFrontmatterSchema).filter((entry) => !(isProd && entry.frontmatter.placeholder));
 }
 
 export function getWorkEntry(slug: string) {

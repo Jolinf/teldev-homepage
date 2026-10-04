@@ -46,10 +46,15 @@ Status key: `[ ]` open · `[~]` partly in / waiting on someone · `[x]` done
       publish a quote someone hasn't approved.
 - [ ] **5. Case studies**; at least one real project (problem, what we did, what
       changed, one metric). Placeholder: `content/work/cloud-migration-with-zero-downtime.mdx`
-      (`placeholder: true`). Work is hidden from the header, footer and sitemap
-      (2026-09-28); the /work pages still exist. To bring it back, uncomment the Work link
-      in `components/header.tsx` and restore it in `components/footer.tsx` and
-      `app/sitemap.ts`.
+      (`placeholder: true`). Placeholder entries now show in development only, never on
+      the live site. Work is back in the header, footer and sitemap (2026-10-04) and
+      leads with the TARS initiative (see 5a).
+- [~] **5a. TELDEV AI-Ready Schools Initiative (the TARS initiative)**, always called "the TARS initiative", never just "TARS"; live at /work/ai-ready-schools, with its
+      data in `content/initiatives/tars.ts` and the launch post
+      `content/blog/introducing-tars-teldev-ai-ready-schools.mdx` (featured on /blog).
+      Image `public/work/tars-classroom.webp` is AI-generated (Gemini); replace with a real
+      workshop photo once a school approves one. Keep `status` and `progress` honest:
+      add each real workshop to `progress` as it happens. SS3 track is marked Planned.
 - [~] **6. Blog posts.** First real post published 2026-09-24: "Fitted but not used:
       Nigeria and the technology it already has"
       (`content/blog/nigeria-and-the-technology-it-already-has.mdx`), credited to

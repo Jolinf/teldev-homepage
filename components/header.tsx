@@ -13,8 +13,7 @@ import { SERVICES } from '@/content/services';
 const NAV_LINKS = [
   { href: '/about', label: 'About' },
   { href: '/partnerships', label: 'Partnerships' },
-  // Work is hidden until there is a real case study; the /work pages still exist.
-  // { href: '/work', label: 'Work' },
+  { href: '/work', label: 'Work' },
   { href: '/blog', label: 'Blog' },
 ];
 

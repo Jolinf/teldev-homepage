@@ -21,6 +21,7 @@ export function Footer() {
             <span className="label-sm">Company</span>
             <Link href="/about">About</Link>
             <Link href="/partnerships">Partnerships</Link>
+            <Link href="/work">Work</Link>
             <Link href="/blog">Blog</Link>
           </div>
           <div className="ds-stack" style={{ gap: '10px' }}>

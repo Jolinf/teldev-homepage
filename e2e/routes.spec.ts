@@ -13,8 +13,9 @@ const ROUTES = [
   '/partnerships',
   '/partnerships/nams-western-region-convention-2026',
   '/work',
-  '/work/cloud-migration-with-zero-downtime',
+  '/work/ai-ready-schools',
   '/blog',
+  '/blog/introducing-tars-teldev-ai-ready-schools',
   '/contact',
   '/privacy',
 ];
