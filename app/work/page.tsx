@@ -4,7 +4,6 @@ import { TitleHero } from '@/components/page-heroes';
 import Image from 'next/image';
 import { Container } from '@/components/container';
 // import { SectionHeader } from '@/components/section-header';
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Icon } from '@/components/ui/icon';
 import { TARS } from '@/content/initiatives/tars';
@@ -54,10 +53,6 @@ export default function WorkPage() {
                 </div>
               )}
               <div className="ds-work-feature__body">
-                <div className="ds-row ds-wrap" style={{ gap: '8px' }}>
-                  <Badge tone="brand">Initiative</Badge>
-                  <Badge tone="success">{TARS.status}</Badge>
-                </div>
                 <h2 className="h2">
                   {TARS.name} <span className="text-text-muted">({TARS.short})</span>
                 </h2>
@@ -74,6 +69,10 @@ export default function WorkPage() {
                   <li>
                     <Icon name="calendar" size={18} />
                     An SS3 track for life after school is planned
+                  </li>
+                  <li>
+                    <Icon name="check-circle" size={18} />
+                    {TARS.status}
                   </li>
                 </ul>
                 <div className="ds-row ds-wrap" style={{ gap: '12px', marginTop: '8px' }}>

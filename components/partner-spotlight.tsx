@@ -1,6 +1,5 @@
 import { Reveal } from './reveal';
 import { Icon } from './ui/icon';
-import { Badge } from './ui/badge';
 import { Button } from './ui/button';
 import { PartnerLogo } from './partner-logo';
 import { BASH } from '@/content/partners';
@@ -26,7 +25,6 @@ export function PartnerSpotlight() {
       </Reveal>
 
       <Reveal delay={120} className="ds-spotlight__copy">
-        <Badge tone="brand">Official events &amp; ticketing partner</Badge>
         <h2 className="h2">Our events run on Bash</h2>
         <p className="lead text-text-muted">
           Bash is TELDEV&apos;s events and ticketing partner. The conferences, community sessions and student

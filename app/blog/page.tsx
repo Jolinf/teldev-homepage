@@ -6,7 +6,6 @@ import { Section } from '@/components/section';
 import { SectionHeader } from '@/components/section-header';
 import { BlogCard } from '@/components/blog-card';
 import { Pagination } from '@/components/ui/pagination';
-import { Badge } from '@/components/ui/badge';
 import { ImagePlaceholder } from '@/components/ui/image-placeholder';
 import { Reveal } from '@/components/reveal';
 import { EmptyState } from '@/components/empty-state';
@@ -82,14 +81,13 @@ export default async function BlogPage({
                 />
               </div>
               <div className="ds-stack" style={{ gap: '16px', alignItems: 'flex-start' }}>
-                <Badge tone="brand">
-                  {featured.frontmatter.featured ? 'Featured' : 'Latest'} · {featured.frontmatter.category}
-                </Badge>
                 <h2 className="h2 ds-featured__title">
                   <Link href={`/blog/${featured.slug}`}>{featured.frontmatter.title}</Link>
                 </h2>
                 <p className="lead text-text-muted">{featured.frontmatter.excerpt}</p>
-                <span className="caption text-text-muted">{formatDate(featured)}</span>
+                <span className="caption text-text-muted">
+                  {featured.frontmatter.category} · {formatDate(featured)}
+                </span>
               </div>
             </article>
           </Container>

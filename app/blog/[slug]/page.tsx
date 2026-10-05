@@ -6,7 +6,6 @@ import { Container } from '@/components/container';
 import { Section } from '@/components/section';
 import { SectionHeader } from '@/components/section-header';
 import { Breadcrumbs } from '@/components/ui/breadcrumbs';
-import { Badge } from '@/components/ui/badge';
 import { Icon } from '@/components/ui/icon';
 import { ImagePlaceholder } from '@/components/ui/image-placeholder';
 import { Logomark } from '@/components/logomark';
@@ -88,7 +87,7 @@ export default async function BlogPostPage({ params }: PageProps) {
           <Container className="ds-post-header__inner ds-anim-in">
             <Breadcrumbs items={breadcrumbs} />
             <div className="ds-post-meta">
-              <Badge tone="brand">{fm.category}</Badge>
+              <span className="small text-text-muted">{fm.category}</span>
               <span className="small text-text-muted">{formatDate(fm.date)}</span>
               <span className="small text-text-muted ds-row" style={{ gap: '6px' }}>
                 <Icon name="clock" size={15} />

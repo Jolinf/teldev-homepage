@@ -1,13 +1,8 @@
-import { Badge } from './ui/badge';
 import { TextLink } from './ui/text-link';
 import { ImagePlaceholder } from './ui/image-placeholder';
 
-type BadgeTone = 'neutral' | 'brand' | 'success' | 'warning' | 'danger';
-
 interface EventHighlightProps {
   date: { mon: string; day: string };
-  tag: string;
-  tagTone?: BadgeTone;
   title: string;
   description: string;
   note?: string;
@@ -25,8 +20,6 @@ interface EventHighlightProps {
 
 export function EventHighlight({
   date,
-  tag,
-  tagTone = 'brand',
   title,
   description,
   note,
@@ -38,8 +31,7 @@ export function EventHighlight({
   const external = !!link && /^https?:\/\//.test(link.href);
   const body = (
     <>
-      <Badge tone={tagTone}>{tag}</Badge>
-      <h3 className="h5" style={{ marginTop: '6px' }}>
+      <h3 className="h5">
         {title}
       </h3>
       <p className="body text-text-muted">{description}</p>

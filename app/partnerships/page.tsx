@@ -63,7 +63,6 @@ export default function PartnershipsPage() {
               media
               wide
               date={EVENT.dateShort}
-              tag="Official Tech & Innovation Partner"
               title={EVENT.title}
               description={EVENT.summary}
               image={EVENT.hero}

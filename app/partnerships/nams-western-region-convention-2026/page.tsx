@@ -3,7 +3,6 @@ import { Container } from '@/components/container';
 import { Section } from '@/components/section';
 import { SectionHeader } from '@/components/section-header';
 import { Breadcrumbs } from '@/components/ui/breadcrumbs';
-import { Badge } from '@/components/ui/badge';
 import { Icon } from '@/components/ui/icon';
 import { ImagePlaceholder } from '@/components/ui/image-placeholder';
 import { TextLink } from '@/components/ui/text-link';
@@ -65,10 +64,6 @@ export default function NamsConventionPage() {
         <Container className="ds-stack" style={{ gap: '32px' }}>
           <div className="ds-event-hero__copy ds-anim-in">
             <Breadcrumbs items={breadcrumbs} />
-            <div className="ds-row ds-wrap" style={{ gap: '8px' }}>
-              <Badge tone="brand">Official Tech &amp; Innovation Partner</Badge>
-              <Badge tone="neutral">{EVENT.edition}</Badge>
-            </div>
             <h1 className="display ds-event-hero__title">{EVENT.title}</h1>
             <p className="lead text-text-muted">{EVENT.summary}</p>
             <ul className="ds-event-hero__meta">
@@ -83,6 +78,10 @@ export default function NamsConventionPage() {
               <li>
                 <Icon name="users" size={18} />
                 26 university chapters
+              </li>
+              <li>
+                <Icon name="check-circle" size={18} />
+                TELDEV: Official Tech &amp; Innovation Partner
               </li>
             </ul>
           </div>
@@ -215,7 +214,6 @@ export default function NamsConventionPage() {
       <Section>
         <div className="ds-two-col ds-two-col--start ds-event-panel">
           <div className="ds-stack ds-event-panel__intro" style={{ gap: '16px' }}>
-            <Badge tone="brand">Panel discussion</Badge>
             <h2 className="h2">{EVENT.panel.title}</h2>
             <p className="body text-text-muted">
               The panel asked where artificial intelligence and biotechnology meet in Nigeria, and

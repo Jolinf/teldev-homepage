@@ -404,8 +404,6 @@ select.ds-control { appearance: none; padding-right: var(--space-8); }
 /* shared helpers */
 .ds-media { position: relative; overflow: hidden; border-radius: var(--radius-xl); }
 .ds-media .ds-imgph { transition: transform 500ms var(--ease-out, ease); }
-.ds-media__chip { position: absolute; top: var(--space-3); left: var(--space-3); }
-.ds-media__chip .ds-badge { background: var(--surface-raised); }
 .ds-two-col { display: grid; gap: var(--space-6); grid-template-columns: 1fr; }
 @media (min-width: 768px) { .ds-two-col { grid-template-columns: 1fr 1fr; } }
 @media (min-width: 1024px) { .ds-two-col--start { align-items: start; gap: var(--space-16); } }

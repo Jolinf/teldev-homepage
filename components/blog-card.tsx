@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { ImagePlaceholder } from './ui/image-placeholder';
-import { Badge } from './ui/badge';
 
 interface BlogCardProps {
   href: string;
@@ -16,9 +15,6 @@ export function BlogCard({ href, category, title, excerpt, date, image }: BlogCa
     <article className="ds-blogcard">
       <div className="ds-media">
         <ImagePlaceholder ratio="4x3" src={image} alt={title} label="Article image" />
-        <span className="ds-media__chip">
-          <Badge tone="neutral">{category}</Badge>
-        </span>
       </div>
       <h3 className="h5 ds-blogcard__title">
         <Link href={href} className="ds-stretched">
@@ -26,7 +22,9 @@ export function BlogCard({ href, category, title, excerpt, date, image }: BlogCa
         </Link>
       </h3>
       <p className="body text-text-muted">{excerpt}</p>
-      <span className="caption text-text-muted">{date}</span>
+      <span className="caption text-text-muted">
+        {category} · {date}
+      </span>
     </article>
   );
 }

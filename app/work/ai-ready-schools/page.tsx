@@ -3,7 +3,6 @@ import { Container } from '@/components/container';
 import { Section } from '@/components/section';
 import { SectionHeader } from '@/components/section-header';
 import { Breadcrumbs } from '@/components/ui/breadcrumbs';
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Icon } from '@/components/ui/icon';
 import { ImagePlaceholder } from '@/components/ui/image-placeholder';
@@ -43,10 +42,6 @@ export default function TarsPage() {
         <Container className="ds-stack" style={{ gap: '32px' }}>
           <div className="ds-event-hero__copy ds-anim-in">
             <Breadcrumbs items={breadcrumbs} />
-            <div className="ds-row ds-wrap" style={{ gap: '8px' }}>
-              <Badge tone="brand">{TARS.status}</Badge>
-              <Badge tone="neutral">Free for schools</Badge>
-            </div>
             <h1 className="display ds-event-hero__title">
               {TARS.name} <span className="text-text-muted">({TARS.short})</span>
             </h1>
@@ -63,6 +58,10 @@ export default function TarsPage() {
               <li>
                 <Icon name="calendar" size={18} />
                 Two 45-minute workshops
+              </li>
+              <li>
+                <Icon name="check-circle" size={18} />
+                Free for schools, {TARS.status.toLowerCase()}
               </li>
             </ul>
             <div className="ds-row ds-wrap" style={{ gap: '12px' }}>
@@ -131,11 +130,12 @@ export default function TarsPage() {
               className="ds-card ds-card--onSubtle ds-stack ds-tars-track"
               style={{ gap: '12px' }}
             >
-              <div className="ds-row ds-wrap" style={{ gap: '8px' }}>
-                <Badge tone={t.tag === 'Planned' ? 'neutral' : 'success'}>{t.tag}</Badge>
-                <span className="small text-text-muted">{t.who}</span>
+              <div className="ds-stack" style={{ gap: '4px' }}>
+                <h3 className="h5">{t.title}</h3>
+                <span className="small text-text-muted">
+                  {t.who} · {t.tag}
+                </span>
               </div>
-              <h3 className="h5">{t.title}</h3>
               <p className="body text-text-muted">{t.body}</p>
               <ul className="ds-tars-points">
                 {t.points.map((p) => (
