@@ -73,7 +73,7 @@ export const TARS = {
   steps: [
     { title: 'Get in touch', body: 'A school contacts us, or we reach out. One short call to agree a date and the classes taking part.' },
     { title: 'We prepare', body: 'We confirm class sizes, the topics students find hardest, and the school\'s rules on devices and photos.' },
-    { title: 'Workshop day', body: 'We bring the facilitators and materials, plus devices and internet where a school needs them. Students and teachers each get a hands-on session.' },
+    { title: 'Workshop day', body: 'We bring the facilitators and materials, plus devices and internet for schools that do not have their own devices and internet. Students and teachers each get a hands-on session.' },
     { title: 'Follow-up', body: 'The school receives a short summary of what changed, from before-and-after questions.' },
   ],
 
