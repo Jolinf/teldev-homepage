@@ -16,7 +16,7 @@ export const TARS = {
   short: 'TARS',
   status: 'Now booking schools',
   tagline: 'Getting classrooms ready for AI, starting in Lagos.',
-  aim: 'The TARS initiative is TELDEV\'s effort to improve how Nigerian schools understand and use technology, starting with AI. We run free workshops that teach students to study with AI, and help teachers use it in their teaching and handle its misuse fairly.',
+  aim: 'The TARS initiative is TELDEV\'s effort to improve how Nigerian schools understand and use technology, starting with AI. We run hands-on workshops that teach students to study with AI, and help teachers use it in their teaching and handle its misuse fairly.',
   blogSlug: 'introducing-tars-teldev-ai-ready-schools',
   image: {
     src: '/work/tars-classroom.webp',
@@ -25,8 +25,8 @@ export const TARS = {
 
   facts: [
     { label: 'Who it\'s for', value: 'SS1 and SS2 students, and their teachers' },
-    { label: 'Format', value: 'Two 45-minute workshops, one for students and one for teachers' },
-    { label: 'Cost to schools', value: 'Free' },
+    { label: 'Format', value: 'Hands-on sessions in school, for students and for teachers' },
+    { label: 'Starting with', value: 'AI, with more technology topics to follow' },
     { label: 'Where', value: 'Secondary schools in Lagos, to start' },
   ],
 
@@ -51,7 +51,7 @@ export const TARS = {
       title: 'Students: study smarter with AI',
       who: 'SS1 and SS2',
       body: 'Students use AI on a topic from their own syllabus: explaining it simply, quizzing themselves with exam-style questions and checking the answers against their textbook. They learn its limits too: it can be wrong, so every answer gets checked against the textbook.',
-      points: ['Hands-on in small groups, with devices we bring', 'A take-home prompt card for every student', 'Builds the habits they will need for WAEC, NECO and JAMB'],
+      points: ['Hands-on in small groups', 'A take-home prompt card for every student', 'Builds the habits they will need for WAEC, NECO and JAMB'],
     },
     {
       tag: 'Available now',
@@ -69,27 +69,11 @@ export const TARS = {
     },
   ],
 
-  sessions: {
-    students: [
-      { time: '0 to 5 min', title: 'The exam years ahead', body: 'Where AI fits in a student\'s study life.' },
-      { time: '5 to 12 min', title: 'A tutor that never sleeps', body: 'What AI is good at, and where it gets things wrong.' },
-      { time: '12 to 35 min', title: 'Hands-on', body: 'Explain it, quiz me, mark me, check it, in groups.' },
-      { time: '35 to 40 min', title: 'Rules for using it well', body: 'Use it to understand; check everything; stay safe.' },
-      { time: '40 to 45 min', title: 'Questions and close', body: 'Prompt card and exit questions.' },
-    ],
-    teachers: [
-      { time: '0 to 5 min', title: 'Where students are now', body: 'How students already use AI.' },
-      { time: '5 to 20 min', title: 'AI as a teaching assistant', body: 'Lesson plans, practice questions, marking guides.' },
-      { time: '20 to 35 min', title: 'Spotting and preventing misuse', body: 'Warning signs, fair responses, assignment design.' },
-      { time: '35 to 42 min', title: 'A classroom AI policy', body: 'Red, amber and green labels; student declarations.' },
-      { time: '42 to 45 min', title: 'Questions and close', body: 'Teacher handout and feedback.' },
-    ],
-  },
 
   steps: [
     { title: 'Get in touch', body: 'A school contacts us, or we reach out. One short call to agree a date and the classes taking part.' },
     { title: 'We prepare', body: 'We confirm class sizes, the topics students find hardest, and the school\'s rules on devices and photos.' },
-    { title: 'Workshop day', body: 'We bring facilitators, devices and internet. Students and teachers each get a 45-minute session.' },
+    { title: 'Workshop day', body: 'We bring the facilitators and materials, plus devices and internet where a school needs them. Students and teachers each get a hands-on session.' },
     { title: 'Follow-up', body: 'The school receives a short summary of what changed, from before-and-after questions.' },
   ],
 
@@ -101,12 +85,8 @@ export const TARS = {
 
   faq: [
     {
-      q: 'What does it cost the school?',
-      a: 'Nothing. TARS initiative workshops are free for schools. We bring the facilitators, devices and internet connection.',
-    },
-    {
       q: 'Do students need their own phones?',
-      a: 'No. We bring the devices, already set up, so students never sign up for anything or enter personal details. We work within your school\'s rules on phones.',
+      a: 'No. We use the school\'s devices or bring our own, already set up, so students never sign up for anything or enter personal details. We work within your school\'s rules on phones.',
     },
     {
       q: 'Won\'t teaching AI encourage cheating?',

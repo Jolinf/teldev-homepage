@@ -56,12 +56,12 @@ export default function TarsPage() {
                 Lagos, to start
               </li>
               <li>
-                <Icon name="calendar" size={18} />
-                Two 45-minute workshops
+                <Icon name="sparkles" size={18} />
+                Starting with AI
               </li>
               <li>
                 <Icon name="check-circle" size={18} />
-                Free for schools, {TARS.status.toLowerCase()}
+                {TARS.status}
               </li>
             </ul>
             <div className="ds-row ds-wrap" style={{ gap: '12px' }}>
@@ -120,7 +120,7 @@ export default function TarsPage() {
       <Section subtle>
         <SectionHeader
           heading="Three tracks"
-          lead="Two are available to schools now. The SS3 track follows once the first schools are under way."
+          lead="The initiative starts with AI. Two tracks are available to schools now, an SS3 track follows, and sessions on other uses of technology in learning will be added over time."
         />
         <div className="ds-detail-cols">
           {TARS.tracks.map((t, i) => (
@@ -147,34 +147,6 @@ export default function TarsPage() {
         </div>
       </Section>
 
-      {/* Sessions */}
-      <Section>
-        <SectionHeader
-          heading="What happens in each workshop"
-          lead="Most of each session is hands-on. The full outlines are available to schools on request."
-        />
-        <div className="ds-two-col ds-two-col--start">
-          {(
-            [
-              ['Students (SS1 and SS2)', TARS.sessions.students],
-              ['Teachers', TARS.sessions.teachers],
-            ] as const
-          ).map(([label, rows]) => (
-            <div key={label} className="ds-stack" style={{ gap: '16px' }}>
-              <h3 className="h4">{label}</h3>
-              <ol className="ds-tars-agenda">
-                {rows.map((r) => (
-                  <li key={r.time}>
-                    <span className="small text-text-muted">{r.time}</span>
-                    <span className="label">{r.title}</span>
-                    <span className="body text-text-muted">{r.body}</span>
-                  </li>
-                ))}
-              </ol>
-            </div>
-          ))}
-        </div>
-      </Section>
 
       {/* How schools join */}
       <Section navy>

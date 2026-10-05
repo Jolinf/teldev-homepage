@@ -60,7 +60,7 @@ export default function WorkPage() {
                 <ul className="ds-work-feature__facts">
                   <li>
                     <Icon name="users" size={18} />
-                    Free workshops for SS1 and SS2 students and their teachers
+                    Hands-on workshops for SS1 and SS2 students and their teachers
                   </li>
                   <li>
                     <Icon name="map-pin" size={18} />
