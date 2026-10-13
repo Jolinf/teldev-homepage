@@ -68,7 +68,7 @@ export default function WorkPage() {
                   </li>
                   <li>
                     <Icon name="calendar" size={18} />
-                    An SS3 track for life after school is planned
+                    Five stages, from Learning with AI to Creating with AI
                   </li>
                   <li>
                     <Icon name="check-circle" size={18} />

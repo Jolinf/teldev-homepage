@@ -116,37 +116,51 @@ export default function TarsPage() {
         </div>
       </Section>
 
-      {/* Tracks */}
+      {/* Stages */}
       <Section subtle>
         <SectionHeader
-          heading="Three tracks"
-          lead="The initiative starts with AI. Two tracks are available to schools now, an SS3 track follows, and sessions on other uses of technology in learning will be added over time."
+          heading="Five stages"
+          lead="For SS1 and SS2 students. Each stage builds on the one before: every school begins with Learning with AI, and schools that want to go further continue through the series."
         />
-        <div className="ds-detail-cols">
-          {TARS.tracks.map((t, i) => (
+        <ol className="ds-tars-stages">
+          {TARS.stages.map((s, i) => (
             <Reveal
-              key={t.title}
-              delay={i * 100}
-              className="ds-card ds-card--onSubtle ds-stack ds-tars-track"
-              style={{ gap: '12px' }}
+              key={s.title}
+              as="li"
+              delay={i * 80}
+              className="ds-card ds-card--onSubtle ds-stack"
+              style={{ gap: '10px' }}
             >
+              <span className="ds-tars-stages__num" aria-hidden="true">
+                {i + 1}
+              </span>
+              <h3 className="h5">{s.title}</h3>
+              <p className="body text-text-muted">{s.focus}</p>
+              {s.note && <p className="small ds-tars-stages__note">{s.note}</p>}
+            </Reveal>
+          ))}
+        </ol>
+      </Section>
+
+      {/* Teachers and SS3 */}
+      <Section>
+        <SectionHeader
+          heading="Beyond the student stages"
+          lead="AI is where the initiative starts. Sessions on other uses of technology in learning will be added over time."
+        />
+        <div className="ds-two-col ds-two-col--start">
+          {TARS.beyond.map((b, i) => (
+            <Reveal key={b.title} delay={i * 100} className="ds-card ds-stack" style={{ gap: '12px' }}>
               <div className="ds-stack" style={{ gap: '4px' }}>
-                <h3 className="h5">{t.title}</h3>
-                <span className="small text-text-muted">
-                  {t.who} · {t.tag}
-                </span>
+                <h3 className="h5">{b.title}</h3>
+                <span className="small text-text-muted">{b.who}</span>
               </div>
-              <p className="body text-text-muted">{t.body}</p>
-              <ul className="ds-tars-points">
-                {t.points.map((p) => (
-                  <li key={p}>{p}</li>
-                ))}
-              </ul>
+              <p className="body text-text-muted">{b.body}</p>
+              <p className="small text-text-muted">{b.note}</p>
             </Reveal>
           ))}
         </div>
       </Section>
-
 
       {/* How schools join */}
       <Section navy>

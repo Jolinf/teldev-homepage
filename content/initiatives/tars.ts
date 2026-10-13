@@ -45,30 +45,44 @@ export const TARS = {
     },
   ],
 
-  tracks: [
+  stages: [
     {
-      tag: 'Available now',
-      title: 'Students: study smarter with AI',
-      who: 'SS1 and SS2',
-      body: 'Students use AI on a topic from their own syllabus: explaining it simply, quizzing themselves with exam-style questions and checking the answers against their textbook. They learn its limits too: it can be wrong, so every answer gets checked against the textbook.',
-      points: ['Hands-on in small groups', 'A take-home prompt card for every student', 'Builds the habits they will need for WAEC, NECO and JAMB'],
+      title: 'Learning with AI',
+      focus: 'What AI is, what it can and cannot do, and how it can support learning.',
+      note: 'Where every school begins',
     },
     {
-      tag: 'Available now',
-      title: 'Teachers: teaching with AI, and handling misuse',
+      title: 'Study Smarter with AI',
+      focus: 'Using AI for revision, study schedules, practice questions and understanding difficult subjects.',
+    },
+    {
+      title: 'Thinking Critically with AI',
+      focus: 'Spotting AI mistakes, misinformation and deepfakes, and knowing the difference between AI assistance and cheating.',
+    },
+    {
+      title: 'Prompting AI Effectively',
+      focus: 'Communicating clearly with AI: structuring prompts, refining responses and using AI tools well.',
+    },
+    {
+      title: 'Creating with AI',
+      focus: 'How AI works, and putting everything students have learned into a practical project.',
+    },
+  ] as { title: string; focus: string; note?: string }[],
+
+  beyond: [
+    {
+      title: 'Teachers',
       who: 'Secondary school teachers',
-      body: 'Teachers use AI to draft lesson plans, practice questions and marking guides, then learn practical ways to prevent and respond to AI misuse: assignment design, short oral checks and a clear classroom policy.',
-      points: ['A red, amber and green label for every assignment', 'What to do when misuse is suspected, fairly', 'A teacher prompt card to keep'],
+      body: 'Alongside Learning with AI, teachers get their own session: using AI to save time on lesson plans, practice questions and marking guides, and practical ways to keep assessment fair, such as assignments AI cannot simply complete and short oral checks.',
+      note: 'Further teacher workshops are on the way.',
     },
     {
-      tag: 'Planned',
       title: 'SS3: ready for what\'s next',
       who: 'SS3, after final exams',
-      body: 'For students finishing secondary school and waiting for admission: practical digital skills they can use to earn, work and keep learning, such as using AI responsibly at work, online safety, and the basics of offering a digital service. Timed after WAEC and NECO so it never competes with exam preparation.',
-      points: ['Planned for after the 2027 exam season', 'Details to be announced'],
+      body: 'For students finishing secondary school and waiting for admission: practical digital skills they can use to earn, work and keep learning. Timed after WAEC and NECO so it never competes with exam preparation.',
+      note: 'Planned. Details to be announced.',
     },
   ],
-
 
   steps: [
     { title: 'Get in touch', body: 'A school contacts us, or we reach out. One short call to agree a date and the classes taking part.' },
