@@ -7,6 +7,7 @@ import { Container } from '@/components/container';
 import { Button } from '@/components/ui/button';
 import { Icon } from '@/components/ui/icon';
 import { TARS } from '@/content/initiatives/tars';
+import { SPOTLIGHT } from '@/content/initiatives/spotlight';
 // import { CaseStudy } from '@/components/case-study';
 import { Testimonial } from '@/components/testimonial';
 import { CTABanner } from '@/components/cta-banner';
@@ -81,6 +82,36 @@ export default function WorkPage() {
                   </Button>
                   <Button variant="ghost" href="/contact?type=partner">
                     Bring it to your school
+                  </Button>
+                </div>
+              </div>
+            </article>
+          </Reveal>
+          <Reveal delay={100}>
+            <article className="ds-work-feature ds-work-feature--text" style={{ marginTop: '24px' }}>
+              <div className="ds-work-feature__body">
+                <h2 className="h2">{SPOTLIGHT.name}</h2>
+                <p className="body text-text-muted">{SPOTLIGHT.aim}</p>
+                <ul className="ds-work-feature__facts">
+                  <li>
+                    <Icon name="layout-template" size={18} />
+                    A storefront, a business profile and your own domain
+                  </li>
+                  <li>
+                    <Icon name="message-circle" size={18} />
+                    For businesses that sell on Instagram, TikTok, WhatsApp and Telegram
+                  </li>
+                  <li>
+                    <Icon name="check-circle" size={18} />
+                    {SPOTLIGHT.status}
+                  </li>
+                </ul>
+                <div className="ds-row ds-wrap" style={{ gap: '12px', marginTop: '8px' }}>
+                  <Button variant="primary" icon="arrow-right" href={`/work/${SPOTLIGHT.slug}`}>
+                    Explore TELDEV Spotlight
+                  </Button>
+                  <Button variant="ghost" href={SPOTLIGHT.demoUrl}>
+                    See a live storefront
                   </Button>
                 </div>
               </div>

@@ -2,6 +2,7 @@ import type { MetadataRoute } from 'next';
 import { SERVICES } from '@/content/services';
 import { NAMS_WR_CONVENTION } from '@/content/events/nams-wr-convention-2026';
 import { TARS } from '@/content/initiatives/tars';
+import { SPOTLIGHT } from '@/content/initiatives/spotlight';
 import { getAllBlogPosts, getAllWorkEntries } from '@/lib/content';
 
 const BASE_URL = 'https://www.teldev.org';
@@ -15,6 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     `/partnerships/${NAMS_WR_CONVENTION.slug}`,
     '/work',
     `/work/${TARS.slug}`,
+    `/work/${SPOTLIGHT.slug}`,
     '/blog',
     '/contact',
     '/privacy',
